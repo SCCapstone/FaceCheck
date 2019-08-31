@@ -6,6 +6,10 @@ Facial recognition application, that when paired with QR codes and a react nativ
 ### Prerequisites
 
 ### Installing
+1. git clone git@github.com:SCCapstone/FaceCheck.git
+2. cd FaceCheck/FaceCheckApp
+3. npm install
+4. react-native start
 
 ## Built With
 - React-Native
