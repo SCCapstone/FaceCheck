@@ -1,7 +1,6 @@
 #!/bin/bash
 
 npm install             # install project dependancies
-cd ../ios               # change folder to ios
+cd ./ios                # change folder to ios
 pod install             # install cocoapod dependancies for ios
-cd ../..                # change folder back to starting point
-
+cd ../                # change folder back to starting point

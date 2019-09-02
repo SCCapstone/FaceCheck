@@ -7,12 +7,18 @@ Facial recognition application, that when paired with QR codes and a react nativ
 ## Getting Started
 
 ### Prerequisites
+- Install [Node.js](https://nodejs.org/en/download/)
+- Install [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) via the Mac App Store
+- Install [React-Native](https://facebook.github.io/react-native/docs/getting-started)
+
 
 ### Installing
 1. git clone git@github.com:SCCapstone/FaceCheck.git
 2. cd FaceCheck/FaceCheckApp
-3. npm install
-4. react-native start
+3. npm run pod
+
+### To Start the Application in an Xcode Simulator
+- npm run start
 
 ## Built With
 - React-Native
@@ -27,4 +33,4 @@ Facial recognition application, that when paired with QR codes and a react nativ
 
 ## License
 
-**bold text** Keywords: Face recognition, AI, QR codes, React Native, mobile application 
+**Keywords: Face recognition, AI, QR codes, React Native, mobile application**
