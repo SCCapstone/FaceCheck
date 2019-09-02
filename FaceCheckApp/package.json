@@ -1,9 +1,10 @@
 {
-  "name": "FaceCheckApp",
+  "name": "FaceCheck",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start",
+    "pod": "./bash-scripts/install-dependancies",
+    "start": "react-native run-ios",
     "test": "jest",
     "lint": "eslint ."
   },
