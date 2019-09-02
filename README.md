@@ -25,7 +25,7 @@ Facial recognition application, that when paired with QR codes and a react nativ
 - Firebase
 
 ## Authors
-- Micheal Miranda
+- Michael Miranda
 - Samuel Nichols
 - Ibrahim Salman
 - Jonathan Sharp
