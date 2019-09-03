@@ -31,6 +31,6 @@ Facial recognition application, that when paired with QR codes and a react nativ
 - Jonathan Sharp
 - Matthew Sharp
 
-## License
+## Copyright 2019
 
 **Keywords: Face recognition, AI, QR codes, React Native, mobile application**
