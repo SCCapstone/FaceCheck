@@ -4,17 +4,16 @@ sudo: true
 language: node_js
 node_js:
   - "stable"
-# cache:
-#   directories:
-#     - FaceCheckApp/node_modules
-
+cache:
+  directories:
+    - /Users/travis/build/SCCapstone/FaceCheck/FaceCheckApp/node_modules
+# Moving to react-native project directory
 before_install:
-  - pwd 
   - cd FaceCheckApp
-
+# Installing npm packages
 install:
   - npm install
-
+# Linting and running tests
 script:
   - npm run lint
   - npm test
