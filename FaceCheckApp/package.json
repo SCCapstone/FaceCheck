@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "pod": "./bash-scripts/install-dependancies",
+    "pod": "./bash-scripts/install-dependancies-ios",
     "start": "react-native run-ios",
     "test": "jest",
     "lint": "eslint ."
