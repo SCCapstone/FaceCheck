@@ -4,15 +4,17 @@ sudo: true
 language: node_js
 node_js:
   - "stable"
-cache:
-  directories:
-    - FaceCheckApp/node_modules
+# cache:
+#   directories:
+#     - FaceCheckApp/node_modules
+
+before_install:
+  - pwd 
+  - cd FaceCheckApp
 
 install:
-  - cd FaceCheckApp
   - npm install
 
 script:
-  - cd FaceCheckApp
   - npm run lint
   - npm test
