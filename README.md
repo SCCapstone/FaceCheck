@@ -1,4 +1,5 @@
 # FaceCheck
+[![Build Status](https://travis-ci.com/SCCapstone/FaceCheck.svg?token=eiKCbjzezvQmo3HdzB8y&branch=master)](https://travis-ci.com/SCCapstone/FaceCheck)
 [![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com)
 
 ## What is FaceCheck
