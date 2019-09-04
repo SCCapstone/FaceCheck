@@ -6,7 +6,7 @@ Facial recognition application, that when paired with QR codes and a react nativ
 
 ## Getting Started
 
-### Prerequisites
+### Prerequisites for iOS
 - Install [Node.js](https://nodejs.org/en/download/)
 - Install [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) via the Mac App Store
 - Install [React-Native](https://facebook.github.io/react-native/docs/getting-started)
