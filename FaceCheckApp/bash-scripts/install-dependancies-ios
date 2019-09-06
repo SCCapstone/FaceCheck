@@ -1,6 +1,0 @@
-#!/bin/bash
-
-npm install             # install project dependancies
-pushd ios               # change folder to ios
-pod install             # install cocoapod dependancies for ios
-popd               # change folder back to starting point
