@@ -13,10 +13,11 @@ before_install:
   - brew tap wix/brew
   - brew install applesimutils
   - npm install -g detox-cli
+  - npm install -g yarn
 
 # Installing npm packages
 install:
-  - npm install
+  - yarn install
   - pushd ios
   - pod update
   - pod install
