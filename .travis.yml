@@ -10,7 +10,6 @@ cache:
 # Moving to react-native project directory and installing dependencies
 before_install:
   - cd FaceCheckApp
-  - brew update && brew install node
   - brew tap wix/brew
   - brew install applesimutils
   - npm install -g yarn
