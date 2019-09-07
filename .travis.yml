@@ -23,9 +23,9 @@ install:
   - pod install
   - popd
 
-build_and_test:
-  - detox build
-  - detox test
+script:
+  - sudo detox build
+  - sudo detox test
 # # Linting and running tests
 # script:
 #   - npm run lint
