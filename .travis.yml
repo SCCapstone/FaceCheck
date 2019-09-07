@@ -12,12 +12,11 @@ before_install:
   - cd FaceCheckApp
   - brew tap wix/brew
   - brew install applesimutils
-  - npm install -g yarn
   - npm install -g detox-cli
 
 # Installing npm packages
 install:
-  - yarn install
+  - npm install
   - pushd ios
   - pod install
   - popd
