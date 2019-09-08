@@ -35,6 +35,6 @@ install:
 
 # Build and Run Tests
 script:
-  - sudo detox build --configuration ios.sim.release
-  - sudo detox test --configuration ios.sim.release --cleanup
+  - sudo detox build --configuration ios.sim.debug
+  - sudo detox test --configuration ios.sim.debug --cleanup
   
