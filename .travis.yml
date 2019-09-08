@@ -1,9 +1,13 @@
-os: osx
 osx_image: xcode10.3
 sudo: true
-language: node_js
+language: objective-c
 node_js:
   - "stable"
+
+env:
+  global:
+  - NODE_VERSION=stable
+
 cache:
   directories:
     - /Users/travis/build/SCCapstone/FaceCheck/FaceCheckApp/node_modules
@@ -12,10 +16,16 @@ before_install:
   - cd FaceCheckApp
   - brew tap wix/brew
   - brew install applesimutils
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
+  - nvm alias default $NODE_VERSION
+  - npm install -g react-native-cli
   - npm install -g detox-cli
   - npm install -g yarn
 
-# Installing npm packages
+# Installing react and pod build
 install:
   - yarn install
   - pushd ios
@@ -23,11 +33,8 @@ install:
   - pod install
   - popd
 
+# Build and Run Tests
 script:
-  - sudo detox build
-  - sudo detox test
-# # Linting and running tests
-# script:
-#   - npm run lint
-#   - npm test
+  - sudo detox build --configuration ios.sim.release
+  - sudo detox test --configuration ios.sim.release --cleanup
   
