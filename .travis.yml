@@ -33,7 +33,7 @@ install:
   - pod install
   - popd
 
-# Build and Run Tests
+# Build and Run Tests | Currently disabled due to poor macOS build system
 script:
   # - travis_wait 30 sudo detox build --configuration ios.sim.debug
   # - sudo detox test --configuration ios.sim.debug --cleanup
