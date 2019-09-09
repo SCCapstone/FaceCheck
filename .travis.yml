@@ -35,6 +35,6 @@ install:
 
 # Build and Run Tests
 script:
-  - sudo detox build --configuration ios.sim.debug
+  - travis_wait 30 sudo detox build --configuration ios.sim.debug
   - sudo detox test --configuration ios.sim.debug --cleanup
   
