@@ -2,7 +2,7 @@ osx_image: xcode10.3
 sudo: true
 language: objective-c
 xcode_workspace: /Users/travis/build/SCCapstone/FaceCheck/FaceCheckApp/ios/FaceCheckApp.xcworkspace # path to your xcodeproj folder
-xcode_scheme: FaceCheckAppTests
+xcode_scheme: FaceCheckApp
 xcode_destination: platform=iOS Simulator,OS=12.4.1,name=iPhone X
 
 env:
