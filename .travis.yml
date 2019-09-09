@@ -1,6 +1,5 @@
 osx_image: xcode10.3
 sudo: true
-language: objective-c
 node_js:
   - "stable"
 
@@ -32,6 +31,7 @@ install:
   - pod update
   - pod install
   - popd
+  - true
 
 # Build and Run Tests | Currently disabled due to poor macOS build system
 script:
