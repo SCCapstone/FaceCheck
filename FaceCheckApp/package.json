@@ -33,7 +33,7 @@
     "configurations": {
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/FaceCheckApp.app",
-        "build": "xcodebuild -workspace ios/FaceCheckApp.xcworkspace -scheme FaceCheckApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "build": "xcodebuild -workspace ios/FaceCheckApp.xcworkspace -scheme FaceCheckApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build UseNewBuildSystem=YES",
         "type": "ios.simulator",
         "name": "iPhone X"
       }
