@@ -3,7 +3,7 @@ sudo: true
 language: objective-c
 xcode_workspace: /Users/travis/build/SCCapstone/FaceCheck/FaceCheckApp/ios/FaceCheckApp.xcworkspace # path to your xcodeproj folder
 xcode_scheme: FaceCheckApp
-xcode_destination: platform:iOS Simulator, id:9A0289A2-D8A6-4814-89F9-7784362F9C57, OS:12.4, name:iPhone X
+xcode_destination: xcode_destination: 'platform=iOS Simulator,OS=latest,name=iPhone X'
 
 env:
   global:
