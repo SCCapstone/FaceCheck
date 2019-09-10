@@ -1,4 +1,4 @@
-osx_image: xcode10.3
+break osx_image: xcode10.3
 sudo: true
 language: objective-c
 xcode_workspace: /Users/travis/build/SCCapstone/FaceCheck/FaceCheckApp/ios/FaceCheckApp.xcworkspace # path to your xcodeproj folder
