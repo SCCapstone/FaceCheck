@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>658389282843-070rmh0d3hs2ibtggk7mcgghl7sqgtvt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.658389282843-070rmh0d3hs2ibtggk7mcgghl7sqgtvt</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>658389282843-8fpuuhvpitkt0h28o4aibmad2o5oijr2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAM6pKLZRcMr5Uri7ydc8lASJ9s_cyNwy8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>658389282843</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.FaceCheckApp</string>
+	<key>PROJECT_ID</key>
+	<string>facecheck-f1a51</string>
+	<key>STORAGE_BUCKET</key>
+	<string>facecheck-f1a51.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:658389282843:ios:3c7b252fcdc1a3765308be</string>
+	<key>DATABASE_URL</key>
+	<string>https://facecheck-f1a51.firebaseio.com</string>
+</dict>
+</plist>

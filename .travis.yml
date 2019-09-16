@@ -1,20 +1,41 @@
-os: osx
 osx_image: xcode10.3
 sudo: true
-language: node_js
-node_js:
-  - "stable"
+language: objective-c
+xcode_workspace: /Users/travis/build/SCCapstone/FaceCheck/FaceCheckApp/ios/FaceCheckApp.xcworkspace # path to your xcodeproj folder
+xcode_scheme: FaceCheckApp
+xcode_destination: xcode_destination: 'platform=iOS Simulator,OS=latest,name=iPhone X'
+
+env:
+  global:
+  - NODE_VERSION=stable
+
 cache:
   directories:
     - /Users/travis/build/SCCapstone/FaceCheck/FaceCheckApp/node_modules
-# Moving to react-native project directory
+# Moving to react-native project directory and installing dependencies
 before_install:
   - cd FaceCheckApp
-# Installing npm packages
+  - brew tap wix/brew
+  - brew install applesimutils
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
+  - nvm alias default $NODE_VERSION
+  - npm install -g react-native-cli
+  - npm install -g detox-cli
+  - npm install -g yarn
+
+# Installing react and pod build
 install:
-  - npm install
-# Linting and running tests
+  - yarn install
+  - pushd ios
+  - pod update
+  - pod install
+  - popd
+
+# Build and Run Tests | Currently disabled due to poor macOS build system
 script:
-  - npm run lint
-  - npm test
+  - sudo detox build --configuration ios.sim.debug
+  - sudo detox test --configuration ios.sim.debug --cleanup
   
