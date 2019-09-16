@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:658389282843:ios:3c7b252fcdc1a3765308be</string>
+	<string>1:658389282843:ios:eb5689c87a23f7405308be</string>
 	<key>DATABASE_URL</key>
 	<string>https://facecheck-f1a51.firebaseio.com</string>
 </dict>
