@@ -8,7 +8,8 @@ export default class SignUp extends React.Component {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(() => this.props.navigation.navigate('Main'))
+        // TODO: Change StudentHomeScreen to variable to manage teacher signup
+        .then(() => this.props.navigation.navigate('StudentHomeScreen'))
         .catch(error => this.setState({ errorMessage: error.message }))
     }
 render() {

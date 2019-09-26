@@ -1,23 +1,43 @@
-import React, { useState } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import firebase from 'react-native-firebase'
+import React from 'react';
+import { Text, StyleSheet, View, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const StudentHomeScreen = ({ navigation }) => {
-  const [ userId, setUserID ] = useState([])
+export default class StudentHomeScreen extends React.Component {
+  state = { currentUser: null }
 
-  return (
-    <View>
-      {/* TODO add component mount setUserID */}
-      <Text style={styles.text}>Welcome back M</Text>
-      <TouchableOpacity style={styles.TouchableOpacity} onPress={()=> navigation.navigate('AddClass')}>
-        <Text style={styles.TouchableOpacityText}>Go To Add A Class</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.TouchableOpacity} onPress={()=> navigation.navigate('QR')}>
-        <Text style={styles.TouchableOpacityText}>Go To QR</Text>
-      </TouchableOpacity>
-    </View>
-  )
-};
+  componentDidMount() {
+    const { currentUser } = firebase.auth()
+    this.setState({ currentUser })
+  }
+
+  signOutUser = async () => {
+      try {
+          await firebase.auth().signOut();
+      } catch (e) {
+          console.log(e);
+      }
+  }
+
+  render() {
+    const { currentUser } = this.state
+    return (
+        <View style={styles.container}>
+          <Text style={styles.text}>Welcome back </Text>
+        <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {this.props.navigation.navigate('AddClassScreen')}}>
+          <Text style={styles.TouchableOpacityText}>Go To Add A Class</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {this.props.navigation.navigate('QRGeneratorScreen')}}>
+          <Text style={styles.TouchableOpacityText}>Go To QR</Text>
+        </TouchableOpacity>
+        <Text style = {styles.text}>
+        Hi {currentUser && currentUser.email}!
+        </Text>
+        <Button title="Logout" onPress={this.signOutUser} />
+        </View>
+        )
+  }
+}
 
 const styles = StyleSheet.create({
   text: {
@@ -33,5 +53,3 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
-
-export default StudentHomeScreen;

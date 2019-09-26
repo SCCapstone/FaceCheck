@@ -5,7 +5,10 @@ import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 export default class Loading extends React.Component {
    componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-        this.props.navigation.navigate(user ? 'Main' : 'SignUp')
+      // !! Loading is used to set initial navication
+      // TODO: Add future check on logged in user to determin teacher or student
+      // login flow
+        this.props.navigation.navigate(user ? 'StudentHomeScreen' : 'SignUp')
     })
    }
 
