@@ -9,13 +9,12 @@ export default class SignUp extends React.Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         // TODO: Change StudentHomeScreen to variable to manage teacher signup
-        .then(() => this.props.navigation.navigate('StudentHomeScreen'))
+        .then(() => this.props.navigation.navigate('StudentHome'))
         .catch(error => this.setState({ errorMessage: error.message }))
     }
 render() {
     return (
       <View style={styles.container}>
-        <Text>Sign Up</Text>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}

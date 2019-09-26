@@ -1,4 +1,5 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 // import the different screens
 import Loading from 'FaceCheckApp/src/screens/Loading'
 import SignUp from 'FaceCheckApp/src/auth/SignUp'
@@ -9,25 +10,50 @@ import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen'
 
 
 // create our app's navigation stack
-const RootStack = createSwitchNavigator(
+const RootStack = createStackNavigator(
   {
-    Loading,
-    SignUp,
-    Login,
-    StudentHomeScreen,
-    AddClassScreen,
-    QRGeneratorScreen
+    Loading: {
+      screen: Loading,
+      navigationOptions: {
+        header: null,
+      }
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions:  {
+        title: 'Sign Up',
+        headerLeft: null,
+        gesturesEnabled: false,
+     }
+    },
+    Login: {
+      screen: Login,
+      navigationOptions:  {
+        title: 'Login',
+        headerLeft: null,
+        gesturesEnabled: false,
+     }
+    },
+    StudentHome: {
+      screen: StudentHomeScreen,
+    },
+    AddClass: {
+      screen: AddClassScreen,
+      navigationOptions: {
+        title: 'Add Classes'
+      },
+    },
+    QRGenerator: {
+      screen: QRGeneratorScreen,
+      navigationOptions: {
+        title: 'QR'
+      },
+    }
   },
   {
     initialRouteName: 'Loading',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#f4511e',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+    cardStyle: {
+        backgroundColor: 'white'
     }
   }
 )

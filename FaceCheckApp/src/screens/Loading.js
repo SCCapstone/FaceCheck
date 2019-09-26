@@ -8,7 +8,7 @@ export default class Loading extends React.Component {
       // !! Loading is used to set initial navication
       // TODO: Add future check on logged in user to determin teacher or student
       // login flow
-        this.props.navigation.navigate(user ? 'StudentHomeScreen' : 'SignUp')
+        this.props.navigation.navigate(user ? 'StudentHome' : 'Login')
     })
    }
 

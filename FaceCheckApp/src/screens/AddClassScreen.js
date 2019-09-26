@@ -11,23 +11,11 @@ export default class AddClassScreen extends React.Component {
     this.setState({ currentUser })
   }
 
-  signOutUser = async () => {
-      try {
-          await firebase.auth().signOut();
-      } catch (e) {
-          console.log(e);
-      }
-  }
-
   render() {
     const { currentUser } = this.state
     return (
       <View style ={styles.view}>
-        <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {this.props.navigation.navigate('StudentHomeScreen')}}>
-          <Text style={styles.TouchableOpacityText}>Back</Text>
-        </TouchableOpacity>
-        <Text style={styles.text}>Add A Class</Text>
-        <Button title="Logout" onPress={this.signOutUser} />
+        {/* TODO: Add Stuff */}
       </View>
     )
   }

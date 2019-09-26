@@ -10,13 +10,12 @@ export default class Login extends React.Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         // TODO: Add variable to handle teacher login
-        .then(() => this.props.navigation.navigate('StudentHomeScreen'))
+        .then(() => this.props.navigation.navigate('StudentHome'))
         .catch(error => this.setState({ errorMessage: error.message }))
     }
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
