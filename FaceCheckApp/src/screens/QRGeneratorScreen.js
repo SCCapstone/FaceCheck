@@ -3,6 +3,8 @@ import React from 'react';
 import { Text, StyleSheet, View, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import styles from 'FaceCheckApp/src/assets/styles'
+
 export default class QRGeneratorScreen extends React.Component {
   state = { currentUser: null }
 
@@ -20,20 +22,3 @@ export default class QRGeneratorScreen extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  view: {
-    marginTop: 40,
-    flexDirection: "row",
-  },
-  text: {
-    fontSize: 30,
-  },
-  TouchableOpacity: {
-    margin: 10,
-    width: 50,
-  },
-  TouchableOpacityText: {
-    color: 'blue',
-  }
-});

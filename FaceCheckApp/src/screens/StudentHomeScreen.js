@@ -3,6 +3,8 @@ import React from 'react';
 import { Text, StyleSheet, View, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import styles from 'FaceCheckApp/src/assets/styles'
+
 export default class StudentHomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
@@ -40,18 +42,3 @@ export default class StudentHomeScreen extends React.Component {
         )
   }
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    textAlign: 'center',
-    marginTop: 40,
-  },
-  TouchableOpacity: {
-    margin: 5,
-  },
-  TouchableOpacityText: {
-    color: 'blue',
-    textAlign: 'center'
-  }
-});

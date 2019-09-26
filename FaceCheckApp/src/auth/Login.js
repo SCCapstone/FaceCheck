@@ -2,6 +2,9 @@
 import firebase from 'react-native-firebase'
 import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+
+import styles from 'FaceCheckApp/src/assets/styles'
+
 export default class Login extends React.Component {
     state = { email: '', password: '', errorMessage: null }
     handleLogin = () => {
@@ -44,17 +47,3 @@ export default class Login extends React.Component {
     )
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  textInput: {
-    height: 40,
-    width: '90%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
-  }
-})
