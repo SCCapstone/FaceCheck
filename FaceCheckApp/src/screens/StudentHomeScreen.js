@@ -1,25 +1,12 @@
 import firebase from 'react-native-firebase'
 import React from 'react';
+import { Appbar } from 'react-native-paper';
 import { Text, StyleSheet, View, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from 'FaceCheckApp/src/assets/styles'
 
 export default class StudentHomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-    headerLeft: (<Button title="Logout" onPress={
-      async () => {
-        try {
-            await firebase.auth().signOut();
-        } catch (e) {
-            console.log(e);
-        }
-      }
-    }/>),
-    gesturesEnabled: false,
-  };
-
   state = { currentUser: null }
 
   componentDidMount() {
@@ -30,6 +17,16 @@ export default class StudentHomeScreen extends React.Component {
   render() {
     const { currentUser } = this.state
     return (
+      <View style = {styles.screen}>
+        <Appbar.Header>
+          <Appbar.BackAction
+            title = 'Logout'
+            onPress={() => {firebase.auth().signOut()}}
+          />
+          <Appbar.Content
+            title="Home"
+          />
+        </Appbar.Header>
         <View style={styles.container}>
           {/* <Text style = {styles.text}> Hi {currentUser && currentUser.email}! </Text> */}
           <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {this.props.navigation.navigate('AddClass')}}>
@@ -39,6 +36,7 @@ export default class StudentHomeScreen extends React.Component {
             <Text style={styles.TouchableOpacityText}>Go To QR</Text>
           </TouchableOpacity>
         </View>
-        )
+      </View>
+    )
   }
 }

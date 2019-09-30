@@ -13,47 +13,28 @@ import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen'
 const RootStack = createStackNavigator(
   {
     Loading: {
-      screen: Loading,
-      navigationOptions: {
-        header: null,
-      }
+      screen: Loading
     },
     SignUp: {
-      screen: SignUp,
-      navigationOptions:  {
-        title: 'Sign Up',
-        headerLeft: null,
-        gesturesEnabled: false,
-     }
+      screen: SignUp
     },
     Login: {
-      screen: Login,
-      navigationOptions:  {
-        title: 'Login',
-        headerLeft: null,
-        gesturesEnabled: false,
-     }
+      screen: Login
     },
     StudentHome: {
       screen: StudentHomeScreen,
     },
     AddClass: {
-      screen: AddClassScreen,
-      navigationOptions: {
-        title: 'Add Classes'
-      },
+      screen: AddClassScreen
     },
     QRGenerator: {
-      screen: QRGeneratorScreen,
-      navigationOptions: {
-        title: 'QR'
-      },
+      screen: QRGeneratorScreen
     }
   },
   {
     initialRouteName: 'Loading',
-    cardStyle: {
-        backgroundColor: 'white'
+    defaultNavigationOptions: {
+      header: null,
     }
   }
 )
