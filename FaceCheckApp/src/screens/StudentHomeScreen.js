@@ -1,13 +1,12 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
-import { Appbar, Card, Paragraph} from 'react-native-paper';
+import { FAB, Portal, Appbar, Card, Paragraph} from 'react-native-paper';
 import { Text, View, Button, ScrollView } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import mockClasses from 'FaceCheckApp/src/assets/mockClasses.json';
 import styles from 'FaceCheckApp/src/assets/styles';
 
 export default class StudentHomeScreen extends React.Component {
-  state = { currentUser: null }
+  state = { currentUser: null, open: false }
 
   componentDidMount() {
     const { currentUser } = firebase.auth()
@@ -16,6 +15,7 @@ export default class StudentHomeScreen extends React.Component {
 
   render() {
     const { currentUser } = this.state
+    // Generating Cards from classes object
     ClassCards = mockClasses.classes.map((currClass) => {
       return(
         <Card style={styles.card} key={currClass.classID} onPress = {() => {
@@ -44,6 +44,24 @@ export default class StudentHomeScreen extends React.Component {
         <ScrollView>
           {ClassCards}
         </ScrollView>
+        <Portal>
+          <FAB.Group
+            open={this.state.open}
+            icon={this.state.open ? 'today' : 'add'}
+            actions={[
+              { icon: 'add', onPress: () => console.log('Pressed add') },
+              { icon: 'star', label: 'Star', onPress: () => console.log('Pressed star')},
+              { icon: 'email', label: 'Email', onPress: () => console.log('Pressed email') },
+              { icon: 'bell', label: 'Remind', onPress: () => console.log('Pressed notifications') },
+            ]}
+            onStateChange={({ open }) => this.setState({ open })}
+            onPress={() => {
+              if (this.state.open) {
+                // do something if the speed dial is open
+              }
+            }}
+          />
+          </Portal>
       </View>
     )
   }
