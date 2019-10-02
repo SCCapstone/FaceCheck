@@ -14,11 +14,7 @@ const styles = StyleSheet.create({
         margin: 4,
     },
     textInput: {
-        height: 40,
-        width: '90%',
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginTop: 8
+        margin: 4,
     },
     text: {
         fontSize: 30,

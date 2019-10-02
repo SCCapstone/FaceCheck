@@ -1,7 +1,7 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
-import { Appbar, Card, Paragraph } from 'react-native-paper';
-import { Text, StyleSheet, View, Button, ScrollView } from 'react-native';
+import { Appbar, Card, Paragraph} from 'react-native-paper';
+import { Text, View, Button, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import mockClasses from 'FaceCheckApp/src/assets/mockClasses.json';
 import styles from 'FaceCheckApp/src/assets/styles';
