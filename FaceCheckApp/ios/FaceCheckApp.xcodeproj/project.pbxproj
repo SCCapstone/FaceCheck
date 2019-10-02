@@ -49,6 +49,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FaceCheckAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceCheckAppTests.m; sourceTree = "<group>"; };
 		0321FC302330311E00ADBE7C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		034547F62345065600E43CC7 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		060DF6D46790F6D0C155C609 /* Pods-FaceCheckApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceCheckApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-FaceCheckApp-tvOSTests/Pods-FaceCheckApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		09867B000FB6BB1ABA6A8B12 /* libPods-FaceCheckApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FaceCheckApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3EDDA739DD6D89EB21C801 /* Pods-FaceCheckApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceCheckApp.release.xcconfig"; path = "Target Support Files/Pods-FaceCheckApp/Pods-FaceCheckApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				034547F62345065600E43CC7 /* libRNVectorIcons.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				3D9DB543134DE4E11D089A2E /* libPods-FaceCheckApp.a */,
@@ -471,22 +473,22 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-FaceCheckApp/Pods-FaceCheckApp-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/RNVectorIcons/Fonts/Zocial.ttf",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
