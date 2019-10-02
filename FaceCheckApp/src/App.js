@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import Loading from 'FaceCheckApp/src/screens/Loading'
 import SignUp from 'FaceCheckApp/src/auth/SignUp'
 import Login from 'FaceCheckApp/src/auth/Login'
-import AddClassScreen from 'FaceCheckApp/src/screens/AddClassScreen'
+import ClassScreen from 'FaceCheckApp/src/screens/ClassScreen'
 import StudentHomeScreen from 'FaceCheckApp/src/screens/StudentHomeScreen'
 import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen'
 
@@ -24,8 +24,8 @@ const RootStack = createStackNavigator(
     StudentHome: {
       screen: StudentHomeScreen,
     },
-    AddClass: {
-      screen: AddClassScreen
+    ClassScreen: {
+      screen: ClassScreen
     },
     QRGenerator: {
       screen: QRGeneratorScreen

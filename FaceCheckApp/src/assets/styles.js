@@ -6,8 +6,12 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+      },
+    content: {
+        padding: 4,
+    },
+    card: {
+        margin: 4,
     },
     textInput: {
         height: 40,

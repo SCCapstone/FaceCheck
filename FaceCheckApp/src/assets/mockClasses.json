@@ -1,0 +1,32 @@
+{
+    "classes": [
+        {
+            "name": "CSCE 145",
+            "classID": "7edc4785e3e776900f15cdc649d20e8edc0c12fb",
+            "teacher": "Jeremiah Shepherd",
+            "days": ["Monday", "Wednesday", "Friday"],
+            "time": "1:15 PM"
+        },
+        {
+            "name": "CSCE 211",
+            "classID": "c27df02d74c37ecfc0f5b441c99fbcc45018d71b",
+            "teacher": "Chin-Tser Huang",
+            "days": ["Tuesday", "Thursday"],
+            "time": "6:20 PM"
+        },
+        {
+            "name": "CSCE 215",
+            "classID": "fb86bdfdc28f4cab30db998fa9c7f07df5c9c7de",
+            "teacher": "Patrick O'Keefe",
+            "days": ["Friday"],
+            "time": "7:15 PM"
+        },
+        {
+            "name": "ENGL 101",
+            "classID": "d98f60a53a1ad4123db69ba2d2a00130e4041ae3",
+            "teacher": "Duncan A. Buell",
+            "days": ["Monday", "Wednesday", "Friday"],
+            "time": "2:20 PM"
+        }
+    ]
+}
