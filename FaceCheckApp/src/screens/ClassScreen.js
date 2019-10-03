@@ -1,8 +1,7 @@
 import firebase from 'react-native-firebase'
-import React from 'react';
-import { Appbar, Card } from 'react-native-paper';
-import { Text, StyleSheet, View, Button } from 'react-native';
-
+import React from 'react'
+import { Appbar, Card } from 'react-native-paper'
+import { View } from 'react-native'
 import styles from 'FaceCheckApp/src/assets/styles'
 
 export default class AddClassScreen extends React.Component {

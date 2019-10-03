@@ -1,8 +1,6 @@
 import firebase from 'react-native-firebase'
-import React from 'react';
-import { Appbar } from 'react-native-paper';
-import { Text, StyleSheet, View, Button } from 'react-native';
-
+import React from 'react'
+import { Appbar } from 'react-native-paper'
 import styles from 'FaceCheckApp/src/assets/styles'
 
 export default class QRGeneratorScreen extends React.Component {

@@ -1,8 +1,7 @@
-// Loading.js
 import firebase from 'react-native-firebase'
 import React from 'react'
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
-import { StackActions } from 'react-navigation';
+import { View, Text, ActivityIndicator } from 'react-native'
+import { StackActions } from 'react-navigation'
 
 import styles from 'FaceCheckApp/src/assets/styles'
 

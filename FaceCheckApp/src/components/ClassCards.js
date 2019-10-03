@@ -1,10 +1,8 @@
-import firebase from 'react-native-firebase'
 import React from 'react'
 import { Card, Paragraph, ActivityIndicator } from 'react-native-paper'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { watchClasses } from 'FaceCheckApp/src/redux/app-redux'
-import mockClasses from 'FaceCheckApp/src/assets/mockClasses.json'
 import styles from 'FaceCheckApp/src/assets/styles'
 
 const mapStateToProps = (state) => {

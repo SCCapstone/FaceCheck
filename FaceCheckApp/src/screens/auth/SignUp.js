@@ -1,8 +1,7 @@
-// SignUp.js
 import firebase from 'react-native-firebase'
 import React from 'react'
-import { Appbar, Card, TextInput } from 'react-native-paper';
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { Appbar, Card, TextInput } from 'react-native-paper'
+import { Text, View, Button } from 'react-native'
 
 import styles from 'FaceCheckApp/src/assets/styles'
 
