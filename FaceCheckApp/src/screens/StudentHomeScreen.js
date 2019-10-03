@@ -1,40 +1,9 @@
-import firebase from 'react-native-firebase';
-import React from 'react';
-import { FAB, Portal, Appbar, Card, Paragraph } from 'react-native-paper';
-import { Text, View, Button, ScrollView } from 'react-native';
-import mockClasses from 'FaceCheckApp/src/assets/mockClasses.json';
-import styles from 'FaceCheckApp/src/assets/styles';
-
-class ClassCards extends React.Component {
-  state = { currentUser: null, classes: mockClasses.classes } 
-  
-  componentDidMount() {
-      const { currentUser } = firebase.auth()
-      this.setState({ currentUser })
-  }
-
-  render() {
-      var { classes } = this.state
-      ClassCardsList = classes.map((currClass) => {
-          return(
-          <Card style={styles.card} key={currClass.classID} onPress = {() => {
-              this.props.navigation.navigate('ClassScreen', {currClass: JSON.stringify(currClass)})
-          }}>
-              <Card.Title title={currClass.name} />
-              <Card.Content>
-              <Paragraph>
-                  Teacher: {currClass.teacher}
-              </Paragraph>
-              </Card.Content>
-          </Card>
-          )})
-      return(
-          <View>
-              {ClassCardsList}
-          </View>
-      )
-  }
-}
+import firebase from 'react-native-firebase'
+import React from 'react'
+import { FAB, Portal, Appbar } from 'react-native-paper'
+import { View, ScrollView } from 'react-native'
+import ClassCards from 'FaceCheckApp/src/components/ClassCards.js'
+import styles from 'FaceCheckApp/src/assets/styles'
 
 export default class StudentHomeScreen extends React.Component {
   state = { currentUser: null, open: false }
@@ -68,11 +37,6 @@ export default class StudentHomeScreen extends React.Component {
               { icon: 'add', label: 'add a class', onPress: () => {ClassCards.forceUpdate()} }
             ]}
             onStateChange={({ open }) => this.setState({ open })}
-            onPress={() => {
-              if (this.state.open) {
-                // do something if the speed dial is open
-              }
-            }}
           />
           </Portal>
       </View>

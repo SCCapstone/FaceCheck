@@ -5,6 +5,8 @@ import * as React from 'react';
 import {AppRegistry} from 'react-native';
 import App from './src/App';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Provider as ReduxProvider } from 'react-redux'
+import { store } from './src/redux/app-redux'
 
 // Uncomment when demoing
 // console.disableYellowBox = true;
@@ -22,9 +24,11 @@ const theme = {
 
 export default function Main() {
     return (
-      <PaperProvider theme={theme}>
-        <App />
-      </PaperProvider>
+      <ReduxProvider store={store}>
+        <PaperProvider theme={theme}>
+          <App />
+        </PaperProvider>
+      </ReduxProvider>
     );
   }
 

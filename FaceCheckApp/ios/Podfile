@@ -29,8 +29,8 @@ target 'FaceCheckApp' do
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'FaceCheckAppTests' do
     inherit! :search_paths

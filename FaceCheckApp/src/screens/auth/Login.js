@@ -1,13 +1,13 @@
 // Login.js
 import firebase from 'react-native-firebase'
 import React from 'react'
-import { Appbar, Card, TextInput } from 'react-native-paper';
+import { Appbar, Card, TextInput } from 'react-native-paper'
 import { StyleSheet, Text, View, Button } from 'react-native'
-
 import styles from 'FaceCheckApp/src/assets/styles'
 
 export default class Login extends React.Component {
     state = { email: '', password: '', errorMessage: null }
+
     handleLogin = () => {
       const { email, pasword } = this.state
       firebase
@@ -17,6 +17,7 @@ export default class Login extends React.Component {
         .then(() => this.props.navigation.navigate('StudentHome'))
         .catch(error => this.setState({ errorMessage: error.message }))
     }
+
   render() {
     return (
       <View style = {styles.screen}>
