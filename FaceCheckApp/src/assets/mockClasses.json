@@ -22,8 +22,8 @@
             "time": "7:15 PM"
         },
         {
-            "name": "ENGL 101",
-            "classID": "d98f60a53a1ad4123db69ba2d2a00130e4041ae3",
+            "name": "ENGL 102",
+            "classID": "d88f60a53a1ad4123db69ba2d2a00130e4041ae3",
             "teacher": "Duncan A. Buell",
             "days": ["Monday", "Wednesday", "Friday"],
             "time": "2:20 PM"

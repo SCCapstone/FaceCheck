@@ -44,7 +44,7 @@ class ClassCards extends React.Component {
             )
         } else {
             return(
-                <ActivityIndicator/>
+                <ActivityIndicator animating={true}/>
             )
         }
     }

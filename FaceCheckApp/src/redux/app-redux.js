@@ -17,7 +17,6 @@ const initialState = {
 const reducer  = (state = initialState, action) => {
     switch(action.type) {
         case 'setClasses': 
-            console.log("Reducer", action.value)
             return { ...state, classes: action.value }
         default: return state
     }
@@ -46,7 +45,6 @@ const watchClasses = () => {
         firebase.database().ref("classes").on("value", function(snapshot) {
             var firestoreClasses = snapshot.val()
             var classes = firestoreClasses.classes
-            console.log(`\n\n\nHIT : ${classes} \n\n\n`)
             dispatch(setClasses(classes))
         }), function(error) {
             // TODO: handle error
