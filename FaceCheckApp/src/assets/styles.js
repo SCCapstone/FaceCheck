@@ -13,6 +13,23 @@ const styles = StyleSheet.create({
     card: {
         margin: 4,
     },
+    centerScreen: {
+        flex:1,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    centerItem: {
+        alignItems:'center',
+    },
+    surface: {
+        padding: 8,
+        height: 200,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 4,
+    },
     textInput: {
         margin: 4,
     },
@@ -21,13 +38,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 40,
     },
-    TouchableOpacity: {
-        margin: 5,
-    },
-    TouchableOpacityText: {
-        color: 'blue',
-        textAlign: 'center'
-    }
   });
 
 export default styles;

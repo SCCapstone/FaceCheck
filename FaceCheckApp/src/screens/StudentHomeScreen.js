@@ -34,7 +34,10 @@ export default class StudentHomeScreen extends React.Component {
             open={this.state.open}
             icon={this.state.open ? 'details' : 'class'}
             actions={[
-              { icon: 'add', label: 'add a class', onPress: () => {ClassCards.forceUpdate()} }
+              { icon: 'add', label: 'add a class', onPress: () => {} },
+              { icon: 'code', label: 'qr generator', onPress: () => {
+                this.props.navigation.navigate('QRGenerator')} 
+              }
             ]}
             onStateChange={({ open }) => this.setState({ open })}
           />

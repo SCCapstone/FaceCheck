@@ -43,8 +43,7 @@ const setClasses = (classes) => {
 const watchClasses = () => {
     return function(dispatch) {
         firebase.database().ref("classes").on("value", function(snapshot) {
-            var firestoreClasses = snapshot.val()
-            var classes = firestoreClasses.classes
+            var classes = snapshot.val()
             dispatch(setClasses(classes))
         }), function(error) {
             // TODO: handle error

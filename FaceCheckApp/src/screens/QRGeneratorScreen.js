@@ -1,6 +1,8 @@
 import firebase from 'react-native-firebase'
 import React from 'react'
+import { View } from 'react-native'
 import { Appbar } from 'react-native-paper'
+import QR from 'FaceCheckApp/src/components/QR'
 import styles from 'FaceCheckApp/src/assets/styles'
 
 export default class QRGeneratorScreen extends React.Component {
@@ -14,14 +16,19 @@ export default class QRGeneratorScreen extends React.Component {
   render() {
     const { currentUser } = this.state
     return (
-      <Appbar.Header>
-        <Appbar.BackAction
-          onPress={() => {this.props.navigation.goBack()}}
-        />
-        <Appbar.Content
-          title="QR"
-        />
-      </Appbar.Header>
+      <View style = {styles.screen}>
+        <Appbar.Header>
+          <Appbar.BackAction
+            onPress={() => {this.props.navigation.goBack()}}
+          />
+          <Appbar.Content
+            title="QR"
+          />
+        </Appbar.Header>
+        <View style={styles.centerScreen}>
+          <QR/>
+        </View>
+      </View>
     )
   }
 }
