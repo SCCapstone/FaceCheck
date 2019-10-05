@@ -21,11 +21,11 @@ export default class QRGeneratorScreen extends React.Component {
           <Appbar.BackAction
             onPress={() => {this.props.navigation.goBack()}}
           />
-          <Appbar.Content
+          <Appbar.Content 
             title="QR"
           />
         </Appbar.Header>
-        <View style={styles.centerScreen}>
+        <View style={styles.centerScreenJust}>
           <QR/>
         </View>
       </View>

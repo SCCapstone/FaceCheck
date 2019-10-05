@@ -1,7 +1,7 @@
 import firebase from 'react-native-firebase'
 import React from 'react'
-import { Appbar, Card, TextInput } from 'react-native-paper'
-import { Text, View, Button } from 'react-native'
+import { Appbar, Card, TextInput, Button } from 'react-native-paper'
+import { Text, View } from 'react-native'
 
 import styles from 'FaceCheckApp/src/assets/styles'
 
@@ -19,11 +19,11 @@ render() {
     return (
       <View style = {styles.screen}>
         <Appbar.Header>
-        <Appbar.Content
+        <Appbar.Content 
           title="Sign Up"
         />
         </Appbar.Header>
-        <Card>
+        <Card style={styles.centerScreen}>
           <Card.Content>
             {this.state.errorMessage &&
               <Text style={{ color: 'red' }}>
@@ -44,13 +44,14 @@ render() {
               onChangeText={password => this.setState({ password })}
               value={this.state.password}
             />
+             <Button style={styles.button}  mode="outlined" onPress={this.handleSignUp}>
+              Sign Up
+            </Button>
+            <Button style={styles.button} mode="outlined" onPress={() => this.props.navigation.navigate('Login')}>
+              Login
+            </Button>
           </Card.Content>
         </Card>
-        <Button title="Sign Up" onPress={this.handleSignUp} />
-        <Button
-          title="Already have an account? Login"
-          onPress={() => this.props.navigation.navigate('Login')}
-        />
       </View>
     )
   }

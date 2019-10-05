@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "658389282843",
+    "firebase_url": "https://facecheck-f1a51.firebaseio.com",
+    "project_id": "facecheck-f1a51",
+    "storage_bucket": "facecheck-f1a51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658389282843:android:9dc6364092910ba75308be",
+        "android_client_info": {
+          "package_name": "com.facecheckapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658389282843-82htre023m99j55dlut8eqkkeo2387s4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKBWlocNtfQEDKzL5v_DTnBfakYCOeuKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658389282843-82htre023m99j55dlut8eqkkeo2387s4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "658389282843-qmiblbka12l235ctqqhjgkjggiq9kl7f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.flutter.flutter.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

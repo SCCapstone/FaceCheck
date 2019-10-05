@@ -22,7 +22,7 @@ export default class StudentHomeScreen extends React.Component {
             title = 'Logout'
             onPress={() => {firebase.auth().signOut()}}
           />
-          <Appbar.Content
+          <Appbar.Content 
             title="Home"
           />
         </Appbar.Header>

@@ -21,7 +21,7 @@ export default class AddClassScreen extends React.Component {
           <Appbar.BackAction
             onPress={() => {this.props.navigation.goBack()}}
           />
-          <Appbar.Content
+          <Appbar.Content 
             title={currClass.name}
           />
         </Appbar.Header>

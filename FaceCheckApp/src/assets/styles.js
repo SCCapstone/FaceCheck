@@ -13,11 +13,22 @@ const styles = StyleSheet.create({
     card: {
         margin: 4,
     },
+    button: {
+        marginLeft: 60,
+        marginRight: 60,
+        marginTop: 10
+    },
     centerScreen: {
         flex:1,
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'center'
+        // justifyContent:'center',
+    },
+    centerScreenJust: {
+        flex:1,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
     },
     centerItem: {
         alignItems:'center',
@@ -38,6 +49,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 40,
     },
+    centerText: {
+        justifyContent: 'center', 
+        alignItems: 'center',
+    }
   });
 
 export default styles;
