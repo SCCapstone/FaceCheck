@@ -1,26 +1,12 @@
 import firebase from 'react-native-firebase'
-import React from 'react';
-import { Text, StyleSheet, View, Button } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import React from 'react'
+import { FAB, Portal, Appbar } from 'react-native-paper'
+import { View, ScrollView } from 'react-native'
+import ClassCards from 'FaceCheckApp/src/components/ClassCards.js'
 import styles from 'FaceCheckApp/src/assets/styles'
 
 export default class StudentHomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-    headerLeft: (<Button title="Logout" onPress={
-      async () => {
-        try {
-            await firebase.auth().signOut();
-        } catch (e) {
-            console.log(e);
-        }
-      }
-    }/>),
-    gesturesEnabled: false,
-  };
-
-  state = { currentUser: null }
+  state = { currentUser: null, open: false }
 
   componentDidMount() {
     const { currentUser } = firebase.auth()
@@ -30,15 +16,31 @@ export default class StudentHomeScreen extends React.Component {
   render() {
     const { currentUser } = this.state
     return (
-        <View style={styles.container}>
-          {/* <Text style = {styles.text}> Hi {currentUser && currentUser.email}! </Text> */}
-          <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {this.props.navigation.navigate('AddClass')}}>
-            <Text style={styles.TouchableOpacityText}>Go To Add A Class</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {this.props.navigation.navigate('QRGenerator')}}>
-            <Text style={styles.TouchableOpacityText}>Go To QR</Text>
-          </TouchableOpacity>
-        </View>
-        )
+      <View style = {styles.screen}>
+        <Appbar.Header>
+          <Appbar.BackAction
+            title = 'Logout'
+            onPress={() => {firebase.auth().signOut()}}
+          />
+          <Appbar.Content 
+            title="Home"
+          />
+        </Appbar.Header>
+        <ScrollView>
+          <ClassCards navigation={this.props.navigation}/>
+        </ScrollView>
+        <FAB.Group
+          open={this.state.open}
+          icon={this.state.open ? 'details' : 'class'}
+          actions={[
+            { icon: 'add', label: 'add a class', onPress: () => {} },
+            { icon: 'code', label: 'qr generator', onPress: () => {
+              this.props.navigation.navigate('QRGenerator')} 
+            }
+          ]}
+          onStateChange={({ open }) => this.setState({ open })}
+        />
+      </View>
+    )
   }
 }

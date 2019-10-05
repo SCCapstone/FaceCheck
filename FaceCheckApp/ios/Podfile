@@ -29,6 +29,8 @@ target 'FaceCheckApp' do
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+
 
   target 'FaceCheckAppTests' do
     inherit! :search_paths

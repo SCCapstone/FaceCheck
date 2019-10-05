@@ -2,9 +2,9 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 // import the different screens
 import Loading from 'FaceCheckApp/src/screens/Loading'
-import SignUp from 'FaceCheckApp/src/auth/SignUp'
-import Login from 'FaceCheckApp/src/auth/Login'
-import AddClassScreen from 'FaceCheckApp/src/screens/AddClassScreen'
+import SignUp from 'FaceCheckApp/src/screens/auth/SignUp'
+import Login from 'FaceCheckApp/src/screens/auth/Login'
+import ClassScreen from 'FaceCheckApp/src/screens/ClassScreen'
 import StudentHomeScreen from 'FaceCheckApp/src/screens/StudentHomeScreen'
 import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen'
 
@@ -13,47 +13,28 @@ import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen'
 const RootStack = createStackNavigator(
   {
     Loading: {
-      screen: Loading,
-      navigationOptions: {
-        header: null,
-      }
+      screen: Loading
     },
     SignUp: {
-      screen: SignUp,
-      navigationOptions:  {
-        title: 'Sign Up',
-        headerLeft: null,
-        gesturesEnabled: false,
-     }
+      screen: SignUp
     },
     Login: {
-      screen: Login,
-      navigationOptions:  {
-        title: 'Login',
-        headerLeft: null,
-        gesturesEnabled: false,
-     }
+      screen: Login
     },
     StudentHome: {
       screen: StudentHomeScreen,
     },
-    AddClass: {
-      screen: AddClassScreen,
-      navigationOptions: {
-        title: 'Add Classes'
-      },
+    ClassScreen: {
+      screen: ClassScreen
     },
     QRGenerator: {
-      screen: QRGeneratorScreen,
-      navigationOptions: {
-        title: 'QR'
-      },
+      screen: QRGeneratorScreen
     }
   },
   {
     initialRouteName: 'Loading',
-    cardStyle: {
-        backgroundColor: 'white'
+    defaultNavigationOptions: {
+      header: null,
     }
   }
 )
