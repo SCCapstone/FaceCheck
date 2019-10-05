@@ -29,19 +29,17 @@ export default class StudentHomeScreen extends React.Component {
         <ScrollView>
           <ClassCards navigation={this.props.navigation}/>
         </ScrollView>
-        <Portal>
-          <FAB.Group
-            open={this.state.open}
-            icon={this.state.open ? 'details' : 'class'}
-            actions={[
-              { icon: 'add', label: 'add a class', onPress: () => {} },
-              { icon: 'code', label: 'qr generator', onPress: () => {
-                this.props.navigation.navigate('QRGenerator')} 
-              }
-            ]}
-            onStateChange={({ open }) => this.setState({ open })}
-          />
-          </Portal>
+        <FAB.Group
+          open={this.state.open}
+          icon={this.state.open ? 'details' : 'class'}
+          actions={[
+            { icon: 'add', label: 'add a class', onPress: () => {} },
+            { icon: 'code', label: 'qr generator', onPress: () => {
+              this.props.navigation.navigate('QRGenerator')} 
+            }
+          ]}
+          onStateChange={({ open }) => this.setState({ open })}
+        />
       </View>
     )
   }
