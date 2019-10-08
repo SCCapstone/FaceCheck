@@ -41,6 +41,13 @@ export default class StudentHomeScreen extends React.Component {
                 this.props.navigation.navigate('QRGenerator');
               },
             },
+            {
+              icon: 'burst-mode',
+              label: 'qr scanner',
+              onPress: () => {
+                this.props.navigation.navigate('QRScanner');
+              },
+            },
           ]}
           onStateChange={({open}) => this.setState({open})}
         />

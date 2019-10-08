@@ -5417,6 +5417,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-camera@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.7.0.tgz#777150f8e15ee3ca2f650b47d78a5e25154dc2ce"
+  integrity sha512-2DjZ/gtY6RQbhTgKv9bnmPDPDHCD2bgWKt41g99DkTE+DXz1OhGOk6I+2x0rR4NFAYj0J278WAxMIjXNZp6Zyg==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-firebase@^5.5.6:
   version "5.5.6"
   resolved "https://registry.yarnpkg.com/react-native-firebase/-/react-native-firebase-5.5.6.tgz#17b34ec0d5dc39afaaf0e159fd160f6339e0f707"
