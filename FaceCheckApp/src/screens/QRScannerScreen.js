@@ -2,8 +2,8 @@ import firebase from 'react-native-firebase';
 import React from 'react';
 import {View} from 'react-native';
 import {Appbar} from 'react-native-paper';
+import QRScanner from 'FaceCheckApp/src/components/QRScanner';
 import styles from 'FaceCheckApp/src/assets/styles';
-import {RNCamera} from 'react-native-camera';
 
 export default class QRScannerScreen extends React.Component {
   state = {currentUser: null};
@@ -25,10 +25,7 @@ export default class QRScannerScreen extends React.Component {
           />
           <Appbar.Content title="QRScanner" />
         </Appbar.Header>
-        <RNCamera 
-            style={styles.preview}
-            type={RNCamera.Constants.Type.back}
-        />
+        <QRScanner navigation={this.props.navigation}/>
       </View>
     );
   }
