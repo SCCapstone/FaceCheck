@@ -14,6 +14,8 @@ import com.facebook.soloader.SoLoader;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 
+import org.reactnative.camera.RNCameraPackage;
+
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -32,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
       // packages.add(new MyReactNativePackage());
       packages.add(new RNFirebaseAuthPackage());
       packages.add(new RNFirebaseDatabasePackage());
+      // packages.add(new RNCameraPackage());
       return packages;
     }
 
