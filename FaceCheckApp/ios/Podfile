@@ -32,10 +32,18 @@ target 'FaceCheckApp' do
   pod 'Firebase/Database'
 
   pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
-  'TextDetector',
-  'FaceDetectorMLKit',
-  'BarcodeDetectorMLKit'
-]
+    'TextDetector',
+    'FaceDetectorMLKit',
+    'BarcodeDetectorMLKit'
+  ]
+
+  post_install do |pi|
+    pi.pods_project.targets.each do |t|
+      t.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+      end
+    end
+  end
 
   target 'FaceCheckAppTests' do
     inherit! :search_paths
