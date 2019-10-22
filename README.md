@@ -1,3 +1,4 @@
+# This was modified by Samuel Nichols
 # FaceCheck
 [![Build Status](https://travis-ci.com/SCCapstone/FaceCheck.svg?token=eiKCbjzezvQmo3HdzB8y&branch=master)](https://travis-ci.com/SCCapstone/FaceCheck)
 
