@@ -1,4 +1,5 @@
-# FaceCheck
+# FaceCheck Mike
+
 [![Build Status](https://travis-ci.com/SCCapstone/FaceCheck.svg?token=eiKCbjzezvQmo3HdzB8y&branch=master)](https://travis-ci.com/SCCapstone/FaceCheck)
 
 ## What is FaceCheck
