@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  touchable: {
+    marginBottom: 300,
+    color: 'blue'
+  }
 });
 
 export default styles;
