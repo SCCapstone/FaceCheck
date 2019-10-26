@@ -16,11 +16,7 @@ Facial recognition application, that when paired with QR codes and a react nativ
 ### Installing
 1. git clone git@github.com:SCCapstone/FaceCheck.git
 2. cd FaceCheck/FaceCheckApp
-3. yarn install
-4. pushd ios
-5. pod update
-6. pod install
-7. popd
+3. yarn run load
 
 ### To Start the Application in an Xcode Simulator
 - npm run ios
