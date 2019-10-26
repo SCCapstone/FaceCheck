@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   touchable: {
-    marginBottom: 300,
+    marginBottom: 30,
     color: 'blue'
   }
 });

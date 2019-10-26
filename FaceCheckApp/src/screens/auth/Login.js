@@ -13,7 +13,7 @@ export default class Login extends React.Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       // TODO: Add variable to handle teacher login
-      .then(() => this.props.navigation.navigate('StudentHome'))
+      .then(() => this.props.navigation.navigate('TeacherHome'))
       .catch(error => this.setState({errorMessage: error.message}));
   };
 

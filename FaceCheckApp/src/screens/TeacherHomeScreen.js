@@ -53,7 +53,7 @@ export default class TeacherHomePageScreen extends React.Component {
         />
         <TouchableOpacity style={styles.touchable}
         onPress={() => this.props.navigation.navigate('StudentHome')}>
-        <Text style={styles.textSytle}>Go to Student Home Page </Text>
+        <Text style={styles.touchable}>Go to Student Home Page </Text>
         </TouchableOpacity>
       </View>
   );
