@@ -1,4 +1,5 @@
 # FaceCheck
+
 [![Build Status](https://travis-ci.com/SCCapstone/FaceCheck.svg?token=eiKCbjzezvQmo3HdzB8y&branch=master)](https://travis-ci.com/SCCapstone/FaceCheck)
 
 ## What is FaceCheck
@@ -15,10 +16,10 @@ Facial recognition application, that when paired with QR codes and a react nativ
 ### Installing
 1. git clone git@github.com:SCCapstone/FaceCheck.git
 2. cd FaceCheck/FaceCheckApp
-3. npm run pod
+3. yarn run load
 
 ### To Start the Application in an Xcode Simulator
-- npm run start
+- npm run ios
 
 ## Built With
 - React-Native
