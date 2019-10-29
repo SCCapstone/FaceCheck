@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
         alignItems: "flex-end",
         //marginTop: Platform.OS==='web' ? 25 : '10%',
         marginRight: Platform.OS === 'web' ? 25 :'5%', 
-        marginBottom: '1%', 
-        justifyContent: 'flex-end',
+        marginBottom: Platform.OS === 'web' ? '0%' : '1%',
+        justifyContent: Platform.OS==='web'?'center' : 'flex-end',
         maxHeight: '8%'
 
     
