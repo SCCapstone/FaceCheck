@@ -12,7 +12,7 @@ export default class Loading extends React.Component {
       // TODO: Add future check on logged in user to determin teacher or student
       // login flow
       if (user) {
-        this.props.navigation.navigate('TeacherHome');
+        this.props.navigation.navigate('StudentHome');
       } else {
         StackActions.reset({
           index: 0,
