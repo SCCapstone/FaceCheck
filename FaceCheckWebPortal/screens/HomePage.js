@@ -22,7 +22,17 @@ export default class HomePage extends React.Component {
                 </View> 
 
                 <View style = {styles.options}>
+                    <TouchableOpacity style = {styles.classes}>
+                        <Text style = {styles.TextStyle}>Classes</Text>
+                    </TouchableOpacity>
 
+                    <TouchableOpacity style = {styles.teachers}>
+                        <Text style = {styles.TextStyle}>Teachers</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity style = {styles.students}>
+                        <Text style = {styles.TextStyle}>Students</Text>
+                    </TouchableOpacity>
                 </View>
                 
             </View>
@@ -37,7 +47,7 @@ const styles = StyleSheet.create({
     },
 
     signout: {
-        flex: 2,
+        flex: 1,
         alignItems: "flex-end",
         //marginTop: Platform.OS==='web' ? 25 : '10%',
         marginRight: Platform.OS === 'web' ? 25 :'5%', 
@@ -57,16 +67,58 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     options: {
-        flex: 2,
-        flexDirection: "row",
-        justifyContent: "center",
-        backgroundColor: 'red'
- 
-    },
-    text: {
-        
-        fontSize: 20,
-    },
+        flex: 1,
+        flexDirection: Platform.OS === 'web' ? "row" : 'column',
+        marginTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+      },
+    
+      button: {
+        width: 75,
+        height: 75,
+        backgroundColor: '#000000',
+        marginBottom: 0,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#fff',
+        marginLeft: 5
+      },  
+      
+      teachers: {
+        margin: Platform.OS === 'web' ? '10%' : 15,
+        backgroundColor: 'brown',
+        width: Platform.OS === 'web' ? '20%' : 100,
+        height: Platform.OS === 'web' ? '20%' : 75,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15
+      },
+    
+      students: {
+        backgroundColor: 'green',
+        width: Platform.OS === 'web' ? '20%' : 100,
+        height: Platform.OS === 'web' ? '20%' : 75,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15
+      },
+    
+      classes: {
+        backgroundColor: '#0000FF',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: Platform.OS === 'web' ? '20%' : 100,
+        height: Platform.OS === 'web' ? '20%' : 75,
+        borderRadius: 15
+      },
+    
+      TextStyle: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 18,
+      },
 
 
 })
