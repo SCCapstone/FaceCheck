@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, StyleSheet, Text, TouchableOpacity} from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, Platform} from 'react-native'
+import Firebase from '../config/Firebase'
 
 
 export default class HomePage extends React.Component {
@@ -9,15 +10,22 @@ export default class HomePage extends React.Component {
 
             <View style = {styles.mainContainer}>
                 <View style = {styles.signout}>
-                <TouchableOpacity  style = {styles.sobutton}>
+                <TouchableOpacity  
+                style = {styles.sobutton}
+                onPress={() => {
+                Firebase.auth().signOut()
+                }}
+                >
                     <Text style = {styles.sobuttonText}>signout</Text>
                 </TouchableOpacity>
 
                 </View> 
-                <View style = {styles.container}>
-                 <Text style = {styles.text}>HomePage</Text>
-                 </View>
-                 </View>
+
+                <View style = {styles.options}>
+
+                </View>
+                
+            </View>
         )
     }
 }
@@ -26,27 +34,14 @@ const styles = StyleSheet.create({
 
     mainContainer: {
         flex: 1,
-        backgroundColor: 'red'
-    },
-
-    container: {
-        flex: 1,
-        backgroundColor: '#ddd',
-        alignContent: 'center',
-        alignItems: 'center'
- 
-    },
-    text: {
-        fontSize: 20,
     },
 
     signout: {
-        flex: 1,
+        flex: 2,
         alignItems: "flex-end",
-        marginTop: 25,
-        marginRight: 25,  
-        maxHeight: 20,
-        marginBottom: 10
+        marginTop: Platform.OS==='web' ? 25 : '10%',
+        marginRight: Platform.OS === 'web' ? 25 :'5%',  
+        maxHeight: '7%'
     
     },
 
@@ -57,7 +52,18 @@ const styles = StyleSheet.create({
     sobuttonText: {
         fontSize: 15,
         fontWeight: 'bold'
-    }
+    },
+    options: {
+        flex: 2,
+        flexDirection: "row",
+        justifyContent: "center",
+        backgroundColor: 'red'
+ 
+    },
+    text: {
+        
+        fontSize: 20,
+    },
 
 
 })
