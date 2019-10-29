@@ -26,12 +26,8 @@ export default class HomePage extends React.Component {
                         <Text style = {styles.TextStyle}>Classes</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style = {styles.teachers}>
-                        <Text style = {styles.TextStyle}>Teachers</Text>
-                    </TouchableOpacity>
-                    
-                    <TouchableOpacity style = {styles.students}>
-                        <Text style = {styles.TextStyle}>Students</Text>
+                    <TouchableOpacity style = {styles.users}>
+                        <Text style = {styles.TextStyle}>Users</Text>
                     </TouchableOpacity>
                 </View>
                 
@@ -64,7 +60,8 @@ const styles = StyleSheet.create({
     },
     sobuttonText: {
         fontSize: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#7B1D0B'
     },
     options: {
         flex: 1,
@@ -86,38 +83,33 @@ const styles = StyleSheet.create({
         marginLeft: 5
       },  
       
-      teachers: {
-        margin: Platform.OS === 'web' ? '10%' : 15,
-        backgroundColor: 'brown',
-        width: Platform.OS === 'web' ? '20%' : 100,
-        height: Platform.OS === 'web' ? '20%' : 75,
+      users: {
+        margin: Platform.OS === 'web' ? '5%' : 8,
+        backgroundColor: 'gray',
+        width: Platform.OS === 'web' ? '20%' : 200,
+        height: Platform.OS === 'web' ? '20%' : 150,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 15
-      },
-    
-      students: {
-        backgroundColor: 'green',
-        width: Platform.OS === 'web' ? '20%' : 100,
-        height: Platform.OS === 'web' ? '20%' : 75,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 15
+        borderRadius: 15,
       },
     
       classes: {
-        backgroundColor: '#0000FF',
+        margin: Platform.OS === 'web' ? '5%' : 8,
+
+        backgroundColor: 'gray',
         justifyContent: 'center',
         alignItems: 'center',
-        width: Platform.OS === 'web' ? '20%' : 100,
-        height: Platform.OS === 'web' ? '20%' : 75,
-        borderRadius: 15
+        width: Platform.OS === 'web' ? '20%' : 200,
+        height: Platform.OS === 'web' ? '20%' : 150,
+        borderRadius: 15,
+
       },
     
       TextStyle: {
-        color: '#fff',
+        color: '#7B1D0B',
         textAlign: 'center',
         fontSize: 18,
+        fontWeight: 'bold'
       },
 
 
