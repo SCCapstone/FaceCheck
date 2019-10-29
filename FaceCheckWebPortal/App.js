@@ -1,30 +1,20 @@
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
+import React from 'react'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
 
-// Import Screens
-import Loading from './screens/Loading'
-import Login from './screens/Login'
-//import HomePage from 'FaceCheckWebPortal/screens/HomePage'
+import SwitchNavigator from './navigation/SwitchNavigator'
+import reducer from './reducers'
 
+const middleware = applyMiddleware(thunkMiddleware)
+const store = createStore(reducer, middleware)
 
-// create our app's navigation stack
-const RootStack = createStackNavigator({
-
-  Loading: { screen: Loading },
-  
-  Login: { screen: Login },
-
-  //HomePage: { screen: HomePage }
-  
-},
-  
-{
-  initialRouteName: 'Loading',
-  defaultNavigationOptions: {
-    header: null,
-  }
-})
-
-const App = createAppContainer(RootStack)
-
-export default App
+export default class App extends React.Component {
+	render() {
+		return (
+			<Provider store={store}>
+				<SwitchNavigator />
+			</Provider>
+		)
+	}
+}
