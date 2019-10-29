@@ -39,9 +39,12 @@ const styles = StyleSheet.create({
     signout: {
         flex: 2,
         alignItems: "flex-end",
-        marginTop: Platform.OS==='web' ? 25 : '10%',
-        marginRight: Platform.OS === 'web' ? 25 :'5%',  
-        maxHeight: '7%'
+        //marginTop: Platform.OS==='web' ? 25 : '10%',
+        marginRight: Platform.OS === 'web' ? 25 :'5%', 
+        marginBottom: '1%', 
+        justifyContent: 'flex-end',
+        maxHeight: '8%'
+
     
     },
 
