@@ -29,28 +29,6 @@ export default class TeacherHomePageScreen extends React.Component {
         <ScrollView>
           <ClassCards navigation={this.props.navigation} />
         </ScrollView>
-        <FAB.Group
-          open={this.state.open}
-          icon={this.state.open ? 'details' : 'class'}
-          actions={[
-            {icon: 'add', label: 'add a class', onPress: () => {}},
-            {
-              icon: 'code',
-              label: 'qr generator',
-              onPress: () => {
-                this.props.navigation.navigate('QRGenerator');
-              },
-            },
-            {
-              icon: 'burst-mode',
-              label: 'qr scanner',
-              onPress: () => {
-                this.props.navigation.navigate('QRScanner');
-              },
-            },
-          ]}
-          onStateChange={({open}) => this.setState({open})}
-        />
         <TouchableOpacity style={styles.touchable}
         onPress={() => this.props.navigation.navigate('StudentHome')}>
         <Text style={styles.touchable}>Go to Student Home Page </Text>
