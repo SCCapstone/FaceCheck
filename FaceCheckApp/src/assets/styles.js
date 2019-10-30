@@ -57,10 +57,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-  },
-  touchable: {
-    marginBottom: 30,
-    color: 'blue'
   }
 });
 
