@@ -1,7 +1,7 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
-import {Appbar} from 'react-native-paper';
-import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
+import {FAB, Appbar} from 'react-native-paper';
+import {View, ScrollView} from 'react-native';
 import ClassCards from 'FaceCheckApp/src/components/ClassCards.js';
 import styles from 'FaceCheckApp/src/assets/styles';
 
@@ -29,10 +29,20 @@ export default class TeacherHomePageScreen extends React.Component {
         <ScrollView>
           <ClassCards navigation={this.props.navigation} />
         </ScrollView>
-        <TouchableOpacity style={styles.touchable}
-        onPress={() => this.props.navigation.navigate('StudentHome')}>
-        <Text style={styles.touchable}>Go to Student Home Page </Text>
-        </TouchableOpacity>
+        <FAB.Group
+          open={this.state.open}
+          icon={this.state.open ? 'details' : 'class'}
+          actions={[
+            {
+              icon: 'star', 
+              label: 'student home page',
+              onPress: () => {
+                this.props.navigation.navigate('StudentHome');
+              }
+            }
+          ]}
+          onStateChange={({open}) => this.setState({open})}
+        />
       </View>
   );
 
