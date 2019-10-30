@@ -23,28 +23,24 @@ export const updatePassword = password => {
 	}
 }
 		
+// Only allow access to admins
 export const login = () => {
 	return async (dispatch, getState) => {
 		try {
 			const { email, password } = getState().user
-			const response = await Firebase.auth().signInWithEmailAndPassword(email, password)
 
-			dispatch(getUser(response.user.uid))
-		} catch (e) {
-			alert(e)
-		}
-	}
-}
+			const usersRef = db.collection('admins').doc(email)
 
-export const getUser = uid => {
-	return async (dispatch, getState) => {
-		try {
-			const user = await db
-				.collection('users')
-				.doc(uid)
-				.get()
-
-			dispatch({ type: LOGIN, payload: user.data() })
+			usersRef.get()
+  			.then((docSnapshot) => {
+    		if (docSnapshot.exists) {
+				const response = Firebase.auth().signInWithEmailAndPassword(email, password)
+						}
+			else {
+				alert('User is not an admin!')
+			}
+});
+			
 		} catch (e) {
 			alert(e)
 		}

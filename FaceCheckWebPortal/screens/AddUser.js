@@ -1,7 +1,7 @@
 // Imports
 import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Image, Platform} from 'react-native'
-import Firebase from '../config/Firebase'
+import Firebase, { db } from '../config/Firebase.js'
 
 // TODO: Remove the sleep function
 function sleep (time) {
@@ -17,17 +17,21 @@ export default class AddUser extends React.Component {
         errorMessage: null
     }
 
+    customToken = 'admin'
+
     handleAddUser = () => {
-        Firebase
+            const response = Firebase
             .auth()
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
             .catch(error => this.setState({errorMessage: error.message}));
             // TODO: return the error message in an alert
 
+
         // TODO: Get rid of the password reset bellow and replace with a firestore function
         sleep(2000).then(() => {Firebase
             .auth().sendPasswordResetEmail(this.state.email)
             .then(() => this.props.navigation.navigate('HomePage'))})
+            .then(()=> alert('User created Successfully!'))
     };
 
     render() {
