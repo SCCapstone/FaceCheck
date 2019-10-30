@@ -1,4 +1,4 @@
-import React from 'react'
+// Imports
 import { createSwitchNavigator, createAppContainer } from 'react-navigation'
 import Loading from '../screens/Loading'
 import Login from '../screens/Login'
