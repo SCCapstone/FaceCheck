@@ -26,8 +26,11 @@ export default class HomePage extends React.Component {
                         <Text style = {styles.TextStyle}>Classes</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style = {styles.users}>
-                        <Text style = {styles.TextStyle}>Users</Text>
+                    <TouchableOpacity 
+                        style = {styles.users}
+                        onPress = {()=>this.props.navigation.navigate('AddUser')}
+                    >
+                        <Text style = {styles.TextStyle}>Add User</Text>
                     </TouchableOpacity>
                 </View>
                 

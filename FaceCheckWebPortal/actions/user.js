@@ -22,7 +22,7 @@ export const updatePassword = password => {
 		payload: password
 	}
 }
-
+		
 export const login = () => {
 	return async (dispatch, getState) => {
 		try {
@@ -45,29 +45,6 @@ export const getUser = uid => {
 				.get()
 
 			dispatch({ type: LOGIN, payload: user.data() })
-		} catch (e) {
-			alert(e)
-		}
-	}
-}
-
-export const signup = () => {
-	return async (dispatch, getState) => {
-		try {
-			const { email, password } = getState().user
-			const response = await Firebase.auth().createUserWithEmailAndPassword(email, password)
-			if (response.user.uid) {
-				const user = {
-					uid: response.user.uid,
-					email: email
-				}
-
-				db.collection('users')
-					.doc(response.user.uid)
-					.set(user)
-
-				dispatch({ type: SIGNUP, payload: user })
-			}
 		} catch (e) {
 			alert(e)
 		}

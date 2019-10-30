@@ -3,6 +3,7 @@ import { createSwitchNavigator, createAppContainer } from 'react-navigation'
 import Loading from '../screens/Loading'
 import Login from '../screens/Login'
 import HomePage from '../screens/HomePage'
+import AddUser from '../screens/AddUser'
 
 
 const SwitchNavigator = createSwitchNavigator(
@@ -17,7 +18,11 @@ const SwitchNavigator = createSwitchNavigator(
 	
 		HomePage: {
 			screen: HomePage
-		}
+		},
+
+		AddUser: {
+			screen: AddUser
+		},
 	},
 	{
 		initialRouteName: 'Loading'
