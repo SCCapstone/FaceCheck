@@ -35,7 +35,8 @@ export const login = () => {
   			.then((docSnapshot) => {
     		if (docSnapshot.exists) {
 				const response = Firebase.auth().signInWithEmailAndPassword(email, password)
-						}
+			
+			}
 			else {
 				alert('User is not an admin!')
 			}

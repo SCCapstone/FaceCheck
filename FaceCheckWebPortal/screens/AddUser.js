@@ -13,7 +13,8 @@ export default class AddUser extends React.Component {
 
     state = {
         email: '', 
-        password: '', 
+        password: '',
+        name: '',
         errorMessage: null
     }
 
@@ -30,6 +31,7 @@ export default class AddUser extends React.Component {
         // TODO: Get rid of the password reset bellow and replace with a firestore function
         sleep(2000).then(() => {Firebase
             .auth().sendPasswordResetEmail(this.state.email)
+            .then(()=>Firebase.auth().currentUser.updateProfile({displayName: this.state.name}))
             .then(() => this.props.navigation.navigate('HomePage'))})
             .then(()=> alert('User created Successfully!'))
     };
@@ -49,6 +51,13 @@ export default class AddUser extends React.Component {
                 <View style={styles.container}>
                     <Text style = {styles.header}> Add A User</Text>
                     
+                    <TextInput
+                        style={styles.inputBox}
+                        value={this.state.name}
+                        onChangeText={name => this.setState({name})}
+                        placeholder="User's Name"
+                        autoCapitalize='words'/>
+
                     <TextInput
                         style={styles.inputBox}
                         value={this.state.email}

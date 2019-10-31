@@ -3,12 +3,15 @@ import { View, StyleSheet, Text, TouchableOpacity, Platform, Image} from 'react-
 import Firebase from '../config/Firebase'
 
 
+
 export default class HomePage extends React.Component {
 
     render() {
+      
         return (
 
             <View style = {styles.mainContainer}>
+
                 <View style = {styles.signout}>
                 <TouchableOpacity  
                 style = {styles.sobutton}
@@ -22,7 +25,7 @@ export default class HomePage extends React.Component {
 
 
                 <View style = {styles.info}>
-                    <Text style = {styles.infoText}>Welcome {Firebase.auth().currentUser.displayName}</Text>
+                    <Text style = {styles.infoText}>Welcome {Firebase.auth().currentUser.displayName} </Text>
                 </View>
 
                 <View style = {styles.options}>

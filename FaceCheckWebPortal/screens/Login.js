@@ -22,6 +22,7 @@ class Login extends React.Component {
 		Firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				if (this.props.user != null) {
+                    
                     this.props.navigation.navigate('HomePage')
 				}
 			}
@@ -32,6 +33,7 @@ class Login extends React.Component {
 		return (
 			<View style={styles.container}>
 
+                
                 <Image style = {styles.logo } source={require('../assets/logo.png')} />
 
 				<TextInput
