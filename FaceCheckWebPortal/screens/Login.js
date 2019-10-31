@@ -2,13 +2,13 @@ import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Image, Platform} from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { updateEmail, updatePassword, login, getUser } from '../actions/user'
+import { updateEmail, updatePassword, login } from '../actions/user'
 import Firebase from '../config/Firebase'
 
 
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ updateEmail, updatePassword, login, getUser }, dispatch)
+	return bindActionCreators({ updateEmail, updatePassword, login }, dispatch)
 }
 
 const mapStateToProps = state => {
@@ -21,9 +21,8 @@ class Login extends React.Component {
 	componentDidMount = () => {
 		Firebase.auth().onAuthStateChanged(user => {
 			if (user) {
-				this.props.getUser(user.uid)
 				if (this.props.user != null) {
-					this.props.navigation.navigate('HomePage')
+                    this.props.navigation.navigate('HomePage')
 				}
 			}
 		})

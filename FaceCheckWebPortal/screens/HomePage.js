@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, TouchableOpacity, Platform} from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, Platform, Image} from 'react-native'
 import Firebase from '../config/Firebase'
 
 
@@ -13,13 +13,17 @@ export default class HomePage extends React.Component {
                 <TouchableOpacity  
                 style = {styles.sobutton}
                 onPress={() => {
-                Firebase.auth().signOut()
+                    Firebase.auth().signOut()
                 }}
                 >
                     <Text style = {styles.sobuttonText}>signout</Text>
                 </TouchableOpacity>
-
                 </View> 
+
+
+                <View style = {styles.info}>
+                    <Text style = {styles.infoText}>Welcome {Firebase.auth().currentUser.displayName}</Text>
+                </View>
 
                 <View style = {styles.options}>
                     <TouchableOpacity style = {styles.classes}>
@@ -53,8 +57,6 @@ const styles = StyleSheet.create({
         marginBottom: Platform.OS === 'web' ? '0%' : '1%',
         justifyContent: Platform.OS==='web'?'center' : 'flex-end',
         maxHeight: '8%'
-
-    
     },
 
     sobutton: {
@@ -65,6 +67,22 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         color: '#7B1D0B'
+    },
+
+
+    info: {
+        flex: 1,
+        marginTop: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        maxHeight:'5%'
+    },  
+    infoText: {
+        color: '#7B1D0B',
+        textAlign: 'center',
+        fontSize: 30,
+        fontWeight: 'bold'
     },
     options: {
         flex: 1,
@@ -88,7 +106,7 @@ const styles = StyleSheet.create({
       
       users: {
         margin: Platform.OS === 'web' ? '5%' : 8,
-        backgroundColor: 'gray',
+        backgroundColor: '#7B1D0B',
         width: Platform.OS === 'web' ? '20%' : 200,
         height: Platform.OS === 'web' ? '20%' : 150,
         justifyContent: 'center',
@@ -99,7 +117,7 @@ const styles = StyleSheet.create({
       classes: {
         margin: Platform.OS === 'web' ? '5%' : 8,
 
-        backgroundColor: 'gray',
+        backgroundColor: '#7B1D0B',
         justifyContent: 'center',
         alignItems: 'center',
         width: Platform.OS === 'web' ? '20%' : 200,
@@ -109,9 +127,9 @@ const styles = StyleSheet.create({
       },
     
       TextStyle: {
-        color: '#7B1D0B',
+        color: 'white',
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 30,
         fontWeight: 'bold'
       },
 
