@@ -5,6 +5,7 @@ import Loading from 'FaceCheckApp/src/screens/Loading';
 import SignUp from 'FaceCheckApp/src/screens/auth/SignUp';
 import Login from 'FaceCheckApp/src/screens/auth/Login';
 import ClassScreen from 'FaceCheckApp/src/screens/ClassScreen';
+import TeacherHomeScreen from 'FaceCheckApp/src/screens/TeacherHomeScreen';
 import StudentHomeScreen from 'FaceCheckApp/src/screens/StudentHomeScreen';
 import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen';
 import QRScannerScreen from 'FaceCheckApp/src/screens/QRScannerScreen';
@@ -20,6 +21,9 @@ const RootStack = createStackNavigator(
     },
     Login: {
       screen: Login,
+    },
+    TeacherHome: {
+      screen: TeacherHomeScreen,
     },
     StudentHome: {
       screen: StudentHomeScreen,

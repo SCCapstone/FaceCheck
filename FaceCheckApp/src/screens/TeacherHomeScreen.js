@@ -5,18 +5,18 @@ import {View, ScrollView} from 'react-native';
 import ClassCards from 'FaceCheckApp/src/components/ClassCards.js';
 import styles from 'FaceCheckApp/src/assets/styles';
 
-export default class StudentHomeScreen extends React.Component {
+export default class TeacherHomePageScreen extends React.Component {
+  //TODO everything
   state = {currentUser: null, open: false};
 
   componentDidMount() {
     const {currentUser} = firebase.auth();
     this.setState({currentUser});
   }
-
   render() {
     const {currentUser} = this.state;
-    return (
-      <View style={styles.screen}>
+  return (
+    <View style={styles.screen}>
         <Appbar.Header>
           <Appbar.BackAction
             title="Logout"
@@ -24,7 +24,7 @@ export default class StudentHomeScreen extends React.Component {
               firebase.auth().signOut();
             }}
           />
-          <Appbar.Content title="Home" />
+          <Appbar.Content title="Teacher Home" />
         </Appbar.Header>
         <ScrollView>
           <ClassCards navigation={this.props.navigation} />
@@ -33,32 +33,18 @@ export default class StudentHomeScreen extends React.Component {
           open={this.state.open}
           icon={this.state.open ? 'details' : 'class'}
           actions={[
-            {icon: 'add', label: 'add a class', onPress: () => {}},
-            {
-              icon: 'code',
-              label: 'qr generator',
-              onPress: () => {
-                this.props.navigation.navigate('QRGenerator');
-              },
-            },
-            {
-              icon: 'burst-mode',
-              label: 'qr scanner',
-              onPress: () => {
-                this.props.navigation.navigate('QRScanner');
-              },
-            },
             {
               icon: 'star', 
-              label: 'teacher home page',
+              label: 'student home page',
               onPress: () => {
-                this.props.navigation.navigate('TeacherHome');
+                this.props.navigation.navigate('StudentHome');
               }
             }
           ]}
           onStateChange={({open}) => this.setState({open})}
         />
       </View>
-    );
-  }
-}
+  );
+
+  };
+};
