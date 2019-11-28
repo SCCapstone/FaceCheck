@@ -1,8 +1,10 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
-import {Text, View} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
+
+
 
 export default class Login extends React.Component {
   state = {email: '', password: '', errorMessage: null};
@@ -20,14 +22,17 @@ export default class Login extends React.Component {
   render() {
     return (
       <View style={styles.screen}>
-        <Appbar.Header>
+        <Appbar.Header style={{zIndex:1}}>
           <Appbar.Content title="Login" />
         </Appbar.Header>
-        <Card style={styles.centerScreen}>
+          <Card style={styles.centerScreen}>
           <Card.Content>
             {this.state.errorMessage && (
               <Text style={{color: 'red'}}>{this.state.errorMessage}</Text>
             )}
+            <View style = {{zIndex:-1}}>
+              <Image style = {styles.logo} source={require('FaceCheckApp/src/assets/Logo.png')}  />
+            </View>
             <TextInput
               style={styles.textInput}
               autoCapitalize="none"
@@ -61,3 +66,4 @@ export default class Login extends React.Component {
     );
   }
 }
+

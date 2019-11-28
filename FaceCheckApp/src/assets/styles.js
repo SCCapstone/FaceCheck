@@ -53,6 +53,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  logo: {
+    alignItems: 'center',
+    backgroundColor: "#00000000",
+    justifyContent: 'center',
+    left: 70,
+    bottom: 0,
+    width: 250,
+    height: 250,
+    position: 'absolute'
+         
+  },
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
