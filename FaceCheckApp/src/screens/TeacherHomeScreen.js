@@ -2,7 +2,7 @@ import firebase from 'react-native-firebase';
 import React from 'react';
 import {FAB, Portal, Appbar} from 'react-native-paper';
 import {View, ScrollView} from 'react-native';
-import ClassCards from 'FaceCheckApp/src/components/ClassCards.js';
+import TeacherClassCards from 'FaceCheckApp/src/components/TeacherClassCards.js';
 import styles from 'FaceCheckApp/src/assets/styles';
 
 export default class TeacherHomePageScreen extends React.Component {
@@ -27,7 +27,7 @@ export default class TeacherHomePageScreen extends React.Component {
           <Appbar.Content title="Teacher Home" />
         </Appbar.Header>
         <ScrollView>
-          <ClassCards navigation={this.props.navigation} />
+          <TeacherClassCards navigation={this.props.navigation} />
         </ScrollView>
         <FAB.Group
           open={this.state.open}

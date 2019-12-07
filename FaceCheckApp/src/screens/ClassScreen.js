@@ -23,7 +23,7 @@ export default class AddClassScreen extends React.Component {
               this.props.navigation.goBack();
             }}
           />
-          <Appbar.Content title={currClass.name} />
+          <Appbar.Content title={currClass.className} />
         </Appbar.Header>
       </View>
     );
