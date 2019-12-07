@@ -31,15 +31,15 @@ class ClassCards extends React.Component {
         return (
           <Card
             style={styles.card}
-            key={currClass.classID}
+            key={currClass.className}
             onPress={() => {
               this.props.navigation.navigate('ClassScreen', {
                 currClass: JSON.stringify(currClass),
               });
             }}>
-            <Card.Title title={currClass.name} />
+            <Card.Title title={currClass.className} />
             <Card.Content>
-              <Paragraph>Teacher: {currClass.teacher}</Paragraph>
+              <Paragraph>Teacher: {currClass.TeacherName}</Paragraph>
             </Card.Content>
           </Card>
         );
