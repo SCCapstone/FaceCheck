@@ -2,7 +2,7 @@ import firebase from 'react-native-firebase';
 import React from 'react';
 import {FAB, Portal, Appbar} from 'react-native-paper';
 import {View, ScrollView} from 'react-native';
-import ClassCards from 'FaceCheckApp/src/components/ClassCards.js';
+import ClassCards from 'FaceCheckApp/src/components/ClassCards';
 import styles from 'FaceCheckApp/src/assets/styles';
 
 export default class StudentHomeScreen extends React.Component {
@@ -53,6 +53,13 @@ export default class StudentHomeScreen extends React.Component {
               label: 'teacher home page',
               onPress: () => {
                 this.props.navigation.navigate('TeacherHome');
+              }
+            },
+            {
+              icon: 'face', 
+              label: 'face scanner',
+              onPress: () => {
+                this.props.navigation.navigate('FaceScanner');
               }
             }
           ]}

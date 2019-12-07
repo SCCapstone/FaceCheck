@@ -10,6 +10,7 @@ import TeacherHomeScreen from 'FaceCheckApp/src/screens/TeacherHomeScreen';
 import StudentHomeScreen from 'FaceCheckApp/src/screens/StudentHomeScreen';
 import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen';
 import QRScannerScreen from 'FaceCheckApp/src/screens/QRScannerScreen';
+import FaceScannerScreen from 'FaceCheckApp/src/screens/FaceScannerScreen';
 
 // create our app's navigation stack
 const RootStack = createStackNavigator(
@@ -41,6 +42,9 @@ const RootStack = createStackNavigator(
     QRScanner: {
       screen: QRScannerScreen,
     },
+    FaceScanner: {
+      screen: FaceScannerScreen,
+    }
   },
   {
     initialRouteName: 'Loading',
