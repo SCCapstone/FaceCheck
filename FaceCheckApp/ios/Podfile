@@ -30,6 +30,7 @@ target 'FaceCheckApp' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
 
   pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
     'TextDetector',

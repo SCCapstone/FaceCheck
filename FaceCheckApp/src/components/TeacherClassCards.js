@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class ClassCards extends React.Component {
+class TeacherClassCards extends React.Component {
   constructor(props) {
     super(props);
     this.props.watchClasses();
@@ -33,14 +33,11 @@ class ClassCards extends React.Component {
             style={styles.card}
             key={currClass.className}
             onPress={() => {
-              this.props.navigation.navigate('ClassScreen', {
+              this.props.navigation.navigate('TeacherClassScreen', {
                 currClass: JSON.stringify(currClass),
               });
             }}>
             <Card.Title title={currClass.className} />
-            <Card.Content>
-              <Paragraph>Teacher: {currClass.TeacherName}</Paragraph>
-            </Card.Content>
           </Card>
         );
       });
@@ -57,4 +54,4 @@ class ClassCards extends React.Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ClassCards);
+)(TeacherClassCards);

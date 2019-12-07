@@ -1,6 +1,7 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import * as firebase from 'react-native-firebase';
+const db = firebase.firestore();
 
 //
 // Initial State
@@ -43,16 +44,24 @@ const setClasses = classes => {
 
 const watchClasses = () => {
   return function(dispatch) {
-    firebase
-      .database()
-      .ref('classes')
-      .on('value', function(snapshot) {
-        var classes = snapshot.val();
-        dispatch(setClasses(classes));
-      }),
-      function(error) {
-        // TODO: handle error
-      };
+    db.collection('users')
+      .doc(firebase.auth().currentUser.uid)
+      .onSnapshot(function(doc) {
+        // console.log("\n\nTest: ", doc.data());
+        var classes = doc.data().classes;
+        classesPromise = classes.map(classID => {
+          return db
+            .collection('classes')
+            .doc(classID)
+            .get();
+        });
+        Promise.all(classesPromise).then(classDocs => {
+          returnClasses = classDocs.map(classDoc => {
+            return classDoc.data();
+          });
+          dispatch(setClasses(returnClasses));
+        });
+      });
   };
 };
 
