@@ -31,7 +31,7 @@ class ClassCards extends React.Component {
       return this.props.classes.map(currClass => {
         return (
           <Card
-            ref={this.props.generateTestHook('Scene.SignUpEmail')}
+            //ref={this.props.generateTestHook('Scene.SignUpEmail')}
             style={styles.card}
             key={currClass.className}
             onPress={() => {

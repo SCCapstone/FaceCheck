@@ -10,7 +10,7 @@ import {hook, useCavy, wrap} from 'cavy';
 //const TestableClassCards = wrap(ClassCards);
 //<TestableClassCards ref={generateTestHook('Scene.ClassCard') navigation={this.props.navigation}}/>;
 
-class StudentHomeScreen extends React.Component {
+export default class StudentHomeScreen extends React.Component {
   state = {currentUser: null, open: false};
 
   componentDidMount() {
@@ -74,4 +74,3 @@ class StudentHomeScreen extends React.Component {
     );
   }
 }
-export default hook(StudentHomeScreen);
