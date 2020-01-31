@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import {connect} from 'react-redux';
 import {watchClasses} from 'FaceCheckApp/src/redux/app-redux';
 import styles from 'FaceCheckApp/src/assets/styles';
+import {hook, wrap} from 'cavy';
 
 const mapStateToProps = state => {
   return {
@@ -30,6 +31,7 @@ class ClassCards extends React.Component {
       return this.props.classes.map(currClass => {
         return (
           <Card
+            ref={this.props.generateTestHook('Scene.SignUpEmail')}
             style={styles.card}
             key={currClass.className}
             onPress={() => {
@@ -53,8 +55,4 @@ class ClassCards extends React.Component {
     return <View>{this.maybeRenderClassList()}</View>;
   }
 }
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ClassCards);
+export default connect(mapStateToProps, mapDispatchToProps)(ClassCards);

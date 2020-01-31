@@ -37,7 +37,7 @@ class Login extends React.Component {
               />
             </View>
             <TextInput
-              ref={this.props.generateTestHook('Scene.Email')}
+              ref={this.props.generateTestHook('Scene.LoginEmail')}
               style={styles.textInput}
               autoCapitalize="none"
               placeholder="Email"
@@ -45,7 +45,7 @@ class Login extends React.Component {
               value={this.state.email}
             />
             <TextInput
-              ref={this.props.generateTestHook('Scene.Password')}
+              ref={this.props.generateTestHook('Scene.LoginPassword')}
               secureTextEntry
               style={styles.textInput}
               autoCapitalize="none"
@@ -61,6 +61,7 @@ class Login extends React.Component {
               Login
             </Button>
             <Button
+              ref={this.props.generateTestHook('Scene.SignUpButton')}
               style={styles.button}
               mode="outlined"
               onPress={() => this.props.navigation.navigate('SignUp')}>

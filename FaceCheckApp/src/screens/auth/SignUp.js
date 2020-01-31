@@ -2,10 +2,11 @@ import firebase from 'react-native-firebase';
 import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
 import {Text, View, Image} from 'react-native';
+import {hook} from 'cavy';
 
 import styles from 'FaceCheckApp/src/assets/styles';
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
   state = {email: '', password: '', errorMessage: null};
   handleSignUp = () => {
     firebase
@@ -18,7 +19,7 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.screen}>
-        <Appbar.Header style={{zIndex:1}}>
+        <Appbar.Header style={{zIndex: 1}}>
           <Appbar.Content title="Sign Up" />
         </Appbar.Header>
         <Card style={styles.centerScreen}>
@@ -26,10 +27,15 @@ export default class SignUp extends React.Component {
             {this.state.errorMessage && (
               <Text style={{color: 'red'}}>{this.state.errorMessage}</Text>
             )}
-             <View style = {{zIndex:-1}}>
-              <Image style = {styles.logo} source={require('FaceCheckApp/src/assets/Logo.png')}  />
+            <View style={{zIndex: -1}}>
+              <Image
+                ref={this.props.generateTestHook('Scene.Image')}
+                style={styles.logo}
+                source={require('FaceCheckApp/src/assets/Logo.png')}
+              />
             </View>
             <TextInput
+              ref={this.props.generateTestHook('Scene.SignUpEmail')}
               placeholder="Email"
               autoCapitalize="none"
               style={styles.textInput}
@@ -37,6 +43,7 @@ export default class SignUp extends React.Component {
               value={this.state.email}
             />
             <TextInput
+              ref={this.props.generateTestHook('Scene.SignUpPassword')}
               secureTextEntry
               placeholder="Password"
               autoCapitalize="none"
@@ -45,12 +52,14 @@ export default class SignUp extends React.Component {
               value={this.state.password}
             />
             <Button
+              ref={this.props.generateTestHook('Scene.handleSignUp')}
               style={styles.button}
               mode="outlined"
               onPress={this.handleSignUp}>
               Sign Up
             </Button>
             <Button
+              ref={this.props.generateTestHook('Scene.backToLogin')}
               style={styles.button}
               mode="outlined"
               onPress={() => this.props.navigation.navigate('Login')}>
@@ -62,3 +71,5 @@ export default class SignUp extends React.Component {
     );
   }
 }
+
+export default hook(SignUp);
