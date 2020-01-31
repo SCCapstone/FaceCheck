@@ -3,10 +3,9 @@ import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
 import {Text, View, Image} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
+import {hook} from 'cavy';
 
-
-
-export default class Login extends React.Component {
+class Login extends React.Component {
   state = {email: '', password: '', errorMessage: null};
 
   handleLogin = () => {
@@ -22,18 +21,23 @@ export default class Login extends React.Component {
   render() {
     return (
       <View style={styles.screen}>
-        <Appbar.Header style={{zIndex:1}}>
+        <Appbar.Header style={{zIndex: 1}}>
           <Appbar.Content title="Login" />
         </Appbar.Header>
-          <Card style={styles.centerScreen}>
+        <Card style={styles.centerScreen}>
           <Card.Content>
             {this.state.errorMessage && (
               <Text style={{color: 'red'}}>{this.state.errorMessage}</Text>
             )}
-            <View style = {{zIndex:-1}}>
-              <Image style = {styles.logo} source={require('FaceCheckApp/src/assets/Logo.png')}  />
+            <View style={{zIndex: -1}}>
+              <Image
+                ref={this.props.generateTestHook('Scene.Image')}
+                style={styles.logo}
+                source={require('FaceCheckApp/src/assets/Logo.png')}
+              />
             </View>
             <TextInput
+              ref={this.props.generateTestHook('Scene.Email')}
               style={styles.textInput}
               autoCapitalize="none"
               placeholder="Email"
@@ -41,6 +45,7 @@ export default class Login extends React.Component {
               value={this.state.email}
             />
             <TextInput
+              ref={this.props.generateTestHook('Scene.Password')}
               secureTextEntry
               style={styles.textInput}
               autoCapitalize="none"
@@ -49,6 +54,7 @@ export default class Login extends React.Component {
               value={this.state.password}
             />
             <Button
+              ref={this.props.generateTestHook('Scene.LoginButton')}
               style={styles.button}
               mode="outlined"
               onPress={this.handleLogin}>
@@ -67,3 +73,4 @@ export default class Login extends React.Component {
   }
 }
 
+export default hook(Login);

@@ -33,6 +33,7 @@
     "@babel/runtime": "^7.6.0",
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.9.0",
+    "cavy": "^3.2.0",
     "eslint": "^5.0.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
