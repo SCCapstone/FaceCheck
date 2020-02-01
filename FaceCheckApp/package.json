@@ -26,6 +26,7 @@
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "speakeasy": "^2.0.0",
     "typescript": "^3.6.3"
   },
   "devDependencies": {

@@ -5,11 +5,11 @@ export default function(spec) {
       await spec.press('Scene.SignUpButton');
       await spec.fillIn('Scene.SignUpEmail', 'testemail@email.com');
       await spec.fillIn('Scene.SignUpPassword', 'password');
+      await spec.press('Scene.handleSignUp');
 
-      await spec.press('Scene.backToLogin');
       await spec.exists('Scene.Image');
-      await spec.fillIn('Scene.LoginEmail', 'samnichols314@gmail.com');
-      await spec.fillIn('Scene.LoginPassword', 'apple359');
+      await spec.fillIn('Scene.LoginEmail', 'testemail@gmail.com');
+      await spec.fillIn('Scene.LoginPassword', 'password');
       await spec.press('Scene.LoginButton');
 
       //await spec.exists('Scene.ClassCard');

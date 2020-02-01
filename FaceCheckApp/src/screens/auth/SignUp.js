@@ -1,4 +1,5 @@
 import firebase from 'react-native-firebase';
+//import speakeasy from 'speakeasy';
 import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
 import {Text, View, Image} from 'react-native';
@@ -13,9 +14,44 @@ class SignUp extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       // TODO: Change StudentHomeScreen to variable to manage teacher signup
-      .then(() => this.props.navigation.navigate('StudentHome'))
-      .catch(error => this.setState({errorMessage: error.message}));
+      .then(data => {
+        // on success, create user data
+        let userData = {
+          userType: 'Student',
+          email: this.state.email,
+          userSecret: 'temp',
+          classes: [],
+        };
+        // Add user data to users collection with doc id of uid
+        firebase
+          .firestore()
+          .collection('users')
+          .doc(data.user.uid)
+          .set(userData)
+          .then();
+        // Return object with user creation success
+      });
+    () =>
+      this.props.navigation
+        .navigate('Login')
+        .catch(error => this.setState({errorMessage: error.message}));
   };
+
+  // handleSignUp2 = async () => {
+  //   const response = await fetch('http://example.com/movies.json', {
+  //     method: 'POST',
+  //     userType: 'Student',
+  //     email: this.state.email,
+  //     userSecret: speakeasy.generateSecret(),
+  //     classes: [], // string or object
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  //   const myJson = await response.json(); //extract JSON from the http response
+  //   // do something with myJson
+  // };
+
   render() {
     return (
       <View style={styles.screen}>
