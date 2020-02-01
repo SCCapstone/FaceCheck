@@ -9,8 +9,10 @@ export default class QRGeneratorScreen extends React.Component {
   state = {currentUser: null};
 
   componentDidMount() {
+    if (process.env.NODE_ENV !== 'test') {
     const {currentUser} = firebase.auth();
     this.setState({currentUser});
+    }
   }
 
   render() {

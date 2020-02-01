@@ -16,8 +16,10 @@ export default class QRGenerator extends React.Component {
     this.interval = setInterval(() => {
       this.tick();
     }, 1000);
+    if (process.env.NODE_ENV !== 'test') { 
     const {uid} = firebase.auth().currentUser;
     this.setState({uid});
+    }
   }
 
   componentWillUnmount() {
