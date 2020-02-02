@@ -28,29 +28,14 @@ class SignUp extends React.Component {
           .collection('users')
           .doc(data.user.uid)
           .set(userData)
-          .then();
+          .then(() =>
+            this.props.navigation
+              .navigate('Login')
+              .catch(error => this.setState({errorMessage: error.message})),
+          );
         // Return object with user creation success
       });
-    () =>
-      this.props.navigation
-        .navigate('Login')
-        .catch(error => this.setState({errorMessage: error.message}));
   };
-
-  // handleSignUp2 = async () => {
-  //   const response = await fetch('http://example.com/movies.json', {
-  //     method: 'POST',
-  //     userType: 'Student',
-  //     email: this.state.email,
-  //     userSecret: speakeasy.generateSecret(),
-  //     classes: [], // string or object
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  //   const myJson = await response.json(); //extract JSON from the http response
-  //   // do something with myJson
-  // };
 
   render() {
     return (
