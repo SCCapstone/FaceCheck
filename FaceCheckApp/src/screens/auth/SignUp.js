@@ -28,11 +28,8 @@ class SignUp extends React.Component {
           .collection('users')
           .doc(data.user.uid)
           .set(userData)
-          .then(() =>
-            this.props.navigation
-              .navigate('Login')
-              .catch(error => this.setState({errorMessage: error.message})),
-          );
+          .then(() => this.props.navigation.navigate('Login'))
+          .catch(error => this.setState({errorMessage: error.message}));
         // Return object with user creation success
       });
   };
