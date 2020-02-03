@@ -21,7 +21,7 @@ class SignUp extends React.Component {
           userType: 'Student',
           email: this.state.email,
           userSecret: 'temp',
-          classes: [],
+          classes: ['d88f60a53a1ad4123db69ba2d2a00130e4041ae3'],
         };
         // Add user data to users collection with doc id of uid
         firebase
