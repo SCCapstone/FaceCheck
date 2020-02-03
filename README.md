@@ -25,6 +25,27 @@ Facial recognition application, that when paired with QR codes and a react nativ
 - React-Native
 - Firebase
 
+## Testing
+### Cavy - E2E Tests
+- Install Cavy cli
+
+    ```npm i -g cavy-cli ```
+- To run test on android, use
+
+    ```cavy run-android ```
+- To run test on ios, use
+    
+    ```cavy run-ios ```
+
+### Jest - Function Tests
+- Install Jest cli
+
+    ```npm i -g jest-cli ```
+
+- Run jest tests 
+
+    ```npm test```
+
 ## Authors
 - Michael Miranda
 - Samuel Nichols
