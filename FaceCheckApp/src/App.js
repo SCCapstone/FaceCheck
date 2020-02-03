@@ -44,7 +44,7 @@ const RootStack = createStackNavigator(
     },
     FaceScanner: {
       screen: FaceScannerScreen,
-    }
+    },
   },
   {
     initialRouteName: 'Loading',

@@ -4,8 +4,13 @@ import {FAB, Portal, Appbar} from 'react-native-paper';
 import {View, ScrollView} from 'react-native';
 import ClassCards from 'FaceCheckApp/src/components/ClassCards';
 import styles from 'FaceCheckApp/src/assets/styles';
+import {hook, useCavy, wrap} from 'cavy';
 
-export default class StudentHomeScreen extends React.Component {
+//const generateTestHook = useCavy();
+//const TestableClassCards = wrap(ClassCards);
+//<TestableClassCards ref={generateTestHook('Scene.ClassCard') navigation={this.props.navigation}}/>;
+
+class StudentHomeScreen extends React.Component {
   state = {currentUser: null, open: false};
 
   componentDidMount() {
@@ -19,6 +24,7 @@ export default class StudentHomeScreen extends React.Component {
       <View style={styles.screen}>
         <Appbar.Header>
           <Appbar.BackAction
+            ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
             title="Logout"
             onPress={() => {
               firebase.auth().signOut();
@@ -49,19 +55,19 @@ export default class StudentHomeScreen extends React.Component {
               },
             },
             {
-              icon: 'star', 
+              icon: 'star',
               label: 'teacher home page',
               onPress: () => {
                 this.props.navigation.navigate('TeacherHome');
-              }
+              },
             },
             {
-              icon: 'face', 
+              icon: 'face',
               label: 'face scanner',
               onPress: () => {
                 this.props.navigation.navigate('FaceScanner');
-              }
-            }
+              },
+            },
           ]}
           onStateChange={({open}) => this.setState({open})}
         />
@@ -69,3 +75,5 @@ export default class StudentHomeScreen extends React.Component {
     );
   }
 }
+
+export default hook(StudentHomeScreen);

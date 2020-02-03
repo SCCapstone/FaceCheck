@@ -5,7 +5,7 @@
   "scripts": {
     "ios": "react-native run-ios --simulator",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --verbose ./__tests__/tests/",
     "load": "yarn install && pushd ios && pod update && pod install && popd",
     "lint": "eslint ."
   },
@@ -26,6 +26,7 @@
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "speakeasy": "^2.0.0",
     "typescript": "^3.6.3"
   },
   "devDependencies": {
@@ -33,8 +34,13 @@
     "@babel/runtime": "^7.6.0",
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.9.0",
+    "cavy": "^3.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-react-16-adapter-setup": "^0.1.0",
     "eslint": "^5.0.0",
     "jest": "^24.9.0",
+    "jest-enzyme": "^7.1.2",
     "metro-react-native-babel-preset": "^0.56.0",
     "react-test-renderer": "16.8.6"
   },
