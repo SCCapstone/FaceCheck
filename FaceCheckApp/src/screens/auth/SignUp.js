@@ -9,6 +9,7 @@ import styles from 'FaceCheckApp/src/assets/styles';
 
 class SignUp extends React.Component {
   state = {email: '', password: '', errorMessage: null};
+
   handleSignUp = () => {
     firebase
       .auth()

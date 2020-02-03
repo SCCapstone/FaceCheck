@@ -9,7 +9,7 @@ class Login extends React.Component {
   state = {email: '', password: '', errorMessage: null};
 
   handleLogin = () => {
-    const {email, pasword} = this.state;
+    const {email, password} = this.state;
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
