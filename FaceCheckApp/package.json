@@ -5,7 +5,7 @@
   "scripts": {
     "ios": "react-native run-ios --simulator",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --verbose ./__tests__/tests/",
     "load": "yarn install && pushd ios && pod update && pod install && popd",
     "lint": "eslint ."
   },

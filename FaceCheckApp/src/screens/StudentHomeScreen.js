@@ -10,7 +10,7 @@ import {hook, useCavy, wrap} from 'cavy';
 //const TestableClassCards = wrap(ClassCards);
 //<TestableClassCards ref={generateTestHook('Scene.ClassCard') navigation={this.props.navigation}}/>;
 
-export default class StudentHomeScreen extends React.Component {
+class StudentHomeScreen extends React.Component {
   state = {currentUser: null, open: false};
 
   componentDidMount() {
@@ -24,6 +24,7 @@ export default class StudentHomeScreen extends React.Component {
       <View style={styles.screen}>
         <Appbar.Header>
           <Appbar.BackAction
+            ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
             title="Logout"
             onPress={() => {
               firebase.auth().signOut();
@@ -74,3 +75,5 @@ export default class StudentHomeScreen extends React.Component {
     );
   }
 }
+
+export default hook(StudentHomeScreen);
