@@ -6,11 +6,11 @@ import renderer from 'react-test-renderer';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter() });
+// configure({ adapter: new Adapter() });
 
-beforeEach(() => {
-  wrapper = shallow(<QRGenerator />)
-})
+// beforeEach(() => {
+//   wrapper = shallow(<QRGenerator />)
+// })
 test('check qr screen',()=>{
   let QRGeneratorData = renderer.create(<QRGenerator/>).toJSON;
   expect(QRGeneratorData).toMatchSnapshot();

@@ -1,6 +1,7 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
-
+# Required by RNFirebase
+pod 'Firebase/Core'
 target 'FaceCheckApp' do
   # Pods for FaceCheckApp
   pod 'React', :path => '../node_modules/react-native/'
