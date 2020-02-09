@@ -1,11 +1,11 @@
 import firebase from 'react-native-firebase';
-import React from 'react';
+import React, {Component} from 'react';
 import {View} from 'react-native';
 import {Dialog, Paragraph} from 'react-native-paper';
 import {RNCamera} from 'react-native-camera';
 import styles from 'FaceCheckApp/src/assets/styles';
 
-export default class QRScanner extends React.Component {
+export default class QRScanner extends Component {
   state = {
     focusedScreen: false,
     visible: false,

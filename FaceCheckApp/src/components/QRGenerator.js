@@ -38,7 +38,9 @@ class QRGenerator extends Component {
       uid: this.state.uid,
       totpCode: Math.floor(Math.random() * Math.floor(999999)),
     });
+    
     const TestableFunctionComponent = wrap(QRCode);
+
     return (
       <View style={styles.centerItem}>
         <Surface style={styles.surface}>

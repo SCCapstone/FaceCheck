@@ -1,11 +1,11 @@
 import firebase from 'react-native-firebase';
-import React from 'react';
+import React, {Component} from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
 import {Text, View, Image} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook} from 'cavy';
 
-class Login extends React.Component {
+class Login extends Component {
   state = {email: '', password: '', errorMessage: null};
 
   handleLogin = () => {

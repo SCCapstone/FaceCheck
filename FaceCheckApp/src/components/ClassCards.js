@@ -55,4 +55,5 @@ class ClassCards extends React.Component {
     return <View>{this.maybeRenderClassList()}</View>;
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(ClassCards);
