@@ -21,7 +21,11 @@ class SignUp extends React.Component {
           userType: 'Student',
           email: this.state.email,
           userSecret: 'temp',
+<<<<<<< HEAD
+          classes: [],
+=======
           classes: ['d88f60a53a1ad4123db69ba2d2a00130e4041ae3'],
+>>>>>>> 4b9de7e7b2f7c4e8ae562bb4dc159376ea01f702
         };
         // Add user data to users collection with doc id of uid
         firebase
@@ -29,12 +33,39 @@ class SignUp extends React.Component {
           .collection('users')
           .doc(data.user.uid)
           .set(userData)
+<<<<<<< HEAD
+          .then();
+        // Return object with user creation success
+      });
+    () =>
+      this.props.navigation
+        .navigate('Login')
+        .catch(error => this.setState({errorMessage: error.message}));
+  };
+
+  // handleSignUp2 = async () => {
+  //   const response = await fetch('http://example.com/movies.json', {
+  //     method: 'POST',
+  //     userType: 'Student',
+  //     email: this.state.email,
+  //     userSecret: speakeasy.generateSecret(),
+  //     classes: [], // string or object
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  //   const myJson = await response.json(); //extract JSON from the http response
+  //   // do something with myJson
+  // };
+
+=======
           .then(() => this.props.navigation.navigate('Login'))
           .catch(error => this.setState({errorMessage: error.message}));
         // Return object with user creation success
       });
   };
 
+>>>>>>> 4b9de7e7b2f7c4e8ae562bb4dc159376ea01f702
   render() {
     return (
       <View style={styles.screen}>
