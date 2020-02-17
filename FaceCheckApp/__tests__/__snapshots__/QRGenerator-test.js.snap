@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test QR snapshot 1`] = `[Function]`;
+
 exports[`check qr screen 1`] = `[Function]`;
