@@ -27,7 +27,11 @@ const testHookStore = new TestHookStore();
 class AppWrapper extends Component {
   render() {
     return (
-      <Tester specs={[ExampleSpec]} store={testHookStore} waitTime={1000}>
+      <Tester
+        specs={[ExampleSpec]}
+        clearAsyncStorage={true}
+        store={testHookStore}
+        waitTime={1000}>
         <ReduxProvider store={store}>
           <PaperProvider theme={theme}>
             <App />

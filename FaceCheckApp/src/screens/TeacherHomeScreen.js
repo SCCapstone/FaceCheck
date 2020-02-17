@@ -15,8 +15,8 @@ export default class TeacherHomePageScreen extends React.Component {
   }
   render() {
     const {currentUser} = this.state;
-  return (
-    <View style={styles.screen}>
+    return (
+      <View style={styles.screen}>
         <Appbar.Header>
           <Appbar.BackAction
             title="Logout"
@@ -34,17 +34,16 @@ export default class TeacherHomePageScreen extends React.Component {
           icon={this.state.open ? 'details' : 'class'}
           actions={[
             {
-              icon: 'star', 
+              icon: 'star',
               label: 'student home page',
               onPress: () => {
                 this.props.navigation.navigate('StudentHome');
-              }
-            }
+              },
+            },
           ]}
           onStateChange={({open}) => this.setState({open})}
         />
       </View>
-  );
-
-  };
-};
+    );
+  }
+}
