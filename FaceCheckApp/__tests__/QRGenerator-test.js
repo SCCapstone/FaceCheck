@@ -5,8 +5,10 @@ import RNFirebase from 'react-native-firebase';
 import renderer from 'react-test-renderer';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import QRCode from 'react-native-qrcode-svg';
 
 configure({ adapter: new Adapter() });
+
 describe('Testing navigation', () => {
 
   let wrapper = null
@@ -37,3 +39,12 @@ test('Test QR snapshot',()=>{
   expect(QRGeneratorData).toMatchSnapshot();
 })
 
+test('Testing QR generation', () => {
+  const qrData = JSON.stringify({
+    uid: 123,
+    totpCode: Math.floor(Math.random() * Math.floor(999999)),
+  });
+  const wrapper = shallow(<QRCode value={qrData}/>);
+
+  expect(wrapper.find('.value')).toBeDefined();
+})
