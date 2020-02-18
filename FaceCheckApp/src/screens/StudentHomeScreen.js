@@ -68,6 +68,13 @@ class StudentHomeScreen extends React.Component {
                 this.props.navigation.navigate('FaceScanner');
               },
             },
+            {
+              icon: 'keyboard-tab',
+              label: 'log-out',
+              onPress: () => {
+                firebase.auth().signOut();
+              },
+            },
           ]}
           onStateChange={({open}) => this.setState({open})}
         />
