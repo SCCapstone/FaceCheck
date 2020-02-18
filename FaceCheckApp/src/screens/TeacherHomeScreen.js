@@ -40,7 +40,23 @@ export default class TeacherHomePageScreen extends React.Component {
                 this.props.navigation.navigate('StudentHome');
               },
             },
+            {icon: 'add', label: 'add a class', onPress: () => {}},
+            {
+              icon: 'burst-mode',
+              label: 'qr scanner',
+              onPress: () => {
+                this.props.navigation.navigate('QRScanner');
+              },
+            },
+            {
+              icon: 'keyboard-return',
+              label: 'log-out',
+              onPress: () => {
+                firebase.auth().signOut();
+              },
+            },
           ]}
+          
           onStateChange={({open}) => this.setState({open})}
         />
       </View>

@@ -5,13 +5,6 @@ import {View, ScrollView} from 'react-native';
 import ClassCards from 'FaceCheckApp/src/components/ClassCards';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, useCavy, wrap} from 'cavy';
-<<<<<<< HEAD
-
-//const generateTestHook = useCavy();
-//const TestableClassCards = wrap(ClassCards);
-//<TestableClassCards ref={generateTestHook('Scene.ClassCard') navigation={this.props.navigation}}/>;
-=======
->>>>>>> 4b9de7e7b2f7c4e8ae562bb4dc159376ea01f702
 
 //const generateTestHook = useCavy();
 //const TestableClassCards = wrap(ClassCards);
@@ -32,7 +25,7 @@ class StudentHomeScreen extends React.Component {
         <Appbar.Header>
           <Appbar.BackAction
             ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
-            title="Logout"
+            title="Back"
             onPress={() => {
               firebase.auth().signOut();
             }}
@@ -73,6 +66,13 @@ class StudentHomeScreen extends React.Component {
               label: 'face scanner',
               onPress: () => {
                 this.props.navigation.navigate('FaceScanner');
+              },
+            },
+            {
+              icon: 'keyboard-tab',
+              label: 'log-out',
+              onPress: () => {
+                firebase.auth().signOut();
               },
             },
           ]}
