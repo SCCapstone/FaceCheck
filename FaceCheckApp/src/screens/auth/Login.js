@@ -62,10 +62,11 @@ class Login extends React.Component {
             </Button>
             <Button
               ref={this.props.generateTestHook('Scene.SignUpButton')}
-              style={styles.button}
-              mode="outlined"
+              style={[styles.button, {flexWrap: "wrap" }]}
+              mode="text"
+              uppercase={false}
               onPress={() => this.props.navigation.navigate('SignUp')}>
-              Sign Up
+              Not a Member? Sign Up Now!
             </Button>
           </Card.Content>
         </Card>
