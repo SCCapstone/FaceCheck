@@ -12,6 +12,8 @@ Facial recognition application, that when paired with QR codes and a react nativ
 - Install [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) via the Mac App Store
 - Install [React-Native](https://facebook.github.io/react-native/docs/getting-started)
 
+### Prerequisites for Windows OS 
+- Install [GitBash](https://gitforwindows.org/)
 
 ### Installing
 1. git clone git@github.com:SCCapstone/FaceCheck.git
