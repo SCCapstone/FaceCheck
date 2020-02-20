@@ -15,7 +15,7 @@ Facial recognition application, that when paired with QR codes and a react nativ
 ### Prerequisites for Android
 - Install [Android Studio](https://developer.android.com/studio)
 - Set up an [Emulator](https://facebook.github.io/react-native/docs/getting-started) following the React Native CLI Quickstart guide  under your Developmental and Android OS
-- For all Android tests, an Emulator must be running alongside the application
+- ``` For all Android tests, an Emulator must be running alongside the application ```
 
 ### Prerequisites for Windows OS 
 - Install [GitBash](https://gitforwindows.org/)
