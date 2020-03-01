@@ -61,7 +61,9 @@ const watchClasses = () => {
         }
         Promise.all(classesPromise).then(classDocs => {
           returnClasses = classDocs.map(classDoc => {
-            return classDoc.data();
+            let classData = classDoc.data();
+            classData['docID'] = classDoc.id;
+            return classData;
           });
           dispatch(setClasses(returnClasses));
         });

@@ -30,20 +30,6 @@ export default class Loading extends React.Component {
               );
             }
           });
-        // db.collection('users')
-        //   .document(user.uid)
-        //   .get()
-        //   .then(doc => {
-        //     const userType = doc.data().userType;
-        //     switch (userType) {
-        //       case 'Student':
-        //         this.props.navigation.navigate('StudentHome');
-        //       case 'Teacher':
-        //         this.props.navigation.navigate('TeacherHome');
-        //       default:
-        //         console.log('Unknown User Type. This is a bug, please report!');
-        //     }
-        //   });
       } else {
         StackActions.reset({
           index: 0,

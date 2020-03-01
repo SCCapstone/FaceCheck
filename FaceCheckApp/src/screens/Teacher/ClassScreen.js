@@ -12,16 +12,10 @@ export default class AddClassScreen extends React.Component {
     this.setState({currentUser});
   }
 
-  getStudents(Students) {
-    return Object.keys(Students).map((key, index) => {
-      return Students[key];
-    });
-  }
-
   makeStudentList(Students) {
     studentsList = '';
-    this.getStudents(Students).forEach(student => {
-      studentsList += student + '\n';
+    Students.forEach(student => {
+      studentsList += student.email + '\n';
     });
     return studentsList;
   }
