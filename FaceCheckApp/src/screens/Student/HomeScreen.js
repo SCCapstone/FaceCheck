@@ -30,7 +30,7 @@ class StudentHomeScreen extends React.Component {
               firebase.auth().signOut();
             }}
           />
-          <Appbar.Content title="Home" />
+          <Appbar.Content title="Student Home" />
         </Appbar.Header>
         <ScrollView>
           <ClassCards navigation={this.props.navigation} />

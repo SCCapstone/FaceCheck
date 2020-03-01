@@ -1,24 +1,43 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
-import {View} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import {Surface} from 'react-native-paper';
+import {totp} from 'otplib';
 
 import styles from 'FaceCheckApp/src/assets/styles';
 
 export default class QRGenerator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {init: true, seconds: 0, uid: null};
+    const uid = firebase.auth().currentUser.uid;
+    this.state = {
+      init: true,
+      seconds: 0,
+      uid: uid,
+      secret: undefined,
+      userData: undefined,
+      currClass: this.props.currClass,
+    };
+    const user = firebase
+      .firestore()
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        const secret = data.userSecret;
+        this.setState({secret: secret, userData: data});
+      });
   }
 
   componentDidMount() {
     this.interval = setInterval(() => {
       this.tick();
     }, 1000);
-    if (process.env.NODE_ENV !== 'test') { 
-    const {uid} = firebase.auth().currentUser;
-    this.setState({uid});
+    if (process.env.NODE_ENV !== 'test') {
+      const {uid} = firebase.auth().currentUser;
+      this.setState({uid});
     }
   }
 
@@ -30,24 +49,40 @@ export default class QRGenerator extends React.Component {
     this.setState({seconds: new Date().getSeconds()});
   }
 
-  shouldComponentUpdate() {
-    return (this.state.seconds + 1) % 30 == 0;
+  shouldComponentUpdate(_nextProps, nextState) {
+    if (this.state.secret != nextState.secret) {
+      return true;
+    } else {
+      return (this.state.seconds + 1) % 30 == 0;
+    }
   }
 
   render() {
-    const qrData = JSON.stringify({
+    const token =
+      this.state.secret != undefined
+        ? totp.generate(this.state.secret)
+        : undefined;
+    const qrData = {
       uid: this.state.uid,
-      totpCode: Math.floor(Math.random() * Math.floor(999999)),
-    });
+      token: token,
+      teacherUID: this.state.currClass.TeacherUID,
+      time: this.state.currClass.Time,
+    };
+    const qrDataString = JSON.stringify(qrData);
+    console.log(this.state.currClass);
     return (
       <View style={styles.centerItem}>
         <Surface style={styles.surface}>
-          <QRCode
-            style={{alignItems: 'center'}}
-            value={qrData}
-            size={150}
-            ecl="Q"
-          />
+          {this.state.secret != undefined ? (
+            <QRCode
+              style={{alignItems: 'center'}}
+              value={qrDataString}
+              size={150}
+              ecl="Q"
+            />
+          ) : (
+            <ActivityIndicator size="large" />
+          )}
         </Surface>
       </View>
     );

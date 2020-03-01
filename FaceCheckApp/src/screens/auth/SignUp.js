@@ -1,14 +1,23 @@
 import firebase from 'react-native-firebase';
-//import speakeasy from 'speakeasy';
 import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
 import {Text, View, Image} from 'react-native';
 import {hook} from 'cavy';
-
+import {authenticator, totp} from 'otplib';
 import styles from 'FaceCheckApp/src/assets/styles';
 
 class SignUp extends React.Component {
   state = {email: '', password: '', errorMessage: null};
+
+  createNewSecret = () => {
+    return new Promise(function(resolve, reject) {
+      const secret = authenticator.generateSecret(); // base32 encoded hex secret key
+      const token = totp.generate(secret);
+      totp.verify({token, secret})
+        ? resolve(secret)
+        : reject(new Error('Failed to verify totp, please report this bug!'));
+    });
+  };
 
   handleSignUp = () => {
     firebase
@@ -17,20 +26,25 @@ class SignUp extends React.Component {
       // TODO: Change StudentHomeScreen to variable to manage teacher signup
       .then(data => {
         // on success, create user data
-        let userData = {
-          userType: 'Student',
-          email: this.state.email,
-          userSecret: 'temp',
-          classes: ['d88f60a53a1ad4123db69ba2d2a00130e4041ae3'],
-        };
-        // Add user data to users collection with doc id of uid
-        firebase
-          .firestore()
-          .collection('users')
-          .doc(data.user.uid)
-          .set(userData)
-          .then(() => this.props.navigation.navigate('Login'))
-          .catch(error => this.setState({errorMessage: error.message}));
+        this.createNewSecret()
+          .then(secret => {
+            let userData = {
+              userType: 'Student',
+              email: this.state.email,
+              userSecret: secret,
+              classes: ['d88f60a53a1ad4123db69ba2d2a00130e4041ae3'],
+            };
+            // Add user data to users collection with doc id of uid
+            firebase
+              .firestore()
+              .collection('users')
+              .doc(data.user.uid)
+              .set(userData)
+              .then(() => console.log('pass'))
+              .catch(error => this.setState({errorMessage: error.message}));
+          })
+          .catch(err => console.log(err));
+
         // Return object with user creation success
       });
   };

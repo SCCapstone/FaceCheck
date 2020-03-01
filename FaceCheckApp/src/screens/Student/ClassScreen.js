@@ -27,7 +27,7 @@ export default class AddClassScreen extends React.Component {
           <Appbar.Content title={currClass.className} />
         </Appbar.Header>
         <View style={styles.centerScreenJust}>
-          <QRGenerator />
+          <QRGenerator currClass={currClass} />
         </View>
       </View>
     );

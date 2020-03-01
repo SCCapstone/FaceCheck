@@ -1,6 +1,6 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
-import {Appbar, Paragraph, Card} from 'react-native-paper';
+import {Appbar, Paragraph, Card, Button} from 'react-native-paper';
 import {View, ScrollView} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
 
@@ -12,16 +12,10 @@ export default class AddClassScreen extends React.Component {
     this.setState({currentUser});
   }
 
-  getStudents(Students) {
-    return Object.keys(Students).map((key, index) => {
-      return Students[key];
-    });
-  }
-
   makeStudentList(Students) {
     studentsList = '';
-    this.getStudents(Students).forEach(student => {
-      studentsList += student + '\n';
+    Students.forEach(student => {
+      studentsList += student.email + '\n';
     });
     return studentsList;
   }
@@ -35,7 +29,6 @@ export default class AddClassScreen extends React.Component {
   }
 
   render() {
-    const {currentUser} = this.state;
     var currClass = JSON.parse(this.props.navigation.getParam('currClass'));
     return (
       <View style={styles.screen}>
@@ -63,6 +56,18 @@ export default class AddClassScreen extends React.Component {
                 {this.makeMeetingTimes(currClass.meetingDays, currClass.Time)}
               </Paragraph>
             </Card.Content>
+          </Card>
+          <Card>
+            <Button
+              style={styles.button}
+              mode="outlined"
+              onPress={() => {
+                this.props.navigation.navigate('QRScanner', {
+                  currClass: JSON.stringify(currClass),
+                });
+              }}>
+              Attendance Scanner
+            </Button>
           </Card>
         </ScrollView>
       </View>

@@ -4,13 +4,14 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Loading from 'FaceCheckApp/src/screens/Loading';
 import SignUp from 'FaceCheckApp/src/screens/auth/SignUp';
 import Login from 'FaceCheckApp/src/screens/auth/Login';
-import ClassScreen from 'FaceCheckApp/src/screens/ClassScreen';
-import TeacherClassScreen from 'FaceCheckApp/src/screens/TeacherClassScreen';
-import TeacherHomeScreen from 'FaceCheckApp/src/screens/TeacherHomeScreen';
-import StudentHomeScreen from 'FaceCheckApp/src/screens/StudentHomeScreen';
-import QRGeneratorScreen from 'FaceCheckApp/src/screens/QRGeneratorScreen';
-import QRScannerScreen from 'FaceCheckApp/src/screens/QRScannerScreen';
-import FaceScannerScreen from 'FaceCheckApp/src/screens/FaceScannerScreen';
+import ClassScreen from 'FaceCheckApp/src/screens/Student/ClassScreen';
+import TeacherClassScreen from 'FaceCheckApp/src/screens/Teacher/ClassScreen';
+import TeacherHomeScreen from 'FaceCheckApp/src/screens/Teacher/HomeScreen';
+import StudentHomeScreen from 'FaceCheckApp/src/screens/Student/HomeScreen';
+import QRGeneratorScreen from 'FaceCheckApp/src/screens/Student/QRGeneratorScreen';
+// import QRScannerScreen from 'FaceCheckApp/src/screens/Teacher/QRScannerScreen';
+import FaceScannerScreen from 'FaceCheckApp/src/screens/Student/FaceScannerScreen';
+import QRScanner from 'FaceCheckApp/src/components/QRScanner';
 
 // create our app's navigation stack
 const RootStack = createStackNavigator(
@@ -40,7 +41,7 @@ const RootStack = createStackNavigator(
       screen: QRGeneratorScreen,
     },
     QRScanner: {
-      screen: QRScannerScreen,
+      screen: QRScanner,
     },
     FaceScanner: {
       screen: FaceScannerScreen,
