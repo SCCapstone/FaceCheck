@@ -22,6 +22,7 @@
     "domain-browser": "^1.2.0",
     "events": "^1.1.1",
     "https-browserify": "0.0.1",
+    "lodash": "^4.17.15",
     "otplib": "^12.0.1",
     "path-browserify": "0.0.0",
     "prop-types": "^15.7.2",

@@ -62,12 +62,13 @@ export default class QRGenerator extends React.Component {
       this.state.secret != undefined
         ? totp.generate(this.state.secret)
         : undefined;
-    const qrData = JSON.stringify({
+    const qrData = {
       uid: this.state.uid,
       token: token,
       teacherUID: this.state.currClass.TeacherUID,
       time: this.state.currClass.Time,
-    });
+    };
+    const qrDataString = JSON.stringify(qrData);
     console.log(this.state.currClass);
     return (
       <View style={styles.centerItem}>
@@ -75,7 +76,7 @@ export default class QRGenerator extends React.Component {
           {this.state.secret != undefined ? (
             <QRCode
               style={{alignItems: 'center'}}
-              value={qrData}
+              value={qrDataString}
               size={150}
               ecl="Q"
             />

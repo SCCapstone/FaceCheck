@@ -4,18 +4,22 @@ import {View} from 'react-native';
 import {Dialog, Paragraph} from 'react-native-paper';
 import {RNCamera} from 'react-native-camera';
 import styles from 'FaceCheckApp/src/assets/styles';
+import {totp} from 'otplib';
+import {debounce} from 'lodash';
 
 export default class QRScanner extends React.Component {
-  state = {
-    focusedScreen: false,
-    visible: false,
-    qrcodeData: '',
-    shouldReadBarCode: true,
-  };
-
   constructor(props) {
     super(props);
     this._isMounted = false;
+    this.state = {
+      focusedScreen: false,
+      visible: false,
+      currClass: {},
+    };
+    this._barcodeRecognized = debounce(this._barcodeRecognized, 1250, {
+      leading: true,
+      trailing: false,
+    });
   }
 
   componentDidMount() {
@@ -24,31 +28,56 @@ export default class QRScanner extends React.Component {
     this.didFocusListener = navigation.addListener('didFocus', () => {
       this.setState({focusedScreen: true});
     });
-    this._isMounted = true;
+    totp.options = {window: [-2, 2]};
   }
 
   componentWillUnmount() {
     this.didFocusListener && this.didFocusListener.remove();
-    this._isMounted = false;
   }
 
   _showDialog = () => this.setState({visible: true});
 
   _hideDialog = () => this.setState({visible: false});
 
-  barcodeRecognized = ({barcodes}) => {
-    this.setState({shouldReadBarCode: false});
-    if (barcodes[0] !== undefined) {
-      this.setState({qrcodeData: barcodes[0].data});
+  _validateStudent(data) {
+    const qrcodeData = JSON.parse(data);
+    const uid = qrcodeData.uid;
+    const token = qrcodeData.token;
+    const teacherUID = qrcodeData.teacherUID;
+    const time = qrcodeData.time;
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        const secret = data.userSecret;
+        const isValid = totp.verify({token, secret});
+        var currClass = JSON.parse(this.props.navigation.getParam('currClass'));
+        if (
+          isValid &&
+          currClass.TeacherUID == teacherUID &&
+          currClass.Time == time
+        ) {
+          console.log('valid attendance');
+        } else {
+          console.log('invalid attendance');
+        }
+      });
+  }
+
+  _barcodeRecognized(data) {
+    if (data !== undefined) {
+      // console.log(barcode);
+      // this.setState({qrcodeData: data});
+      this._validateStudent(data);
       this._showDialog();
       setTimeout(() => {
-        this._isMounted && this._hideDialog();
+        this._hideDialog();
       }, 2000);
     }
-    setTimeout(() => {
-        this._isMounted && this.setState({shouldReadBarCode: true});
-    }, 2000);
-  };
+  }
 
   render() {
     return (
@@ -61,14 +90,14 @@ export default class QRScanner extends React.Component {
             flex: 1,
             width: '100%',
           }}
-          onGoogleVisionBarcodesDetected={
-            this.state.shouldReadBarCode ? this.barcodeRecognized : null
-          }
+          onBarCodeRead={barcode => {
+            this._barcodeRecognized(barcode.data);
+          }}
         />
         <Dialog visible={this.state.visible} onDismiss={this._hideDialog}>
           <Dialog.Title>QRData</Dialog.Title>
           <Dialog.Content>
-            <Paragraph>{this.state.qrcodeData}</Paragraph>
+            <Paragraph></Paragraph>
           </Dialog.Content>
         </Dialog>
       </View>
