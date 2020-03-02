@@ -35,7 +35,7 @@ class StudentHomeScreen extends React.Component {
         <ScrollView>
           <ClassCards navigation={this.props.navigation} />
         </ScrollView>
-        <FAB.Group
+        {/* <FAB.Group
           open={this.state.open}
           icon={this.state.open ? 'details' : 'class'}
           actions={[
@@ -77,7 +77,7 @@ class StudentHomeScreen extends React.Component {
             },
           ]}
           onStateChange={({open}) => this.setState({open})}
-        />
+        /> */}
       </View>
     );
   }

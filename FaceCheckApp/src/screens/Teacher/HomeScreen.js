@@ -29,7 +29,7 @@ export default class TeacherHomePageScreen extends React.Component {
         <ScrollView>
           <TeacherClassCards navigation={this.props.navigation} />
         </ScrollView>
-        <FAB.Group
+        {/* <FAB.Group
           open={this.state.open}
           icon={this.state.open ? 'details' : 'class'}
           actions={[
@@ -58,7 +58,7 @@ export default class TeacherHomePageScreen extends React.Component {
           ]}
           
           onStateChange={({open}) => this.setState({open})}
-        />
+        /> */}
       </View>
     );
   }
