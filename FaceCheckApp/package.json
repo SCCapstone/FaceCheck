@@ -32,6 +32,7 @@
     "react-native": "0.60.5",
     "react-native-camera": "^3.7.0",
     "react-native-crypto": "^2.2.0",
+    "react-native-date-picker": "^2.7.7",
     "react-native-firebase": "^5.5.6",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-level-fs": "^3.0.1",

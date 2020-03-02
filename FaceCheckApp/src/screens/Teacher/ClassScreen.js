@@ -3,9 +3,18 @@ import React from 'react';
 import {Appbar, Paragraph, Card, Button} from 'react-native-paper';
 import {View, ScrollView} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
+import DatePicker from 'react-native-date-picker';
 
 export default class AddClassScreen extends React.Component {
-  state = {currentUser: null};
+  constructor(props) {
+    super(props);
+    date = new Date();
+    this.state = {
+      currentUser: null,
+      date: date,
+      attendance: 'No Attendance To Show',
+    };
+  }
 
   componentDidMount() {
     const {currentUser} = firebase.auth();
@@ -26,6 +35,33 @@ export default class AddClassScreen extends React.Component {
       meetingTimes += day + '\n';
     });
     return meetingTimes;
+  }
+
+  _makeDateString() {
+    const date = this.state.date;
+    console.log(date);
+    currDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    return currDate;
+  }
+
+  _makeAttendance() {
+    var currClass = JSON.parse(this.props.navigation.getParam('currClass'));
+    if (this.state.date != undefined) {
+      var attendance =
+        currClass.Attendance[this._makeDateString(this.state.date)];
+      if (attendance != undefined) {
+        currAttendance = '';
+        attendance.forEach(student => {
+          console.log(student.email);
+          currAttendance += student.present
+            ? `${student.email}: present`
+            : `${student.email}: absent` + '\n';
+        });
+        this.setState({attendance: currAttendance});
+      } else {
+        this.setState({attendance: 'No attendance to show for this day'});
+      }
+    }
   }
 
   render() {
@@ -68,6 +104,19 @@ export default class AddClassScreen extends React.Component {
               }}>
               Attendance Scanner
             </Button>
+          </Card>
+          <Card>
+            <DatePicker
+              date={this.state.date}
+              mode="date"
+              onDateChange={date => {
+                this._makeAttendance();
+                this.setState({date: date});
+              }}
+            />
+          </Card>
+          <Card>
+            <Paragraph>{this.state.attendance}</Paragraph>
           </Card>
         </ScrollView>
       </View>
