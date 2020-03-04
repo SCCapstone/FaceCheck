@@ -1,11 +1,12 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {FAB, Portal, Appbar} from 'react-native-paper';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Button} from 'react-native';
 import TeacherClassCards from 'FaceCheckApp/src/components/TeacherClassCards.js';
 import styles from 'FaceCheckApp/src/assets/styles';
+import {hook, useCavy, wrap} from 'cavy';
 
-export default class TeacherHomePageScreen extends React.Component {
+class TeacherHomePageScreen extends React.Component {
   //TODO everything
   state = {currentUser: null, open: false};
 
@@ -18,8 +19,10 @@ export default class TeacherHomePageScreen extends React.Component {
     return (
       <View style={styles.screen}>
         <Appbar.Header>
-          <Appbar.BackAction
-            title="Logout"
+          <Button
+            //ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
+            title="Log Out"
+            color="#B71C1C"
             onPress={() => {
               firebase.auth().signOut();
             }}
@@ -63,3 +66,5 @@ export default class TeacherHomePageScreen extends React.Component {
     );
   }
 }
+
+export default hook(TeacherHomePageScreen);
