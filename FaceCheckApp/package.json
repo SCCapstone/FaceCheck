@@ -8,6 +8,7 @@
     "test": "jest --verbose ./__tests__/tests/",
     "load-ios": "yarn install && pushd ios && pod update && pod install && popd && ./node_modules/.bin/rn-nodeify --hack --install",
     "load-android": "yarn install && ./node_modules/.bin/rn-nodeify --hack --install",
+    "npm-load-android": "npm install && ./node_modules/.bin/rn-nodeify --hack --install",
     "load-android-s": "yarn install && cp ./blacklist.js ./node_modules/metro-config/src/defaults/ && ./node_modules/.bin/rn-nodeify --hack --install",
     "lint": "eslint ."
   },
