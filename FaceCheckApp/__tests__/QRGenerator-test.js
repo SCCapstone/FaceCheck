@@ -10,7 +10,7 @@ import QRCode from 'react-native-qrcode-svg';
 configure({ adapter: new Adapter() });
 
 test('Test QR snapshot',()=>{
-  let QRGeneratorData = renderer.create(<QRGenerator/>).toJSON;
+  let QRGeneratorData = renderer.create(<QRGenerator />).toJSON;
   expect(QRGeneratorData).toMatchSnapshot();
 })
 
@@ -27,5 +27,5 @@ test('Renders QR code', () => {
 test('asymmetric matcher', () => {
   const expected = {a: expect.any(Function)};
   const received = {a: _in => _in};
-  expect(received).toEqual(expected);
+  return expect(received).toEqual(expected);
 })
