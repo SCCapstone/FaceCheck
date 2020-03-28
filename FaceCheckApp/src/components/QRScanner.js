@@ -152,7 +152,7 @@ export default class QRScanner extends React.Component {
             }}
           />
           <Dialog visible={this.state.visible} onDismiss={this._hideDialog}>
-            <Dialog.Title>QRData</Dialog.Title>
+            <Dialog.Title>Logged In</Dialog.Title>
             <Dialog.Content>
               <Paragraph></Paragraph>
             </Dialog.Content>
