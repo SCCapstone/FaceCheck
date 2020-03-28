@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     marginLeft: 60,
     marginRight: 60,
     marginTop: 10,
+    alignSelf: "center"
   },
   centerScreen: {
     flex: 1,

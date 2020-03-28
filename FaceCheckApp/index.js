@@ -7,6 +7,8 @@ import App from './src/App';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import {Provider as ReduxProvider} from 'react-redux';
 import {store} from './src/redux/app-redux';
+import './shim.js';
+import crypto from 'crypto';
 
 // Uncomment when demoing
 // console.disableYellowBox = true;

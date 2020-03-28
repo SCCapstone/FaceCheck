@@ -47,17 +47,23 @@ const watchClasses = () => {
     db.collection('users')
       .doc(firebase.auth().currentUser.uid)
       .onSnapshot(function(doc) {
-        // console.log("\n\nTest: ", doc.data());
-        var classes = doc.data().classes;
-        classesPromise = classes.map(classID => {
-          return db
-            .collection('classes')
-            .doc(classID)
-            .get();
-        });
+        if (doc.data()) {
+          // console.log("\n\nTest: ", doc.data());
+          var classes = doc.data().classes;
+          classesPromise = classes.map(classID => {
+            return db
+              .collection('classes')
+              .doc(classID)
+              .get();
+          });
+        } else {
+          classesPromise = [];
+        }
         Promise.all(classesPromise).then(classDocs => {
           returnClasses = classDocs.map(classDoc => {
-            return classDoc.data();
+            let classData = classDoc.data();
+            classData['docID'] = classDoc.id;
+            return classData;
           });
           dispatch(setClasses(returnClasses));
         });

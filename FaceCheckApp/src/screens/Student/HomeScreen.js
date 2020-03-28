@@ -1,17 +1,10 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {FAB, Portal, Appbar} from 'react-native-paper';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Button} from 'react-native';
 import ClassCards from 'FaceCheckApp/src/components/ClassCards';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, useCavy, wrap} from 'cavy';
-<<<<<<< HEAD
-
-//const generateTestHook = useCavy();
-//const TestableClassCards = wrap(ClassCards);
-//<TestableClassCards ref={generateTestHook('Scene.ClassCard') navigation={this.props.navigation}}/>;
-=======
->>>>>>> 4b9de7e7b2f7c4e8ae562bb4dc159376ea01f702
 
 //const generateTestHook = useCavy();
 //const TestableClassCards = wrap(ClassCards);
@@ -30,19 +23,21 @@ class StudentHomeScreen extends React.Component {
     return (
       <View style={styles.screen}>
         <Appbar.Header>
-          <Appbar.BackAction
+          <Button
             ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
-            title="Logout"
+            title="Log Out"
+            color="#B71C1C"
             onPress={() => {
               firebase.auth().signOut();
             }}
           />
-          <Appbar.Content title="Home" />
+
+          <Appbar.Content title="Student Home" />
         </Appbar.Header>
         <ScrollView>
           <ClassCards navigation={this.props.navigation} />
         </ScrollView>
-        <FAB.Group
+        {/* <FAB.Group
           open={this.state.open}
           icon={this.state.open ? 'details' : 'class'}
           actions={[
@@ -75,9 +70,16 @@ class StudentHomeScreen extends React.Component {
                 this.props.navigation.navigate('FaceScanner');
               },
             },
+            {
+              icon: 'keyboard-tab',
+              label: 'log-out',
+              onPress: () => {
+                firebase.auth().signOut();
+              },
+            },
           ]}
           onStateChange={({open}) => this.setState({open})}
-        />
+        /> */}
       </View>
     );
   }

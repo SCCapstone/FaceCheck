@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Paragraph, ActivityIndicator} from 'react-native-paper';
-import {View} from 'react-native';
+import {View, Button} from 'react-native';
 import {connect} from 'react-redux';
 import {watchClasses} from 'FaceCheckApp/src/redux/app-redux';
 import styles from 'FaceCheckApp/src/assets/styles';
@@ -42,6 +42,8 @@ class ClassCards extends React.Component {
             <Card.Title title={currClass.className} />
             <Card.Content>
               <Paragraph>Teacher: {currClass.TeacherName}</Paragraph>
+              <Paragraph>Days: {currClass.meetingDays + ""} </Paragraph>
+              <Paragraph>Time: {currClass.Time}</Paragraph>
             </Card.Content>
           </Card>
         );
