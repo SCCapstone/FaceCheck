@@ -13,6 +13,7 @@ export default class AddClassScreen extends React.Component {
       currentUser: null,
       date: date,
       attendance: 'No Attendance To Show',
+      isHere: false,
     };
   }
 
@@ -64,6 +65,26 @@ export default class AddClassScreen extends React.Component {
     }
   }
 
+  _makeAbsent(time, Students) {
+    const numberTime = parseFloat(time.replace(/\D/g, ''))/100
+    // alert(numberTime)
+    const currDate = new Date()
+    let hours = currDate.getHours();
+    let minutes = currDate.getMinutes();
+    hours = hours + (minutes/60)
+    let lateTime = hours + (.25);
+    // alert(lateTime)
+    let absentList = ''
+    if (lateTime > (numberTime + .25)){
+      Students.forEach(student => {
+        if(this.state.isHere === false)
+        // alert(student.present)
+        absentList += `${student.email}: absent` + '\n';
+      });
+      alert(absentList)
+    }
+  }
+
   render() {
     var currClass = JSON.parse(this.props.navigation.getParam('currClass'));
     return (
@@ -103,6 +124,14 @@ export default class AddClassScreen extends React.Component {
                 });
               }}>
               Attendance Scanner
+            </Button>
+            <Button
+              style={styles.button}
+              mode="outlined"
+              onPress={() => {
+                this._makeAbsent(currClass.Time, currClass.Students)
+              }}>
+              ab Scanner
             </Button>
           </Card>
           <Card>
