@@ -67,7 +67,7 @@ export default class AddClassScreen extends React.Component {
 
   render() {
     const currClass = JSON.parse(this.props.navigation.getParam('currClass'))
-    console.log(currClass)
+    // console.log(currClass)
     const { present, absent } = this._checkAttendance(currClass)
     const { Students: students, Attendance: attendance} = currClass
     // const absenceCount = students?.map(student => {
@@ -113,45 +113,50 @@ export default class AddClassScreen extends React.Component {
               </Paragraph>
             </Card.Content>
           </Card>
-          <Card>
-            <Button
-              style={styles.button}
-              mode='outlined'
-              onPress={() => {
-                this.props.navigation.navigate('QRScanner', {
-                  currClass: JSON.stringify(currClass),
-                })
-              }}
-            >
-              Attendance Scanner
-            </Button>
-            <Button
-              style={styles.button}
-              date={this.state.date}
-              mode='outlined'
-              disabled = {!dateAttendance}
-              onPress={() =>
-                Alert.alert(
-                  'Absent List',
-                  absent.map(student => student.email).join('\n'),
-                )
-              }
-            >
-              {dateAttendance ? 'Show Absentees' : 'No Class Scheduled'}
-            </Button>
+          <Card style={styles.card}>
+            <Card.Title title='Total Absences Per Student' />
+            <Card.Content>
+              <Paragraph>
+                {absenceCount}
+              </Paragraph>
+            </Card.Content>
           </Card>
-          <Card>
-            <DatePicker
-              date={this.state.date}
-              mode='date'
-              onDateChange={date => {
-                this.setState({ date })
-              }}
-            />
-          </Card>
-          <Card>
-            <Paragraph>Total Absences Per Student: </Paragraph>
-            <Paragraph>{absenceCount}</Paragraph>
+          <Card style={styles.card}>
+            <Card.Content>
+              <Button
+                style={styles.button}
+                mode='outlined'
+                onPress={() => {
+                  this.props.navigation.navigate('QRScanner', {
+                    currClass: JSON.stringify(currClass),
+                  })
+                }}
+              >
+                Attendance Scanner
+              </Button>
+              <Button
+                style={styles.button}
+                date={this.state.date}
+                mode='outlined'
+                disabled = {!dateAttendance}
+                onPress={() =>
+                  Alert.alert(
+                    'Absent List',
+                    absent.map(student => student.email).join('\n'),
+                  )
+                }
+              >
+                {dateAttendance ? 'Show Absentees' : 'No Class Scheduled'}
+              </Button>
+              <DatePicker
+                style = {styles.datePicker}
+                date={this.state.date}
+                mode='date'
+                onDateChange={date => {
+                  this.setState({ date })
+                }}
+              />
+            </Card.Content>
           </Card>
         </ScrollView>
       </View>
