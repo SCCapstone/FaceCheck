@@ -1,93 +1,95 @@
-import firebase from 'react-native-firebase';
-import React from 'react';
-import {Appbar, Paragraph, Card, Button} from 'react-native-paper';
-import {View, ScrollView, Alert} from 'react-native';
-import styles from 'FaceCheckApp/src/assets/styles';
-import DatePicker from 'react-native-date-picker';
+import firebase from 'react-native-firebase'
+import React from 'react'
+import { Appbar, Paragraph, Card, Button } from 'react-native-paper'
+import { View, ScrollView, Alert } from 'react-native'
+import styles from 'FaceCheckApp/src/assets/styles'
+import DatePicker from 'react-native-date-picker'
 
 export default class AddClassScreen extends React.Component {
   constructor(props) {
-    super(props);
-    date = new Date();
+    super(props)
+    date = new Date()
     this.state = {
       currentUser: null,
       date: date,
-      attendance: 'No Attendance To Show',
-      absent: 'No absences'
-    };
+    }
   }
 
   componentDidMount() {
-    const {currentUser} = firebase.auth();
-    this.setState({currentUser});
+    const { currentUser } = firebase.auth()
+    this.setState({ currentUser })
   }
 
-  makeStudentList(Students) {
-    studentsList = '';
-    Students.forEach(student => {
-      studentsList += student.email + '\n';
-    });
-    return studentsList;
+  _getDate = () => {
+    const { date } = this.state
+    return `${date.getMonth() +
+      1}/${date.getDate()}/${date.getFullYear()}`
   }
 
-  makeMeetingTimes(meetingDays, time) {
-    meetingTimes = 'Meeting Time : ' + time + '\n';
-    meetingDays.forEach(day => {
-      meetingTimes += day + '\n';
-    });
-    return meetingTimes;
-  }
-
-  _makeDateString() {
-    const date = this.state.date;
-    console.log(date);
-    currDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    console.log(currDate)
-    return currDate;
-  }
-
-  _checkAttendance = (students) => {
+  _checkAttendance = currClass => {
+    const { Students: students, Attendance } = currClass
     if (!students?.length) {
       return {
         present: [],
-        absent: []
+        absent: [],
       }
     }
-    const currClass = JSON.parse(this.props.navigation.getParam('currClass'))
-    const dayAttendance = currClass.Attendance[this._makeDateString(this.state.date)] ?? []
-    const present = students.filter(student => dayAttendance.find(attended => attended.uid === student.uid))
-    const absent = students.filter(student => !dayAttendance.find(attended => attended.uid === student.uid))
+
+    const attendance = Attendance[this._getDate()]
+    if(!attendance)
+      return {
+        present: [],
+        absent: [],
+      }
+    const present = students.filter(student =>
+      attendance.find(attended => attended.uid === student.uid),
+    )
+    const absent = students.filter(
+      student => !attendance.find(attended => attended.uid === student.uid),
+    )
     return {
       present,
-      absent
+      absent,
     }
   }
-  
-  _makeAttendance(students) {
-    console.log(students)
-    const { present, absent } = this._checkAttendance(students)
-    const attendance = [...present.map(student => `${student.email}: present`), ...absent.map(student => `${student.email}: absent`)]
-  
-    console.log('present', present)
-    console.log('absent', absent)
-    console.log('attendance', attendance)
-  
-    this.setState({attendance: attendance.join('\n') || 'No attendance to show for this day'});
-  }
-  
-  _makeAbsent(students) {
-    const { absent } = this._checkAttendance(students)
-    this.setState({absent}, () => { Alert.alert('Absent List' ,this.state.absent.map(student => student.email).join('\n')) })
-  }
+
+  renderAttendance = (present, absent) =>
+    [
+      ...present.map(student => `${student.email}: present`),
+      ...absent.map(student => `${student.email}: absent`),
+    ].join('\n') || 'No attendance to show for this day'
+
+  renderStudentList = students =>
+    students?.map(student => student.email).join('\n') || ''
+
+  renderMeetingTimes = (meetingDays, time) =>
+    `Meeting Time: ${time}\n${meetingDays.join('\n')}`
 
   render() {
-    var currClass = JSON.parse(this.props.navigation.getParam('currClass'));
+    const currClass = JSON.parse(this.props.navigation.getParam('currClass'))
+    console.log(currClass)
+    const { present, absent } = this._checkAttendance(currClass)
+    const { Students: students, Attendance: attendance} = currClass
+    // const absenceCount = students?.map(student => {
+    //   console.log('Searching for: ', student)
+    //   console.log('Keys: ', Object.keys(attendance))
+    //   const count = Object.keys(attendance).reduce((total, key) => {
+    //     console.log('Key: ', key)
+    //     console.log('Attendance: ', attendance[key])
+    //     return total + (!attendance[key] || attendance[key].find(s => s.uid === student.uid) ? 0 : 1)
+    //   }, 0)
+    //   return `${student.email}: ${count}`
+    // }).join('\n')
+    const absenceCount = students?.map(student => `${student.email}: ${Object.keys(attendance).reduce((total, key) => total + (!attendance[key] || attendance[key].find(s => s.uid === student.uid) ? 0 : 1), 0)}`).join('\n')
+
+    const dateAttendance = attendance[this._getDate()]
+
     return (
       <View style={styles.screen}>
         <Appbar.Header>
           <Appbar.BackAction
             onPress={() => {
-              this.props.navigation.goBack();
+              this.props.navigation.goBack()
             }}
           />
           <Appbar.Content title={currClass.className} />
@@ -95,55 +97,64 @@ export default class AddClassScreen extends React.Component {
         <ScrollView>
           {/* Showing students */}
           <Card style={styles.card}>
-            <Card.Title title="Students" />
+            <Card.Title title='Students' />
             <Card.Content>
-              <Paragraph>{this.makeStudentList(currClass.Students)}</Paragraph>
+              <Paragraph>
+                {this.renderStudentList(currClass.Students)}
+              </Paragraph>
             </Card.Content>
           </Card>
           {/* ClassTime and Date */}
           <Card style={styles.card}>
-            <Card.Title title="Meeting Times" />
+            <Card.Title title='Meeting Times' />
             <Card.Content>
               <Paragraph>
-                {this.makeMeetingTimes(currClass.meetingDays, currClass.Time)}
+                {this.renderMeetingTimes(currClass.meetingDays, currClass.Time)}
               </Paragraph>
             </Card.Content>
           </Card>
           <Card>
             <Button
               style={styles.button}
-              mode="outlined"
+              mode='outlined'
               onPress={() => {
                 this.props.navigation.navigate('QRScanner', {
                   currClass: JSON.stringify(currClass),
-                });
-              }}>
+                })
+              }}
+            >
               Attendance Scanner
             </Button>
             <Button
               style={styles.button}
               date={this.state.date}
-              mode="outlined"
-              onPress={() => {
-                this._makeAbsent(currClass.Students)
-              }}>
-              Show Absentees
+              mode='outlined'
+              disabled = {!dateAttendance}
+              onPress={() =>
+                Alert.alert(
+                  'Absent List',
+                  absent.map(student => student.email).join('\n'),
+                )
+              }
+            >
+              {dateAttendance ? 'Show Absentees' : 'No Class Scheduled'}
             </Button>
           </Card>
           <Card>
             <DatePicker
               date={this.state.date}
-              mode="date"
+              mode='date'
               onDateChange={date => {
-                this.setState({date: date}, () => {this._makeAttendance(currClass.Students);})
+                this.setState({ date })
               }}
             />
           </Card>
           <Card>
-            <Paragraph>{this.state.attendance}</Paragraph>
+            <Paragraph>Total Absences Per Student: </Paragraph>
+            <Paragraph>{absenceCount}</Paragraph>
           </Card>
         </ScrollView>
       </View>
-    );
+    )
   }
 }
