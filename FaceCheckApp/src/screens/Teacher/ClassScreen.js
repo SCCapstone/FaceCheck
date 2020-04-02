@@ -1,7 +1,7 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {Appbar, Paragraph, Card, Button} from 'react-native-paper';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Alert} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
 import DatePicker from 'react-native-date-picker';
 
@@ -13,7 +13,7 @@ export default class AddClassScreen extends React.Component {
       currentUser: null,
       date: date,
       attendance: 'No Attendance To Show',
-      isHere: false,
+      absent: 'No absences'
     };
   }
 
@@ -42,47 +42,42 @@ export default class AddClassScreen extends React.Component {
     const date = this.state.date;
     console.log(date);
     currDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    console.log(currDate)
     return currDate;
   }
 
-  _makeAttendance() {
-    var currClass = JSON.parse(this.props.navigation.getParam('currClass'));
-    if (this.state.date != undefined) {
-      var attendance =
-        currClass.Attendance[this._makeDateString(this.state.date)];
-      if (attendance != undefined) {
-        currAttendance = '';
-        attendance.forEach(student => {
-          console.log(student.email);
-          currAttendance += student.present
-            ? `${student.email}: present`
-            : `${student.email}: absent` + '\n';
-        });
-        this.setState({attendance: currAttendance});
-      } else {
-        this.setState({attendance: 'No attendance to show for this day'});
+  _checkAttendance = (students) => {
+    if (!students?.length) {
+      return {
+        present: [],
+        absent: []
       }
     }
-  }
-
-  _makeAbsent(time, Students) {
-    const numberTime = parseFloat(time.replace(/\D/g, ''))/100
-    // alert(numberTime)
-    const currDate = new Date()
-    let hours = currDate.getHours();
-    let minutes = currDate.getMinutes();
-    hours = hours + (minutes/60)
-    let lateTime = hours + (.25);
-    // alert(lateTime)
-    let absentList = ''
-    if (lateTime > (numberTime + .25)){
-      Students.forEach(student => {
-        if(this.state.isHere === false)
-        // alert(student.present)
-        absentList += `${student.email}: absent` + '\n';
-      });
-      alert(absentList)
+    const currClass = JSON.parse(this.props.navigation.getParam('currClass'))
+    const dayAttendance = currClass.Attendance[this._makeDateString(this.state.date)] ?? []
+    const present = students.filter(student => dayAttendance.find(attended => attended.uid === student.uid))
+    const absent = students.filter(student => !dayAttendance.find(attended => attended.uid === student.uid))
+    return {
+      present,
+      absent
     }
+  }
+  
+  _makeAttendance(students) {
+    console.log(students)
+    const { present, absent } = this._checkAttendance(students)
+    const attendance = [...present.map(student => `${student.email}: present`), ...absent.map(student => `${student.email}: absent`)]
+  
+    console.log('present', present)
+    console.log('absent', absent)
+    console.log('attendance', attendance)
+  
+    this.setState({attendance: attendance.join('\n') || 'No attendance to show for this day'});
+  }
+  
+  _makeAbsent(students) {
+    const { absent } = this._checkAttendance(students)
+    this.setState({absent}, () => { Alert.alert('Absent List' ,this.state.absent.map(student => student.email).join('\n')) })
   }
 
   render() {
@@ -127,11 +122,12 @@ export default class AddClassScreen extends React.Component {
             </Button>
             <Button
               style={styles.button}
+              date={this.state.date}
               mode="outlined"
               onPress={() => {
-                this._makeAbsent(currClass.Time, currClass.Students)
+                this._makeAbsent(currClass.Students)
               }}>
-              ab Scanner
+              Show Absentees
             </Button>
           </Card>
           <Card>
@@ -139,8 +135,7 @@ export default class AddClassScreen extends React.Component {
               date={this.state.date}
               mode="date"
               onDateChange={date => {
-                this._makeAttendance();
-                this.setState({date: date});
+                this.setState({date: date}, () => {this._makeAttendance(currClass.Students);})
               }}
             />
           </Card>
