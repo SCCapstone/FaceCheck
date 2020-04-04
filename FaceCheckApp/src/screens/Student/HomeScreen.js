@@ -26,7 +26,7 @@ class StudentHomeScreen extends React.Component {
           <Button
             ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
             title="Log Out"
-            color="#B71C1C"
+            color="#EEEEEE"
             onPress={() => {
               firebase.auth().signOut();
             }}
