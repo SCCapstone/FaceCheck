@@ -27,7 +27,9 @@ class TeacherHomePageScreen extends React.Component {
               firebase.auth().signOut();
             }}
           />
-          <Appbar.Content title="Teacher Home" />
+          <Appbar.Content title="Teacher Home" 
+            style={{marginRight: 45}}
+            />
         </Appbar.Header>
         <ScrollView>
           <TeacherClassCards navigation={this.props.navigation} />

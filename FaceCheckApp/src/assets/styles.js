@@ -14,9 +14,8 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   button: {
-    marginLeft: 60,
-    marginRight: 60,
-    marginTop: 10,
+    marginHorizontal: 60,
+    marginVertical: 5,
     alignSelf: "center"
   },
   centerScreen: {
@@ -33,6 +32,9 @@ const styles = StyleSheet.create({
   },
   centerItem: {
     alignItems: 'center',
+  },
+  datePicker: {
+    alignSelf: 'center'
   },
   surface: {
     padding: 8,
