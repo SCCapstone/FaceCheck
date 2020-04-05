@@ -20,12 +20,16 @@ export default class AddClassScreen extends React.Component {
     this.setState({ currentUser })
   }
 
+  // _getDate(): takes the date stored in state, then breaks it down into month day year.
+  // There is a weird thing you have to do with date where you must add one to month. 
   _getDate = () => {
     const { date } = this.state
     return `${date.getMonth() +
       1}/${date.getDate()}/${date.getFullYear()}`
   }
 
+  // _checkAttendance: Takes the current class and returns the Students array, renames to students
+  // and the Attendance array from firebase. If there are students, it creates and returns a present and absent array 
   _checkAttendance = currClass => {
     const { Students: students, Attendance } = currClass
     if (!students?.length) {
@@ -35,44 +39,56 @@ export default class AddClassScreen extends React.Component {
       }
     }
 
+    // set attendance equal to the firebase array Attendance at the current date
     const attendance = Attendance[this._getDate()]
+    // if attendance does not exist do nothing.
     if(!attendance)
       return {
         present: [],
         absent: [],
       }
+    // populating the present array with students that match the UID of a student that has attended class
     const present = students.filter(student =>
       attendance.find(attended => attended.uid === student.uid),
     )
+
+    // populating the present array with students that match the UID of a student that has not attended class
     const absent = students.filter(
       student => !attendance.find(attended => attended.uid === student.uid),
     )
+
+    //return the populated arrays
     return {
       present,
       absent,
     }
   }
 
+  // renderAttendance: takes in the two arrays
+  // for each student in them the function maps the email and the word present/absent
+  // then joins with a new line in between
   renderAttendance = (present, absent) =>
     [
       ...present.map(student => `${student.email}: present`),
       ...absent.map(student => `${student.email}: absent`),
     ].join('\n') || 'No attendance to show for this day'
 
+  // renderStudentList: takes in students
+  // The ?. is a conditional meaning if there are students then map student.email with a newline for each 
   renderStudentList = students =>
     students?.map(student => student.email).join('\n') || ''
 
+  // renders the meeting times and days with a new line in between
   renderMeetingTimes = (meetingDays, time) =>
     `Meeting Time: ${time}\n${meetingDays.join('\n')}`
 
   render() {
     const currClass = JSON.parse(this.props.navigation.getParam('currClass'))
-    // console.log(currClass)
+    
+    // get current lists of present and absent students
     const { present, absent } = this._checkAttendance(currClass)
     const { Students: students, Attendance: attendance} = currClass
     // const absenceCount = students?.map(student => {
-    //   console.log('Searching for: ', student)
-    //   console.log('Keys: ', Object.keys(attendance))
     //   const count = Object.keys(attendance).reduce((total, key) => {
     //     console.log('Key: ', key)
     //     console.log('Attendance: ', attendance[key])
@@ -80,6 +96,10 @@ export default class AddClassScreen extends React.Component {
     //   }, 0)
     //   return `${student.email}: ${count}`
     // }).join('\n')
+    
+    // Sum up missing days
+    // Counts an absence if there was attendance for that day
+    // and it was unable to find the student's ID in the list of attendees.
     const absenceCount = students?.map(student => `${student.email}: ${Object.keys(attendance).reduce((total, key) => total + (!attendance[key] || attendance[key].find(s => s.uid === student.uid) ? 0 : 1), 0)}`).join('\n')
 
     const dateAttendance = attendance[this._getDate()]
