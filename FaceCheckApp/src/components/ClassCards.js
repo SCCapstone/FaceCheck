@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Paragraph, ActivityIndicator } from 'react-native-paper'
-import { View, Button } from 'react-native'
+import { View, Button, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { watchClasses } from 'FaceCheckApp/src/redux/app-redux'
 import styles from 'FaceCheckApp/src/assets/styles'
@@ -20,6 +20,19 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+async function _alertClasses(alertClasses) {
+  await delay(3000)
+  console.log("this",alertClasses)
+  Alert.alert(
+    'Too many Absences: ', alertClasses.map(c => c).join('\n')
+  )
+}
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+// _timedAlert = () => setTimeout(_alertClasses, 5000);
+
+
 class ClassCards extends React.Component {
   constructor(props) {
     super(props)
@@ -28,7 +41,7 @@ class ClassCards extends React.Component {
 
   render() {
     const { currClass, userId, classes } = this.props
-    console.log("props: ", this.props)
+    // console.log("props: ", this.props)
     const alertClasses = []
 
     if (! classes || classes.length === 0) {
@@ -41,6 +54,7 @@ class ClassCards extends React.Component {
       if (absenceCount > 0) {
         alertClasses.push(className)
       }
+      // console.log("alerts:", alertClasses)
       return (
         <Card
           style={styles.card}
@@ -60,7 +74,7 @@ class ClassCards extends React.Component {
           </Card.Content>
         </Card>
       )
-    })
+    }, _alertClasses(alertClasses))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ClassCards)

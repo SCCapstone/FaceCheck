@@ -16,7 +16,7 @@ class StudentHomeScreen extends React.Component {
   componentDidMount() {
     const {currentUser} = firebase.auth();
     this.setState({currentUser});
-    console.log("currentUser: ",currentUser);
+    // console.log("currentUser: ",currentUser);
   }
 
   render() {
@@ -41,7 +41,7 @@ class StudentHomeScreen extends React.Component {
         <ScrollView>
           {this.state.currentUser && <ClassCards navigation={this.props.navigation} userId = {this.state.currentUser.uid} />}
         </ScrollView>
-        <FAB.Group
+        {/* <FAB.Group
           open={this.state.open}
           icon={this.state.open ? 'details' : 'class'}
           actions={[
@@ -83,7 +83,7 @@ class StudentHomeScreen extends React.Component {
             },
           ]}
           onStateChange={({open}) => this.setState({open})}
-        />
+        /> */}
       </View>
     );
   }
