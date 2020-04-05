@@ -90,8 +90,6 @@ export default class AddClassScreen extends React.Component {
     const { Students: students, Attendance: attendance} = currClass
     // const absenceCount = students?.map(student => {
     //   const count = Object.keys(attendance).reduce((total, key) => {
-    //     console.log('Key: ', key)
-    //     console.log('Attendance: ', attendance[key])
     //     return total + (!attendance[key] || attendance[key].find(s => s.uid === student.uid) ? 0 : 1)
     //   }, 0)
     //   return `${student.email}: ${count}`
@@ -172,6 +170,7 @@ export default class AddClassScreen extends React.Component {
                 style = {styles.datePicker}
                 date={this.state.date}
                 mode='date'
+                // setState is asyncronous so it needs to be put into a function call, this fixed the date matching issue.
                 onDateChange={date => {
                   this.setState({ date })
                 }}
