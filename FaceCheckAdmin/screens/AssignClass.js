@@ -119,7 +119,7 @@ handleCollection = () => {
 
 
                 <TouchableOpacity style={styles.button} onPress={() => this.handleCollection()}>
-                    <Text style={styles.buttonText}>create class</Text>
+                    <Text style={styles.buttonText}>assign class</Text>
                 </TouchableOpacity>
         
             </View>
