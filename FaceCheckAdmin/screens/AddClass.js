@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image,  TextInput, TouchableOpacity, } from 'react-native'
+import { StyleSheet, View, Text, Image,  TextInput, TouchableOpacity,Picker } from 'react-native'
 
+import firebase from 'firebase'
 import Firebase from '../config/Firebase'
 
 export default class AddTeacher extends React.Component {
@@ -9,9 +10,32 @@ export default class AddTeacher extends React.Component {
         this.state = {
             className: '', 
             classTime: '',
+            teacherName: '',
             teacherUID: '',
-            teacherName: ''
+            teachers: [],
+            teacehrsUID: [],
         }
+    }
+
+    componentDidMount = () => {
+        Firebase.firestore().collection('users').onSnapshot(querySnapShot => {
+            const teachersUID = []
+            const emails = []
+            querySnapShot.forEach(element => {
+                const { email, userType } = element.data()
+                if (userType == 'Teacher') {
+                    emails.push(
+                        email
+                    )
+                    teachersUID.push(
+                        element.id
+                    )
+                }
+                
+            })
+            this.setState({teachersUID: teachersUID})
+            this.setState({teachers: emails})
+        })
     }
     handleCreation = () => {
         let data = {
@@ -20,7 +44,7 @@ export default class AddTeacher extends React.Component {
             meetingDays: [],
             Students: [],
             TeacherUID:this.state.teacherUID, 
-            TeacherName: this.state.teacherName,
+            TeacherName: this.state.teachers[this.state.teacherName],
             Attendance: {} 
         }
         Firebase.firestore().collection('classes').doc().set(data)
@@ -33,19 +57,19 @@ export default class AddTeacher extends React.Component {
         <View style = {styles.container}>
             <View style = {styles.square}>
                 <Image style = {styles.logo } source={require('../assets/logo.png')} />
-                <TextInput
-                    style={styles.inputBox}
-                    value={this.state.teacherName}
-                    onChangeText={teacherName => this.setState({ teacherName: teacherName })}
-                    placeholder="Teacher's Name"
-                    autoCapitalize='none'
-                />
-                <TextInput
-                    style={styles.inputBox}
-                    value={this.state.teacherUID}
-                    onChangeText={teacherUID => this.setState({ teacherUID: teacherUID })}
-                    placeholder="Teacher's UID"
-                />
+                <Picker
+                    selectedValue={this.state.teacherName}
+                    style={styles.pickers}
+                    onValueChange={(itemValue, itemIndex) => {
+                        this.setState({teacherName: itemValue})
+                        this.setState({teacherUID: this.state.teachersUID[itemIndex]})
+                    }
+                    
+                    }>
+                    {this.state.teachers.map((item, index) => {
+                        return (< Picker.Item label={item} value={index} key={index} />);
+                    })}
+                </Picker>
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.className}
@@ -89,6 +113,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 200,
         height: 200        
+    },
+    pickers: {
+        height: 40,
+        width: '80%',
+        margin: 10,
+        padding: 15,
+        borderColor: '#d3d3d3',
+        borderBottomWidth: 1,
     },
     inputBox: {
         width: '80%',
