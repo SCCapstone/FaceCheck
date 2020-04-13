@@ -23,9 +23,11 @@ const mapDispatchToProps = dispatch => {
 async function _alertClasses(alertClasses) {
   await delay(3000)
   console.log("this",alertClasses)
+  if (alertClasses.length !== 0) {
   Alert.alert(
     'Too many Absences: ', alertClasses.map(c => c).join('\n')
   )
+  }
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -51,7 +53,7 @@ class ClassCards extends React.Component {
       const { className, TeacherName, meetingDays, Time} = currClass
       const { Attendance } = currClass
       const absenceCount = Object.keys(Attendance).reduce((total, key) => total + (!Attendance[key] || Attendance[key].find(s => s.uid === userId) ? 0 : 1), 0)
-      if (absenceCount > 0) {
+      if (absenceCount > 3) {
         alertClasses.push(className)
       }
       // console.log("alerts:", alertClasses)
