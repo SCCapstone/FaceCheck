@@ -30,16 +30,22 @@ class StudentHomeScreen extends React.Component {
             title="Log Out"
             color="#EEEEEE"
             onPress={() => {
-              firebase.auth().signOut();
+              firebase
+                .auth()
+                .signOut()
+                .then(() => this.props.navigation.goBack(null));
             }}
           />
 
-          <Appbar.Content title="Student Home" 
-            style={{marginRight: 45}}
-          />
+          <Appbar.Content title="Student Home" style={{marginRight: 45}} />
         </Appbar.Header>
         <ScrollView>
-          {this.state.currentUser && <ClassCards navigation={this.props.navigation} userId = {this.state.currentUser.uid} />}
+          {this.state.currentUser && (
+            <ClassCards
+              navigation={this.props.navigation}
+              userId={this.state.currentUser.uid}
+            />
+          )}
         </ScrollView>
         {/* <FAB.Group
           open={this.state.open}
