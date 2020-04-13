@@ -8,10 +8,6 @@ import {hook} from 'cavy';
 class Login extends React.Component {
   state = {email: '', password: '', errorMessage: null};
 
-  componentDidMount() {
-    this.setState({email: '', password: '', errorMessage: null});
-  }
-
   resetState() {
     this.setState({
       email: '',
