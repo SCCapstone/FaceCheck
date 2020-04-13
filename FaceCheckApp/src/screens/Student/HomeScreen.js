@@ -30,7 +30,10 @@ class StudentHomeScreen extends React.Component {
             title="Log Out"
             color="#7B1D0B"
             onPress={() => {
-              firebase.auth().signOut();
+              firebase
+                .auth()
+                .signOut()
+                .then(() => this.props.navigation.goBack(null));
             }}
           />
 

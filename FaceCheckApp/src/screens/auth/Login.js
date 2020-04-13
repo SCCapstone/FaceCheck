@@ -8,28 +8,37 @@ import {hook} from 'cavy';
 class Login extends React.Component {
   state = {email: '', password: '', errorMessage: null};
 
+  resetState() {
+    this.setState({
+      email: '',
+      password: '',
+      errorMessage: null,
+    });
+  }
+
   handleLogin = () => {
-    const {email, password} = this.state;
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      // TODO: Add variable to handle teacher login
-      .then(() => this.props.navigation.navigate('StudentHome'))
+      .then(() => {
+        this.resetState();
+        this.props.navigation.navigate('StudentHome');
+      })
       .catch(error => this.setState({errorMessage: error.message}));
   };
 
   render() {
     return (
       <View style={styles.screen}>
-        <Appbar.Header style={{zIndex: 1}}>
+        <Appbar style={{zIndex: 1}}>
           <Appbar.Content title="Login" />
-        </Appbar.Header>
+        </Appbar>
         <Card style={styles.centerScreen}>
           <Card.Content>
             {this.state.errorMessage && (
               <Text style={{color: 'red'}}>{this.state.errorMessage}</Text>
             )}
-            <View style={{zIndex: -1}}>
+            <View style={styles.logo}>
               <Image
                 ref={this.props.generateTestHook('Scene.Image')}
                 style={styles.logo}
@@ -62,11 +71,14 @@ class Login extends React.Component {
             </Button>
             <Button
               ref={this.props.generateTestHook('Scene.SignUpButton')}
-              style={[styles.button, {flexWrap: "wrap" }]}
+              style={[styles.button, {flexWrap: 'wrap'}]}
               mode="text"
               uppercase={false}
-              onPress={() => this.props.navigation.navigate('SignUp')}>
-              Not a Member? Sign Up!
+              onPress={() => {
+                this.resetState();
+                this.props.navigation.navigate('SignUp');
+              }}>
+              Not a Member? Sign Up Now!
             </Button>
           </Card.Content>
         </Card>

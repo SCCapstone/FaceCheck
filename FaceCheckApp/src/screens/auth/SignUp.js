@@ -52,15 +52,15 @@ class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.screen}>
-        <Appbar.Header style={{zIndex: 1}}>
+        <Appbar style={{zIndex: 1}}>
           <Appbar.Content title="Sign Up" />
-        </Appbar.Header>
+        </Appbar>
         <Card style={styles.centerScreen}>
           <Card.Content>
             {this.state.errorMessage && (
               <Text style={{color: 'red'}}>{this.state.errorMessage}</Text>
             )}
-            <View style={{zIndex: -1}}>
+            <View style={styles.logo}>
               <Image
                 ref={this.props.generateTestHook('Scene.Image')}
                 style={styles.logo}
