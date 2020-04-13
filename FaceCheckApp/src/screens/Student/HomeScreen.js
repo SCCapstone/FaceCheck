@@ -28,19 +28,21 @@ class StudentHomeScreen extends React.Component {
           <Button
             ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
             title="Log Out"
-            color="#FFFFFF"
-            backgroundColor="#7B1D0B"
+            color="#7B1D0B"
             onPress={() => {
               firebase.auth().signOut();
             }}
           />
 
-          <Appbar.Content title="Student Home" 
-            style={{marginRight: 45}}
-          />
+          <Appbar.Content title="Student Home" style={{marginRight: 45}} />
         </Appbar.Header>
         <ScrollView>
-          {this.state.currentUser && <ClassCards navigation={this.props.navigation} userId = {this.state.currentUser.uid} />}
+          {this.state.currentUser && (
+            <ClassCards
+              navigation={this.props.navigation}
+              userId={this.state.currentUser.uid}
+            />
+          )}
         </ScrollView>
         {/* <FAB.Group
           open={this.state.open}
