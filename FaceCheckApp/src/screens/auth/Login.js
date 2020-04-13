@@ -66,7 +66,7 @@ class Login extends React.Component {
               mode="text"
               uppercase={false}
               onPress={() => this.props.navigation.navigate('SignUp')}>
-              Not a Member? Sign Up Now!
+              Not a Member? Sign Up!
             </Button>
           </Card.Content>
         </Card>
