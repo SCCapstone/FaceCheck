@@ -12,12 +12,20 @@ class Login extends React.Component {
     this.setState({email: '', password: '', errorMessage: null});
   }
 
+  resetState() {
+    this.setState({
+      email: '',
+      password: '',
+      errorMessage: null,
+    });
+  }
+
   handleLogin = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        this.setState({email: '', password: '', errorMessage: null});
+        this.resetState();
         this.props.navigation.navigate('StudentHome');
       })
       .catch(error => this.setState({errorMessage: error.message}));
@@ -26,22 +34,21 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.screen}>
-        <View style={{zIndex: -1}}>
-          <Image
-            ref={this.props.generateTestHook('Scene.Image')}
-            style={styles.logo}
-            source={require('FaceCheckApp/src/assets/Logo.png')}
-          />
-        </View>
-        <Appbar.Header style={{zIndex: 1}}>
+        <Appbar style={{zIndex: 1}}>
           <Appbar.Content title="Login" />
-        </Appbar.Header>
+        </Appbar>
         <Card style={styles.centerScreen}>
           <Card.Content>
             {this.state.errorMessage && (
               <Text style={{color: 'red'}}>{this.state.errorMessage}</Text>
             )}
-
+            <View style={styles.logo}>
+              <Image
+                ref={this.props.generateTestHook('Scene.Image')}
+                style={styles.logo}
+                source={require('FaceCheckApp/src/assets/Logo.png')}
+              />
+            </View>
             <TextInput
               ref={this.props.generateTestHook('Scene.LoginEmail')}
               style={styles.textInput}
@@ -71,7 +78,10 @@ class Login extends React.Component {
               style={[styles.button, {flexWrap: 'wrap'}]}
               mode="text"
               uppercase={false}
-              onPress={() => this.props.navigation.navigate('SignUp')}>
+              onPress={() => {
+                this.resetState();
+                this.props.navigation.navigate('SignUp');
+              }}>
               Not a Member? Sign Up Now!
             </Button>
           </Card.Content>
