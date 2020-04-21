@@ -1,10 +1,11 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {FAB, Portal, Appbar} from 'react-native-paper';
-import {View, ScrollView, Button} from 'react-native';
+import {View, ScrollView, Button, BackHandler} from 'react-native';
 import ClassCards from 'FaceCheckApp/src/components/ClassCards';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, useCavy, wrap} from 'cavy';
+import {StackActions} from 'react-navigation';
 
 //const generateTestHook = useCavy();
 //const TestableClassCards = wrap(ClassCards);
@@ -16,7 +17,16 @@ class StudentHomeScreen extends React.Component {
   componentDidMount() {
     const {currentUser} = firebase.auth();
     this.setState({currentUser});
-    // console.log("currentUser: ",currentUser);
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    console.log('Back button is pressed');
+    return true;
   }
 
   render() {
@@ -33,7 +43,12 @@ class StudentHomeScreen extends React.Component {
               firebase
                 .auth()
                 .signOut()
-                .then(() => this.props.navigation.goBack(null));
+                .then(() => {
+                  StackActions.reset({
+                    index: 0,
+                    actions: [this.props.navigation.navigate('Login')],
+                  });
+                });
             }}
           />
 

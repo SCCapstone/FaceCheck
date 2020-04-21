@@ -1,13 +1,24 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, BackHandler} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook} from 'cavy';
 
 class Login extends React.Component {
   state = {email: '', password: '', errorMessage: null};
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+  }
 
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    console.log('Back button is pressed');
+    return true;
+  }
   resetState() {
     this.setState({
       email: '',
@@ -22,7 +33,7 @@ class Login extends React.Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.resetState();
-        this.props.navigation.navigate('StudentHome');
+        this.props.navigation.navigate('Loading');
       })
       .catch(error => this.setState({errorMessage: error.message}));
   };
