@@ -1,7 +1,7 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
-import {Text, View, Image, BackHandler} from 'react-native';
+import {Text, View, Image, BackHandler, Alert} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook} from 'cavy';
 
@@ -10,13 +10,22 @@ class Login extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
   }
-
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
   }
 
   handleBackButton() {
-    console.log('Back button is pressed');
+    Alert.alert('Hold on!', 'Are you sure you want to exit the App?', [
+      {
+        text: 'No',
+        onPress: () => null,
+        style: 'cancel',
+      },
+      {
+        text: 'YES',
+        onPress: () => BackHandler.exitApp(),
+      },
+    ]);
     return true;
   }
   resetState() {

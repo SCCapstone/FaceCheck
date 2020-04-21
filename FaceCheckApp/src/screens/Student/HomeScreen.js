@@ -17,15 +17,14 @@ class StudentHomeScreen extends React.Component {
   componentDidMount() {
     const {currentUser} = firebase.auth();
     this.setState({currentUser});
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.addEventListener('backToLogin', this.handleBackButton);
   }
-
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.removeEventListener('backToLogin', this.handleBackButton);
   }
 
   handleBackButton() {
-    console.log('Back button is pressed');
+    console.log('backToLoginS button is pressed');
     return true;
   }
 

@@ -14,15 +14,15 @@ class TeacherHomePageScreen extends React.Component {
   componentDidMount() {
     const {currentUser} = firebase.auth();
     this.setState({currentUser});
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.addEventListener('backToLoginT', this.handleBackButton);
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.removeEventListener('backToLoginT', this.handleBackButton);
   }
 
   handleBackButton() {
-    console.log('Back button is pressed');
+    console.log('backToLoginT button is pressed');
     return true;
   }
   render() {
@@ -49,7 +49,15 @@ class TeacherHomePageScreen extends React.Component {
           <Appbar.Content title="Teacher Home" style={{marginRight: 45}} />
         </Appbar.Header>
         <ScrollView>
-          <TeacherClassCards navigation={this.props.navigation} />
+          <TeacherClassCards
+            onPress={() =>
+              BackHandler.removeEventListener(
+                'hardwareBackPress',
+                this.handleBackButton,
+              )
+            }
+            navigation={this.props.navigation}
+          />
         </ScrollView>
         {/* <FAB.Group
           open={this.state.open}
