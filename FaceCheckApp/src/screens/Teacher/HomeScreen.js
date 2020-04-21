@@ -49,14 +49,7 @@ class TeacherHomePageScreen extends React.Component {
           <Appbar.Content title="Teacher Home" style={{marginRight: 45}} />
         </Appbar.Header>
         <ScrollView>
-          <TeacherClassCards
-            onPress={() =>
-              BackHandler.removeEventListener(
-                'hardwareBackPress',
-                this.handleBackButton,
-              )
-            }
-            navigation={this.props.navigation}
+          <TeacherClassCards navigation={this.props.navigation} />
           />
         </ScrollView>
         {/* <FAB.Group
