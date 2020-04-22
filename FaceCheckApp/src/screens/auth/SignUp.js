@@ -5,6 +5,7 @@ import {Text, View, Image} from 'react-native';
 import {hook} from 'cavy';
 import {authenticator, totp} from 'otplib';
 import styles from 'FaceCheckApp/src/assets/styles';
+import {StackActions} from 'react-navigation';
 
 class SignUp extends React.Component {
   state = {email: '', password: '', errorMessage: null};
@@ -32,7 +33,7 @@ class SignUp extends React.Component {
               userType: 'Student',
               email: this.state.email,
               userSecret: secret,
-              classes: ['d88f60a53a1ad4123db69ba2d2a00130e4041ae3'],
+              classes: [],
             };
             // Add user data to users collection with doc id of uid
             firebase
@@ -40,7 +41,12 @@ class SignUp extends React.Component {
               .collection('users')
               .doc(data.user.uid)
               .set(userData)
-              .then(() => console.log('pass'))
+              .then(() => {
+                StackActions.reset({
+                  index: 0,
+                  actions: [this.props.navigation.navigate('Login')],
+                });
+              })
               .catch(error => this.setState({errorMessage: error.message}));
           })
           .catch(err => console.log(err));

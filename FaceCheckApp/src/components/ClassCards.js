@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Paragraph, ActivityIndicator} from 'react-native-paper';
 import {View, Button, Alert, BackHandler} from 'react-native';
 import {connect} from 'react-redux';
-import {watchClasses} from 'FaceCheckApp/src/redux/app-redux';
+import {watchClasses, resetClassData} from 'FaceCheckApp/src/redux/app-redux';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, wrap} from 'cavy';
 
@@ -36,6 +36,7 @@ class ClassCards extends React.Component {
   constructor(props) {
     super(props);
     this.props.watchClasses();
+    // this.props.resetClassData();
   }
 
   render() {

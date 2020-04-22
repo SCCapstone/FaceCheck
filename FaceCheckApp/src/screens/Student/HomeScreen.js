@@ -6,11 +6,16 @@ import ClassCards from 'FaceCheckApp/src/components/ClassCards';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, useCavy, wrap} from 'cavy';
 import {StackActions} from 'react-navigation';
+import {resetClassData} from '../../redux/app-redux';
+import {connect} from 'react-redux';
 
-//const generateTestHook = useCavy();
-//const TestableClassCards = wrap(ClassCards);
-//<TestableClassCards ref={generateTestHook('Scene.ClassCard') navigation={this.props.navigation}}/>;
-
+const mapDispatchToProps = dispatch => {
+  return {
+    resetClassData: () => {
+      dispatch(resetClassData());
+    },
+  };
+};
 class StudentHomeScreen extends React.Component {
   state = {currentUser: null, open: false};
 
@@ -29,8 +34,6 @@ class StudentHomeScreen extends React.Component {
   }
 
   render() {
-    // const count = Object.keys(attendance).reduce((total, key) => { return total + (!attendance[key] || attendance[key].find(s => s.uid === currentUser.uid) ? 0 : 1)}, 0)
-
     return (
       <View style={styles.screen}>
         <Appbar.Header>
@@ -43,6 +46,7 @@ class StudentHomeScreen extends React.Component {
                 .auth()
                 .signOut()
                 .then(() => {
+                  this.props.resetClassData();
                   StackActions.reset({
                     index: 0,
                     actions: [this.props.navigation.navigate('Login')],
@@ -61,52 +65,14 @@ class StudentHomeScreen extends React.Component {
             />
           )}
         </ScrollView>
-        {/* <FAB.Group
-          open={this.state.open}
-          icon={this.state.open ? 'details' : 'class'}
-          actions={[
-            {icon: 'add', label: 'add a class', onPress: () => {}},
-            {
-              icon: 'code',
-              label: 'qr generator',
-              onPress: () => {
-                this.props.navigation.navigate('QRGenerator');
-              },
-            },
-            {
-              icon: 'burst-mode',
-              label: 'qr scanner',
-              onPress: () => {
-                this.props.navigation.navigate('QRScanner');
-              },
-            },
-            {
-              icon: 'star',
-              label: 'teacher home page',
-              onPress: () => {
-                this.props.navigation.navigate('TeacherHome');
-              },
-            },
-            {
-              icon: 'face',
-              label: 'face scanner',
-              onPress: () => {
-                this.props.navigation.navigate('FaceScanner');
-              },
-            },
-            {
-              icon: 'keyboard-tab',
-              label: 'log-out',
-              onPress: () => {
-                firebase.auth().signOut();
-              },
-            },
-          ]}
-          onStateChange={({open}) => this.setState({open})}
-        /> */}
       </View>
     );
   }
 }
 
-export default hook(StudentHomeScreen);
+export default hook(
+  connect(
+    null,
+    mapDispatchToProps,
+  )(StudentHomeScreen),
+);
