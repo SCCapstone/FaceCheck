@@ -1,14 +1,8 @@
 import React from 'react';
 import {Card, Paragraph, ActivityIndicator} from 'react-native-paper';
-<<<<<<< HEAD
-import {View, Button, Alert, BackHandler} from 'react-native';
-import {connect} from 'react-redux';
-import {watchClasses, resetClassData} from 'FaceCheckApp/src/redux/app-redux';
-=======
 import {View, Button, Alert, BackHandler, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {watchClasses} from 'FaceCheckApp/src/redux/app-redux';
->>>>>>> ba7a1c0305c387b86d803b07053b88b5a07314d7
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, wrap} from 'cavy';
 
@@ -42,10 +36,6 @@ class ClassCards extends React.Component {
   constructor(props) {
     super(props);
     this.props.watchClasses();
-<<<<<<< HEAD
-    // this.props.resetClassData();
-=======
->>>>>>> ba7a1c0305c387b86d803b07053b88b5a07314d7
   }
 
   render() {
@@ -54,15 +44,11 @@ class ClassCards extends React.Component {
     const alertClasses = [];
 
     if (!classes || classes.length === 0) {
-<<<<<<< HEAD
-      return <ActivityIndicator animating={true} />;
-=======
       return (
         <View style={styles.centerScreenJustWowee}>
           <Text style={styles.text}>No Classes Assigned</Text>
         </View>
       );
->>>>>>> ba7a1c0305c387b86d803b07053b88b5a07314d7
     }
     return this.props.classes.map(currClass => {
       const {className, TeacherName, meetingDays, Time} = currClass;
