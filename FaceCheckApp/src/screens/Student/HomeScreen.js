@@ -1,7 +1,7 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
-import {FAB, Portal, Appbar} from 'react-native-paper';
-import {View, ScrollView, Button, BackHandler} from 'react-native';
+import {FAB, Portal, Appbar, Button} from 'react-native-paper';
+import {View, ScrollView, BackHandler} from 'react-native';
 import ClassCards from 'FaceCheckApp/src/components/ClassCards';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, useCavy, wrap} from 'cavy';
@@ -35,9 +35,8 @@ class StudentHomeScreen extends React.Component {
       <View style={styles.screen}>
         <Appbar.Header>
           <Button
-            ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
-            title="Log Out"
-            color="#7B1D0B"
+            //ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
+            color="#D3D3D3"
             onPress={() => {
               firebase
                 .auth()
@@ -48,8 +47,9 @@ class StudentHomeScreen extends React.Component {
                     actions: [this.props.navigation.navigate('Login')],
                   });
                 });
-            }}
-          />
+            }}>
+            Logout
+          </Button>
 
           <Appbar.Content title="Student Home" style={{marginRight: 45}} />
         </Appbar.Header>

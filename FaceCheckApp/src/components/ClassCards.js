@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Paragraph, ActivityIndicator} from 'react-native-paper';
-import {View, Button, Alert, BackHandler} from 'react-native';
+import {View, Button, Alert, BackHandler, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {watchClasses} from 'FaceCheckApp/src/redux/app-redux';
 import styles from 'FaceCheckApp/src/assets/styles';
@@ -44,7 +44,11 @@ class ClassCards extends React.Component {
     const alertClasses = [];
 
     if (!classes || classes.length === 0) {
-      return <ActivityIndicator animating={true} />;
+      return (
+        <View style={styles.centerScreenJustWowee}>
+          <Text style={styles.text}>No Classes Assigned</Text>
+        </View>
+      );
     }
     return this.props.classes.map(currClass => {
       const {className, TeacherName, meetingDays, Time} = currClass;
