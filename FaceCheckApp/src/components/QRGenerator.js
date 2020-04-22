@@ -16,7 +16,7 @@ export default class QRGenerator extends React.Component {
       seconds: 0,
       uid: uid,
       secret: undefined,
-      userData: undefined,
+      userData: {},
       currClass: this.props.currClass,
     };
     const user = firebase
@@ -67,6 +67,7 @@ export default class QRGenerator extends React.Component {
       token: token,
       teacherUID: this.state.currClass.TeacherUID,
       time: this.state.currClass.Time,
+      userName: this.state.userData.email,
     };
     const qrDataString = JSON.stringify(qrData);
     console.log(this.state.currClass);

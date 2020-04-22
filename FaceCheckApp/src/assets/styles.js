@@ -30,6 +30,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  centerScreenJust: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   centerItem: {
     alignItems: 'center',
   },
@@ -51,6 +57,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     marginTop: 40,
+  },
+  textButSmaller: {
+    fontSize: 10,
   },
   centerText: {
     justifyContent: 'center',
