@@ -97,7 +97,7 @@ class SignUp extends React.Component {
               mode="text"
               uppercase={false}
               onPress={() => this.props.navigation.navigate('Login')}>
-              Already Signed Up? Log-in here.
+              Log-in here
             </Button>
           </Card.Content>
         </Card>

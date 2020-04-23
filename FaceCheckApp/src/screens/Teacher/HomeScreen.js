@@ -22,14 +22,12 @@ class TeacherHomePageScreen extends React.Component {
           <Button
             //ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
             title="Log Out"
-            color="#EEEEEE"
+            color="#7B1D0B"
             onPress={() => {
               firebase.auth().signOut();
             }}
           />
-          <Appbar.Content title="Teacher Home" 
-            style={{marginRight: 45}}
-            />
+          <Appbar.Content title="Teacher Home" style={{marginRight: 45}} />
         </Appbar.Header>
         <ScrollView>
           <TeacherClassCards navigation={this.props.navigation} />
