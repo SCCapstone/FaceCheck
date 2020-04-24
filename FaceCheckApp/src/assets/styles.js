@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   button: {
     marginHorizontal: 60,
     marginVertical: 5,
-    alignSelf: "center"
+    alignSelf: 'center',
   },
   centerScreen: {
     flex: 1,
@@ -30,11 +30,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  centerScreenJust: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   centerItem: {
     alignItems: 'center',
   },
   datePicker: {
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   surface: {
     padding: 8,
@@ -52,26 +58,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 40,
   },
+  textButSmaller: {
+    fontSize: 10,
+  },
   centerText: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   logo: {
     alignItems: 'center',
-    backgroundColor: "#00000000",
     justifyContent: 'center',
-    left: 70,
-    bottom: 0,
+    left: 45,
+    bottom: 110,
     width: 250,
     height: 250,
-    position: 'absolute'
-         
+    position: 'absolute',
+    zIndex: -1,
   },
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-  }
+  },
 });
 
 export default styles;

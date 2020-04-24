@@ -1,10 +1,11 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
-import {FAB, Portal, Appbar} from 'react-native-paper';
-import {View, ScrollView, Button} from 'react-native';
+import {FAB, Portal, Appbar, Button} from 'react-native-paper';
+import {View, ScrollView, BackHandler} from 'react-native';
 import TeacherClassCards from 'FaceCheckApp/src/components/TeacherClassCards.js';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook, useCavy, wrap} from 'cavy';
+import {StackActions} from 'react-navigation';
 
 class TeacherHomePageScreen extends React.Component {
   //TODO everything
@@ -13,6 +14,16 @@ class TeacherHomePageScreen extends React.Component {
   componentDidMount() {
     const {currentUser} = firebase.auth();
     this.setState({currentUser});
+    BackHandler.addEventListener('backToLoginT', this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('backToLoginT', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    console.log('backToLoginT button is pressed');
+    return true;
   }
   render() {
     const {currentUser} = this.state;
@@ -21,12 +32,20 @@ class TeacherHomePageScreen extends React.Component {
         <Appbar.Header>
           <Button
             //ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
-            title="Log Out"
-            color="#7B1D0B"
+            color="#D3D3D3"
             onPress={() => {
-              firebase.auth().signOut();
-            }}
-          />
+              firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                  StackActions.reset({
+                    index: 0,
+                    actions: [this.props.navigation.navigate('Login')],
+                  });
+                });
+            }}>
+            Logout
+          </Button>
           <Appbar.Content title="Teacher Home" style={{marginRight: 45}} />
         </Appbar.Header>
         <ScrollView>

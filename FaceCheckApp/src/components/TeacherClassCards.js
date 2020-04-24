@@ -42,7 +42,11 @@ class TeacherClassCards extends React.Component {
         );
       });
     } else {
-      return <ActivityIndicator animating={true} />;
+      return (
+        <View style={styles.centerScreenJustWowee}>
+          <Text style={styles.text}>No Classes Assigned</Text>
+        </View>
+      );
     }
   }
 

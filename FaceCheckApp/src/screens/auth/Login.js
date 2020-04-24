@@ -1,35 +1,64 @@
 import firebase from 'react-native-firebase';
 import React from 'react';
 import {Appbar, Card, TextInput, Button} from 'react-native-paper';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, BackHandler, Alert} from 'react-native';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {hook} from 'cavy';
 
 class Login extends React.Component {
   state = {email: '', password: '', errorMessage: null};
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    Alert.alert('Hold on!', 'Are you sure you want to exit the App?', [
+      {
+        text: 'No',
+        onPress: () => null,
+        style: 'cancel',
+      },
+      {
+        text: 'YES',
+        onPress: () => BackHandler.exitApp(),
+      },
+    ]);
+    return true;
+  }
+  resetState() {
+    this.setState({
+      email: '',
+      password: '',
+      errorMessage: null,
+    });
+  }
 
   handleLogin = () => {
-    const {email, password} = this.state;
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      // TODO: Add variable to handle teacher login
-      .then(() => this.props.navigation.navigate('StudentHome'))
+      .then(() => {
+        this.resetState();
+        this.props.navigation.navigate('Loading');
+      })
       .catch(error => this.setState({errorMessage: error.message}));
   };
 
   render() {
     return (
       <View style={styles.screen}>
-        <Appbar.Header style={{zIndex: 1}}>
+        <Appbar style={{zIndex: 1}}>
           <Appbar.Content title="Login" />
-        </Appbar.Header>
+        </Appbar>
         <Card style={styles.centerScreen}>
           <Card.Content>
             {this.state.errorMessage && (
               <Text style={{color: 'red'}}>{this.state.errorMessage}</Text>
             )}
-            <View style={{zIndex: -1}}>
+            <View style={styles.logo}>
               <Image
                 ref={this.props.generateTestHook('Scene.Image')}
                 style={styles.logo}
@@ -62,11 +91,14 @@ class Login extends React.Component {
             </Button>
             <Button
               ref={this.props.generateTestHook('Scene.SignUpButton')}
-              style={[styles.button, {flexWrap: "wrap" }]}
+              style={[styles.button, {flexWrap: 'wrap'}]}
               mode="text"
               uppercase={false}
-              onPress={() => this.props.navigation.navigate('SignUp')}>
-              Not a Member? Sign Up!
+              onPress={() => {
+                this.resetState();
+                this.props.navigation.navigate('SignUp');
+              }}>
+              Not a Member? Sign Up Now!
             </Button>
           </Card.Content>
         </Card>

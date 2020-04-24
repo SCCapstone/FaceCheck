@@ -19,6 +19,7 @@ export default class QRScanner extends React.Component {
       currClass: {},
       attendance: undefined,
       currDate: currDate,
+      email: '',
     };
     this._barcodeRecognized = debounce(this._barcodeRecognized, 1250, {
       leading: true,
@@ -111,6 +112,7 @@ export default class QRScanner extends React.Component {
           }
           this._logAttendance(uid);
           console.log('valid attendance');
+          this.setState({email: data.email});
         } else {
           console.log('invalid attendance');
         }
@@ -152,9 +154,9 @@ export default class QRScanner extends React.Component {
             }}
           />
           <Dialog visible={this.state.visible} onDismiss={this._hideDialog}>
-            <Dialog.Title>Logged In</Dialog.Title>
+            <Dialog.Title>{this.state.email}</Dialog.Title>
             <Dialog.Content>
-              <Paragraph></Paragraph>
+              <Paragraph>Logged In</Paragraph>
             </Dialog.Content>
           </Dialog>
         </View>
