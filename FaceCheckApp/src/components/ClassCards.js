@@ -51,13 +51,6 @@ class ClassCards extends React.Component {
       );
     }
     return this.props.classes.map(currClass => {
-<<<<<<< HEAD
-      const { className, TeacherName, meetingDays, Time} = currClass
-      const { Attendance } = currClass
-      const absenceCount = Object.keys(Attendance).reduce((total, key) => total + (!Attendance[key] || Attendance[key].find(s => s.uid === userId) ? 0 : 1), 0)
-      if (absenceCount > 3) {
-        alertClasses.push(className)
-=======
       const {className, TeacherName, meetingDays, Time} = currClass;
       const {Attendance} = currClass;
       const absenceCount = Object.keys(Attendance).reduce(
@@ -70,7 +63,6 @@ class ClassCards extends React.Component {
       );
       if (absenceCount > 3) {
         alertClasses.push(className);
->>>>>>> c737d0b881f809f7b2247b5c4ad7123497e66fd6
       }
       // console.log("alerts:", alertClasses)
       return (
