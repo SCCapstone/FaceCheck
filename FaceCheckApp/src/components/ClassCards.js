@@ -22,15 +22,15 @@ const mapDispatchToProps = dispatch => {
 
 async function _alertClasses(alertClasses) {
   await delay(3000);
+  let counter = 0;
   console.log('this', alertClasses);
-  if (alertClasses.length !== 0) {
+  if (alertClasses.length !== 0 && counter === 0) {
     Alert.alert('Too many Absences: ', alertClasses.map(c => c).join('\n'));
+    counter ++;
   }
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
-
-// _timedAlert = () => setTimeout(_alertClasses, 5000);
 
 class ClassCards extends React.Component {
   constructor(props) {
