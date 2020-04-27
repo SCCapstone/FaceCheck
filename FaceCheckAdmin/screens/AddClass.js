@@ -77,14 +77,35 @@ export default class AddTeacher extends React.Component {
                     placeholder='Class Name'
                     autoCapitalize='none'
                 />
+                {!!this.state.classNameError && (
+                    <Text style={{ color: "red" }}>{this.state.classNameError}</Text>
+                )}
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.classTime}
                     onChangeText={classTime => this.setState({ classTime: classTime})}
                     placeholder='Class Time'
                 />
+                {!!this.state.classTimeError && (
+                    <Text style={{ color: "red" }}>{this.state.classTimeError}</Text>
+                )}
                 
-                <TouchableOpacity style={styles.button} onPress={() => this.handleCreation()}>
+                <TouchableOpacity style={styles.button} 
+                    onPress={ () =>
+                        {
+                        if (this.state.className.trim() === "") {
+                            this.setState(() => ({ classNameError: "Class name required." }));
+                        } 
+                        if (this.state.classTime.trim() === "") {
+                            this.setState(() => ({ classTimeError: "Class Time required." }));
+                        }
+                        else {
+                                this.setState(() => ({ nameError: null }));
+                                this.handleCreation()
+                            }
+                        }
+                    } 
+                >
                     <Text style={styles.buttonText}>create class</Text>
                 </TouchableOpacity>
         
@@ -115,7 +136,7 @@ const styles = StyleSheet.create({
         height: 200        
     },
     pickers: {
-        height: 50,
+        height: 40,
         width: '80%',
         margin: 10,
         padding: 15,
