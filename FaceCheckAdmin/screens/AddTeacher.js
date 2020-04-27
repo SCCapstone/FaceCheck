@@ -25,7 +25,6 @@ export default class AddTeacher extends React.Component {
         Firebase.firestore().collection('users').doc(uid).set(data)
         .then(() => this.props.navigation.navigate('Home'))
         .catch(error => alert(error.message))
-        alert('hola')
     }
 
     handleSignUp = () => {
@@ -41,7 +40,11 @@ export default class AddTeacher extends React.Component {
       }
     }
 
-
+    validEmail = () => {
+        let email = this.state.email
+        let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(String(email).toLowerCase())
+   }
 
   render() {
     return (
@@ -89,6 +92,9 @@ export default class AddTeacher extends React.Component {
                         }
                         if (this.state.confirmPass.trim() === "") {
                             this.setState(() => ({ confirmPassError: "Confirm Password required." }));
+                        }
+                        else if (!this.validEmail()) {
+                            this.setState(() => ({ emailError: "Invalid email format" }));
                         }
                         else {
                             this.confPass()  
