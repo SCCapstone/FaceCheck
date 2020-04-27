@@ -97,7 +97,10 @@ handleCollection = () => {
                     
                     }>
                     {this.state.users.map((item, index) => {
-                        return (< Picker.Item label={item} value={index} key={index} />);
+                        if (item.includes('- Student')) {
+                            return (< Picker.Item label={item} value={index} key={index} />);
+                        }
+                        
                     })}
                 </Picker>
 
