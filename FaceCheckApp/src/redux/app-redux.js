@@ -19,6 +19,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'setClasses':
       return {...state, classes: action.value};
+    case 'resetClasses':
+      return initialState;
     default:
       return state;
   }
@@ -39,6 +41,13 @@ const setClasses = classes => {
   return {
     type: 'setClasses',
     value: classes,
+  };
+};
+
+const resetClasses = () => {
+  return {
+    type: 'resetClasses',
+    value: [],
   };
 };
 
@@ -71,4 +80,11 @@ const watchClasses = () => {
   };
 };
 
-export {setClasses, watchClasses};
+const resetClassData = () => {
+  return function(dispatch) {
+    console.log('Classes Reset');
+    dispatch(resetClasses());
+  };
+};
+
+export {setClasses, watchClasses, resetClassData};

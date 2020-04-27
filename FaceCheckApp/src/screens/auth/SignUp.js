@@ -41,12 +41,12 @@ class SignUp extends React.Component {
               .collection('users')
               .doc(data.user.uid)
               .set(userData)
-              .then(() =>
+              .then(() => {
                 StackActions.reset({
                   index: 0,
                   actions: [this.props.navigation.navigate('Login')],
-                }),
-              )
+                });
+              })
               .catch(error => this.setState({errorMessage: error.message}));
           })
           .catch(err => console.log(err));

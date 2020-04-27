@@ -9,9 +9,7 @@ import styles from 'FaceCheckApp/src/assets/styles';
 export default class Loading extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      // !! Loading is used to set initial navication
-      // TODO: Add future check on logged in user to determin teacher or student
-      // login flow
+      console.log(user);
       if (user) {
         firebase
           .firestore()
@@ -31,6 +29,7 @@ export default class Loading extends React.Component {
             }
           });
       } else {
+        console.log('In Loading, No User');
         StackActions.reset({
           index: 0,
           actions: [this.props.navigation.navigate('Login')],
