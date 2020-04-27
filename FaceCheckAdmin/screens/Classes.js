@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         height: 200        
     },
     pickers: {
-        height: 40,
+        height: 50,
         width: '80%',
         margin: 10,
         padding: 15,

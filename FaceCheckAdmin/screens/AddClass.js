@@ -49,7 +49,7 @@ export default class AddTeacher extends React.Component {
         }
         Firebase.firestore().collection('classes').doc().set(data)
         .then(() => this.props.navigation.navigate('Home'))
-        .catch(error => this.setState({ errMsg: error.message }))
+        .catch(error => alert(error.message))
     }
    
   render() {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         height: 200        
     },
     pickers: {
-        height: 40,
+        height: 50,
         width: '80%',
         margin: 10,
         padding: 15,
