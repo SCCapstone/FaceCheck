@@ -10,8 +10,8 @@ export default class AddTeacher extends React.Component {
         this.state = {
             className: '', 
             classTime: '',
-            teacherName: '',
-            teacherUID: '',
+            teacherName: null,
+            teacherUID: null,
             teachers: [],
             teacehrsUID: [],
         }
@@ -35,7 +35,16 @@ export default class AddTeacher extends React.Component {
             })
             this.setState({teachersUID: teachersUID})
             this.setState({teachers: emails})
+            {
+                {
+                    this.setState({teacherName: this.state.teachers[0]})
+                    this.setState({teacherUID: this.state.teachersUID[0]})
+                }
+            }
         })
+            
+           
+        
     }
     handleCreation = () => {
         let data = {
@@ -44,7 +53,7 @@ export default class AddTeacher extends React.Component {
             meetingDays: [],
             Students: [],
             TeacherUID:this.state.teacherUID, 
-            TeacherName: this.state.teachers[this.state.teacherName],
+            TeacherName: this.state.teacherName,
             Attendance: {} 
         }
         Firebase.firestore().collection('classes').doc().set(data)
@@ -61,7 +70,7 @@ export default class AddTeacher extends React.Component {
                     selectedValue={this.state.teacherName}
                     style={styles.pickers}
                     onValueChange={(itemValue, itemIndex) => {
-                        this.setState({teacherName: itemValue})
+                        this.setState({teacherName: this.state.teachers[itemIndex]});
                         this.setState({teacherUID: this.state.teachersUID[itemIndex]})
                     }
                     
