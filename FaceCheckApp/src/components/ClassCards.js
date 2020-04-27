@@ -26,7 +26,7 @@ async function _alertClasses(alertClasses) {
   console.log('this', alertClasses);
   if (alertClasses.length !== 0 && counter === 0) {
     Alert.alert('Too many Absences: ', alertClasses.map(c => c).join('\n'));
-    counter ++;
+    counter++;
   }
 }
 
@@ -67,6 +67,7 @@ class ClassCards extends React.Component {
       // console.log("alerts:", alertClasses)
       return (
         <Card
+          ref={this.props.generateTestHook('Scene.ClassCards')}
           style={styles.card}
           key={className}
           onPress={() => {
@@ -86,7 +87,9 @@ class ClassCards extends React.Component {
     }, _alertClasses(alertClasses));
   }
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ClassCards);
+export default hook(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(ClassCards),
+);

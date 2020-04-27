@@ -3,10 +3,11 @@ import React from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 import {StackActions} from 'react-navigation';
 const db = firebase.firestore();
+import {hook} from 'cavy';
 
 import styles from 'FaceCheckApp/src/assets/styles';
 
-export default class Loading extends React.Component {
+class Loading extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       console.log(user);
@@ -37,12 +38,18 @@ export default class Loading extends React.Component {
       }
     });
   }
+  componentWillUnmount() {}
 
   render() {
     return (
       <View style={styles.centerScreenJust}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator
+          ref={this.props.generateTestHook('Scene.LoadingPage')}
+          size="large"
+        />
       </View>
     );
   }
 }
+
+export default hook(Loading);

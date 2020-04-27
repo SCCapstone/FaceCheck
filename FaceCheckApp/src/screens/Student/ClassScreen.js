@@ -4,8 +4,8 @@ import {Appbar, Card} from 'react-native-paper';
 import {View, BackHandler} from 'react-native';
 import QRGenerator from 'FaceCheckApp/src/components/QRGenerator';
 import styles from 'FaceCheckApp/src/assets/styles';
-
-export default class AddClassScreen extends React.Component {
+import {hook} from 'cavy';
+class AddClassScreen extends React.Component {
   state = {currentUser: null};
 
   componentDidMount() {
@@ -30,6 +30,7 @@ export default class AddClassScreen extends React.Component {
       <View style={styles.screen}>
         <Appbar.Header>
           <Appbar.BackAction
+            ref={this.props.generateTestHook('Scene.studentClassBackButton')}
             onPress={() => {
               this.props.navigation.goBack();
             }}
@@ -43,3 +44,5 @@ export default class AddClassScreen extends React.Component {
     );
   }
 }
+
+export default hook(AddClassScreen);

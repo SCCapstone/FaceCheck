@@ -38,7 +38,7 @@ class StudentHomeScreen extends React.Component {
       <View style={styles.screen}>
         <Appbar.Header>
           <Button
-            //ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
+            ref={this.props.generateTestHook('Scene.studentHomeBackButton')}
             color="#D3D3D3"
             onPress={() => {
               firebase
