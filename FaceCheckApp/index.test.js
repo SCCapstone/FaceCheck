@@ -9,7 +9,9 @@ import {store} from './src/redux/app-redux';
 import React, {Component} from 'react';
 import {AppRegistry} from 'react-native';
 import {Tester, TestHookStore} from 'cavy';
-import ExampleSpec from './specs/exampleSpec';
+import studentNavigation from './specs/studentNavigation';
+import teacherNavigation from './specs/teacherNavigation';
+import signUpSpec from './specs/signUpSpec';
 
 const theme = {
   ...DefaultTheme,
@@ -27,8 +29,9 @@ const testHookStore = new TestHookStore();
 class AppWrapper extends Component {
   render() {
     return (
+      //, studentNavigation, teacherNavigation
       <Tester
-        specs={[ExampleSpec]}
+        specs={[signUpSpec, studentNavigation, teacherNavigation]}
         clearAsyncStorage={true}
         store={testHookStore}
         waitTime={1000}>

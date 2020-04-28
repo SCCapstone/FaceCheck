@@ -6,8 +6,8 @@ import {RNCamera} from 'react-native-camera';
 import styles from 'FaceCheckApp/src/assets/styles';
 import {totp} from 'otplib';
 import {debounce} from 'lodash';
-
-export default class QRScanner extends React.Component {
+import {hook} from 'cavy';
+class QRScanner extends React.Component {
   constructor(props) {
     super(props);
     this._isMounted = false;
@@ -134,6 +134,7 @@ export default class QRScanner extends React.Component {
       <View style={styles.screen}>
         <Appbar.Header>
           <Appbar.BackAction
+            ref={this.props.generateTestHook('Scene.QRScannerBackButton')}
             onPress={() => {
               this._updateFirestoreAttendance();
             }}
@@ -164,3 +165,4 @@ export default class QRScanner extends React.Component {
     );
   }
 }
+export default hook(QRScanner);

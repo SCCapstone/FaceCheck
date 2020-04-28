@@ -42,16 +42,16 @@ class SignUp extends React.Component {
               .doc(data.user.uid)
               .set(userData)
               .then(() => {
-                StackActions.reset({
-                  index: 0,
-                  actions: [this.props.navigation.navigate('Login')],
-                });
+                //   console.log();
+                //   StackActions.reset({
+                //     index: 0,
+                //     actions: [this.props.navigation.navigate('Login')],
+                //   });
+                //
               })
               .catch(error => this.setState({errorMessage: error.message}));
           })
           .catch(err => console.log(err));
-
-        // Return object with user creation success
       });
   };
 
