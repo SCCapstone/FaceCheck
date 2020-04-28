@@ -10,10 +10,25 @@ export default class AddTeacher extends React.Component {
         this.state = {
             className: '', 
             classTime: '',
-            teacherName: null,
-            teacherUID: null,
+            teacherName: '',
+            teacherUID: '',
             teachers: [],
             teacehrsUID: [],
+            meetingDays: ['Monday, Wednesday', 'Tuesday, Thursday', 'Monday, Wednesday, Friday'],
+            meeting: 0,
+            meetings: []
+        }
+    }
+
+    days = () => {
+        if (this.state.meeting === 0) {
+            this.setState({meetings: ['Monday', 'Wednesday']}) 
+        }
+        else if (this.state.meeting === 1) {
+            this.setState({meetings: ['Monday', 'Wednesday', 'Friday']}) 
+        }
+        else if (this.state.meeting === 2) {
+            this.setState({meetings: ['Tuesday', 'Thursday']}) 
         }
     }
 
@@ -42,11 +57,10 @@ export default class AddTeacher extends React.Component {
                 }
             }
         })
-            
-           
-        
     }
     handleCreation = () => {
+        this.days()
+        alert(this.state.meetings)
         let data = {
             className: this.state.className,
             Time: this.state.classTime,
@@ -54,11 +68,11 @@ export default class AddTeacher extends React.Component {
             Students: [],
             TeacherUID:this.state.teacherUID, 
             TeacherName: this.state.teacherName,
-            Attendance: {} 
+            Attendance: this.state.meetings
         }
         Firebase.firestore().collection('classes').doc().set(data)
         .then(() => this.props.navigation.navigate('Home'))
-        .catch(error => alert(error.message))
+        .catch(error => this.setState({ errMsg: error.message }))
     }
    
   render() {
@@ -70,7 +84,7 @@ export default class AddTeacher extends React.Component {
                     selectedValue={this.state.teacherName}
                     style={styles.pickers}
                     onValueChange={(itemValue, itemIndex) => {
-                        this.setState({teacherName: this.state.teachers[itemIndex]});
+                        this.setState({teacherName: itemValue})
                         this.setState({teacherUID: this.state.teachersUID[itemIndex]})
                     }
                     
@@ -86,9 +100,21 @@ export default class AddTeacher extends React.Component {
                     placeholder='Class Name'
                     autoCapitalize='none'
                 />
-                {!!this.state.classNameError && (
+                 {!!this.state.classNameError && (
                     <Text style={{ color: "red" }}>{this.state.classNameError}</Text>
                 )}
+                 <Picker
+                    selectedValue={this.state.meeting}
+                    style={styles.pickers}
+                    onValueChange={(itemValue, itemIndex) => {
+                        this.setState({meeting: itemIndex})
+                    }
+                    
+                    }>
+                    {this.state.meetingDays.map((item, index) => {
+                        return (< Picker.Item label={item} value={index} key={index} />);
+                    })}
+                </Picker>
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.classTime}
@@ -98,6 +124,8 @@ export default class AddTeacher extends React.Component {
                 {!!this.state.classTimeError && (
                     <Text style={{ color: "red" }}>{this.state.classTimeError}</Text>
                 )}
+
+               
                 
                 <TouchableOpacity style={styles.button} 
                     onPress={ () =>
@@ -145,7 +173,7 @@ const styles = StyleSheet.create({
         height: 200        
     },
     pickers: {
-        height: 40,
+        height: 50,
         width: '80%',
         margin: 10,
         padding: 15,
