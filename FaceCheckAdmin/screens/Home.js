@@ -23,6 +23,10 @@ export default class HomePage extends React.Component {
               <Image style = {styles.logo } source={require('../assets/logo.png')} />
             </View>
             <View style = {styles.container3}>
+                  <TouchableOpacity style = {styles.button} onPress = {() => this.props.navigation.navigate('Classes')}>
+                      <Text style = {styles.TextStyle}>classes</Text>
+                  </TouchableOpacity>
+
                   <TouchableOpacity style = {styles.button} onPress = {() => this.props.navigation.navigate('AddClass')}>
                       <Text style = {styles.TextStyle}>add class</Text>
                   </TouchableOpacity>

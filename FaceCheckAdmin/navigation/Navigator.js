@@ -9,6 +9,7 @@ import Loading from '../screens/Loading'
 import AddTeacher from '../screens/AddTeacher'
 import AddClass from '../screens/AddClass'
 import AssignClass from '../screens/AssignClass'
+import Classes from '../screens/Classes'
 
 
 const Stack = createStackNavigator()
@@ -70,6 +71,15 @@ export default class Navigator extends React.Component {
                         component = {AssignClass}
                         options = {{
                             title: 'assign class',
+                            headerTitleAlign: 'center',
+                            gestureDirection: 'horizontal'
+                        }}
+                    />
+                    <Stack.Screen 
+                        name = 'Classes' 
+                        component = {Classes}
+                        options = {{
+                            title: 'Classes',
                             headerTitleAlign: 'center',
                             gestureDirection: 'horizontal'
                         }}

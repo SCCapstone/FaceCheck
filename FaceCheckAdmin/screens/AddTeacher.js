@@ -24,7 +24,7 @@ export default class AddTeacher extends React.Component {
         }
         Firebase.firestore().collection('users').doc(uid).set(data)
         .then(() => this.props.navigation.navigate('Home'))
-        .catch(error => this.setState({ errMsg: error.message }))
+        .catch(error => alert(error.message))
     }
 
     handleSignUp = () => {
@@ -40,7 +40,11 @@ export default class AddTeacher extends React.Component {
       }
     }
 
-
+    validEmail = () => {
+        let email = this.state.email
+        let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(String(email).toLowerCase())
+   }
 
   render() {
     return (
@@ -54,6 +58,9 @@ export default class AddTeacher extends React.Component {
                     placeholder='Email'
                     autoCapitalize='none'
                 />
+                {!!this.state.emailError && (
+                    <Text style={{ color: "red" }}>{this.state.emailError}</Text>
+                )}
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.password}
@@ -61,6 +68,9 @@ export default class AddTeacher extends React.Component {
                     placeholder='Password'
                     secureTextEntry={true}
                 />
+                {!!this.state.passwordError && (
+                    <Text style={{ color: "red" }}>{this.state.passwordError}</Text>
+                )}
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.confirmPass}
@@ -68,7 +78,30 @@ export default class AddTeacher extends React.Component {
                     placeholder='Confirm Password'
                     secureTextEntry={true}
                 />
-                <TouchableOpacity style={styles.button} onPress={() => this.confPass()}>
+                {!!this.state.confirmPassError && (
+                    <Text style={{ color: "red" }}>{this.state.confirmPassError}</Text>
+                )}
+                <TouchableOpacity style={styles.button} 
+                onPress={ () =>
+                    {
+                        if (this.state.email.trim() === "") {
+                            this.setState(() => ({ emailError: "Email required." }));
+                        } 
+                        if (this.state.password.trim() === "") {
+                            this.setState(() => ({ passwordError: "Password required." }));
+                        }
+                        if (this.state.confirmPass.trim() === "") {
+                            this.setState(() => ({ confirmPassError: "Confirm Password required." }));
+                        }
+                        else if (!this.validEmail()) {
+                            this.setState(() => ({ emailError: "Invalid email format" }));
+                        }
+                        else {
+                            this.confPass()  
+                        }
+                    }
+                }
+                    >
                     <Text style={styles.buttonText}>Create</Text>
                 </TouchableOpacity>
         
@@ -89,7 +122,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         width: 500,
-        height: 500,
+        height: 550,
         backgroundColor: 'white',
         borderRadius: 10
     },

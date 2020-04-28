@@ -14,6 +14,21 @@ export default class AddTeacher extends React.Component {
             teacherUID: '',
             teachers: [],
             teacehrsUID: [],
+            meetingDays: ['Monday, Wednesday', 'Tuesday, Thursday', 'Monday, Wednesday, Friday'],
+            meeting: 0,
+            meetings: []
+        }
+    }
+
+    days = () => {
+        if (this.state.meeting === 0) {
+            this.setState({meetings: ['Monday', 'Wednesday']}) 
+        }
+        else if (this.state.meeting === 1) {
+            this.setState({meetings: ['Monday', 'Wednesday', 'Friday']}) 
+        }
+        else if (this.state.meeting === 2) {
+            this.setState({meetings: ['Tuesday', 'Thursday']}) 
         }
     }
 
@@ -35,17 +50,25 @@ export default class AddTeacher extends React.Component {
             })
             this.setState({teachersUID: teachersUID})
             this.setState({teachers: emails})
+            {
+                {
+                    this.setState({teacherName: this.state.teachers[0]})
+                    this.setState({teacherUID: this.state.teachersUID[0]})
+                }
+            }
         })
     }
     handleCreation = () => {
+        this.days()
+        alert(this.state.meetings)
         let data = {
             className: this.state.className,
             Time: this.state.classTime,
             meetingDays: [],
             Students: [],
             TeacherUID:this.state.teacherUID, 
-            TeacherName: this.state.teachers[this.state.teacherName],
-            Attendance: {} 
+            TeacherName: this.state.teacherName,
+            Attendance: this.state.meetings
         }
         Firebase.firestore().collection('classes').doc().set(data)
         .then(() => this.props.navigation.navigate('Home'))
@@ -77,14 +100,49 @@ export default class AddTeacher extends React.Component {
                     placeholder='Class Name'
                     autoCapitalize='none'
                 />
+                 {!!this.state.classNameError && (
+                    <Text style={{ color: "red" }}>{this.state.classNameError}</Text>
+                )}
+                 <Picker
+                    selectedValue={this.state.meeting}
+                    style={styles.pickers}
+                    onValueChange={(itemValue, itemIndex) => {
+                        this.setState({meeting: itemIndex})
+                    }
+                    
+                    }>
+                    {this.state.meetingDays.map((item, index) => {
+                        return (< Picker.Item label={item} value={index} key={index} />);
+                    })}
+                </Picker>
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.classTime}
                     onChangeText={classTime => this.setState({ classTime: classTime})}
                     placeholder='Class Time'
                 />
+                {!!this.state.classTimeError && (
+                    <Text style={{ color: "red" }}>{this.state.classTimeError}</Text>
+                )}
+
+               
                 
-                <TouchableOpacity style={styles.button} onPress={() => this.handleCreation()}>
+                <TouchableOpacity style={styles.button} 
+                    onPress={ () =>
+                        {
+                        if (this.state.className.trim() === "") {
+                            this.setState(() => ({ classNameError: "Class name required." }));
+                        } 
+                        if (this.state.classTime.trim() === "") {
+                            this.setState(() => ({ classTimeError: "Class Time required." }));
+                        }
+                        else {
+                                this.setState(() => ({ nameError: null }));
+                                this.handleCreation()
+                            }
+                        }
+                    } 
+                >
                     <Text style={styles.buttonText}>create class</Text>
                 </TouchableOpacity>
         
@@ -115,7 +173,7 @@ const styles = StyleSheet.create({
         height: 200        
     },
     pickers: {
-        height: 40,
+        height: 50,
         width: '80%',
         margin: 10,
         padding: 15,

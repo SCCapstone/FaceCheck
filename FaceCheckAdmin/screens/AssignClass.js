@@ -97,7 +97,10 @@ handleCollection = () => {
                     
                     }>
                     {this.state.users.map((item, index) => {
-                        return (< Picker.Item label={item} value={index} key={index} />);
+                        if (item.includes('- Student')) {
+                            return (< Picker.Item label={item} value={index} key={index} />);
+                        }
+                        
                     })}
                 </Picker>
 
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
         height: 200        
     },
     pickers: {
-        height: 40,
+        height: 50,
         width: '80%',
         margin: 10,
         padding: 15,
